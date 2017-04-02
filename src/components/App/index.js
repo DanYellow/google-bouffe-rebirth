@@ -21,8 +21,8 @@ class App extends Component {
 
     return (
       <div className='App'>
-         <List restaurants={restaurantsMapped} />
-          <Map restaurants={restaurantsMapped} />
+        <List restaurants={restaurantsMapped} />
+        <Map restaurants={restaurantsMapped} />
       </div>
     );
   }

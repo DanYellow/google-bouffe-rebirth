@@ -1,8 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { Marker } from 'react-google-maps';
 
-import marker from '../../images/marker-google-bouffe.png'
+import { selectedRestaurant } from '../../actions';
+import marker from '../../images/marker-google-bouffe.png';
+import activeMarker from '../../images/marker-google-bouffe-active.png';
 
 class GBMarker extends Component {
   constructor(props) {
@@ -17,14 +20,16 @@ class GBMarker extends Component {
    */
   handleClick() {
     const id = this.props.datas.id;
-    console.log(this.props.datas.title);
+
+    this.props.selectedRestaurant(id);
     document.getElementById(id).scrollIntoView();
   }
 
   render() {
     const markerSize = 50;
-    const markerIcon = { url: marker, scaledSize: new window.google.maps.Size(markerSize, markerSize) };
-    // console.log('marker', window.google);
+    const markerIcon = { url: (true) ? marker : activeMarker,
+                         scaledSize: new window.google.maps.Size(markerSize, markerSize) };
+    
     return (
       <Marker {...this.props} 
         icon={markerIcon}
@@ -34,4 +39,12 @@ class GBMarker extends Component {
   }
 }
 
-export default GBMarker;
+const mapStateToProps = state => ({
+  currentIndex: state.list.currentIndex
+});
+
+const mapDispatchToProps = () => ({
+  selectedRestaurant
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(GBMarker);
