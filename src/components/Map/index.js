@@ -60,8 +60,6 @@ class Map extends Component {
   }
 
   render() {
-    const { data, userLocation } = this.props;
-
     const digitasPolygon = <Polygon options={{
             paths: [{lat: 48.858347, lng: 2.372747}, {lat: 48.858516, lng: 2.373284},
             {lat: 48.857719, lng: 2.373949}, {lat: 48.857468, lng: 2.373364}],
@@ -71,6 +69,7 @@ class Map extends Component {
             fillColor: '#FF0000',
             fillOpacity: 0.35
           }} />
+          
     const markers = restaurants.map((restaurant, key) => {
       const {title, description, address, id} = restaurant;
       const datas = { title, description, address, id };

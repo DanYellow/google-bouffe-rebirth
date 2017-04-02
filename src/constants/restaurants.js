@@ -6,7 +6,7 @@ const restaurants = [
     },
     title: 'East mamma',
     description: 'Restaurant Italien. Produits de qualité pour des plats de qualité.',
-    address: '33 Rue du Faubourg Saint-Antoine, 75011 Paris',
+    address: '33 Rue du Faubourg Saint-Antoine • 75011 Paris',
     budget_scale: 4
   }, {
     position: {
@@ -15,7 +15,7 @@ const restaurants = [
     },
     title: 'Chez Aline',
     description: 'Traiteur / Sandwicherie. Tortilla de patatas, ex.ce.llen.te.',
-    address: '85 Rue de la Roquette, 75011 Paris',
+    address: '85 Rue de la Roquette • 75011 Paris',
     budget_scale: 8
   }, {
     'position': {
@@ -24,7 +24,7 @@ const restaurants = [
     },
     'title': 'Starvin Joe',
     description: 'Mar1 y est déjà allé genre trois fois. On peut dire que c\'est un bon burger.',
-    address: '42 Rue de Charonne, 75011 Paris',
+    address: '42 Rue de Charonne • 75011 Paris',
     budget_scale: 5
   }, {
     'position': {
@@ -33,7 +33,7 @@ const restaurants = [
     },
     title: 'Chez Gladines',
     description: 'Restauration du typique du Sud de la France. Plats copieux pour des prix raisonnables.',
-    address: '64 Rue de Charonne, 75011 Paris',
+    address: '64 Rue de Charonne • 75011 Paris',
     budget_scale: 3
   }, {
     'position': {
@@ -43,7 +43,7 @@ const restaurants = [
     'title': 'La fée verte',
 
       'description': '',
-      'address': '108 rue de la Roquette, 75011 Paris',
+      'address': '108 rue de la Roquette • 75011 Paris',
       'budget_scale': 5
   }, {
     'position': {
@@ -53,7 +53,7 @@ const restaurants = [
     'title': 'Momji',
 
       'description': '',
-      'address': '20 Rue Daval, 75011 Paris',
+      'address': '20 Rue Daval • 75011 Paris',
       'budget_scale': 5
     
   }, {
@@ -63,7 +63,7 @@ const restaurants = [
     },
     title: 'Café des anges',
     description: '',
-    address: '66 Rue de la Roquette, 75011 Paris',
+    address: '66 Rue de la Roquette • 75011 Paris',
     budget_scale: 5
     
   }, {
@@ -73,7 +73,7 @@ const restaurants = [
     },
     title: 'La Marelle',
     description: 'Bar-bistrot simple avec terrasse doté de chaises d\'écoliers pour une cuisine fine et un retour en enfance.',
-    address: '20 Rue Breguet, 75011 Paris',
+    address: '20 Rue Breguet • 75011 Paris',
     budget_scale: 5,
   }, {
     'position': {
@@ -82,7 +82,7 @@ const restaurants = [
     },
     'title': 'Jun\'Sushi',
     'description': 'Buffet à volonté sur place.',
-    'address': '18 Rue Daval, 75011 Paris',
+    'address': '18 Rue Daval • 75011 Paris',
     'budget_scale': 5
   },
   {
@@ -93,7 +93,7 @@ const restaurants = [
     'title': 'Le Chalet Savoyard',
 
     'description': 'Raclette Suisse.',
-    'address': '58 Rue de Charonne, 75011 Paris',
+    'address': '58 Rue de Charonne • 75011 Paris',
     'budget_scale': 5
     
   },
@@ -104,7 +104,7 @@ const restaurants = [
     },
     'title': 'L\'île aux Bokits',
     'description': 'Sandwiches à la mode Guadeloupéenne : les bokits.',
-    'address': '12 Rue de Lappe, 75011 Paris',
+    'address': '12 Rue de Lappe • 75011 Paris',
     'budget_scale': 5
   },
   {
@@ -114,7 +114,7 @@ const restaurants = [
     },
     'title': 'Fresh Bagel & Juice',
     'description': '',
-    'address': '1 Rue Froment, 75011 Paris',
+    'address': '1 Rue Froment • 75011 Paris',
     'budget_scale': 5
   },
   {
@@ -124,7 +124,7 @@ const restaurants = [
     },
     'title': 'New Hanoï',
     'description': 'Très bon, petite salle, l\'attente y est nulle entre 12h et 12h30.',
-    'address': '25 Rue Saint-Sabin, 75011 Paris',
+    'address': '25 Rue Saint-Sabin • 75011 Paris',
     'budget_scale': 5
   },
   {
@@ -134,7 +134,7 @@ const restaurants = [
     },
     'title': 'La Robe de la girafe',
     'description': '',
-    'address': '5 Rue Froment, 75011 Paris',
+    'address': '5 Rue Froment • 75011 Paris',
     'budget_scale': 5
   },
   {
@@ -144,7 +144,7 @@ const restaurants = [
     },
     title: 'Café Divan',
     description: '',
-    address: '60 rue de la Roquette, 75011 Paris',
+    address: '60 rue de la Roquette • 75011 Paris',
     budget_scale: 5
   }, {
     'position': {
@@ -153,7 +153,7 @@ const restaurants = [
     },
     'title': 'Blue Elephant',
     'description': '',
-    'address': '45 Rue de la Roquette, 75011 Paris',
+    'address': '45 Rue de la Roquette • 75011 Paris',
     'budget_scale': 10
   }, {
     'position': {
@@ -162,7 +162,7 @@ const restaurants = [
     },
     'title': 'Wok Cooking',
     'description': 'Ingrédients, épices et sauces à choisir soi-même pour des plats asiatiques cuits au wok dans un lieu sobre.',
-    'address': '25 Rue des Taillandiers, 75011 Paris',
+    'address': '25 Rue des Taillandiers • 75011 Paris',
     'budget_scale': 4
   }, {
     'position': {
@@ -171,7 +171,7 @@ const restaurants = [
     },
     'title': 'East Side Burgers',
     'description': 'Ce petit restaurant coloré aux briques apparentes propose des burgers et hot dogs végétariens et des desserts.',
-    'address': '60 Boulevard Voltaire, 75011 Paris',
+    'address': '60 Boulevard Voltaire • 75011 Paris',
     'budget_scale': 5
   }, {
     'position': {
@@ -180,7 +180,7 @@ const restaurants = [
     },
     'title': 'Augustine',
     'description': '',
-    'address': '10 Rue Saint-Sabin, 75011 Paris',
+    'address': '10 Rue Saint-Sabin • 75011 Paris',
     'budget_scale': 5
   }, {
     'position': {
@@ -189,7 +189,7 @@ const restaurants = [
     },
     'title': 'Les Caves Saint Gilles',
     'description': 'Tapas et plats accompagnés de vins espagnols dans un bistrot de type bodega madrilène tapissé d\'azuleros.',
-    'address': '4 Rue Saint-Gilles, 75003 Paris',
+    'address': '4 Rue Saint-Gilles • 75003 Paris',
     'budget_scale': 5
   }, {
     'position': {
@@ -198,7 +198,7 @@ const restaurants = [
     },
     'title': 'Café de l\'Industrie',
     'description': 'Restaurant français proposant une carte de plats classiques, dans une atmosphère patinée chaleureuse.',
-    'address': '16 Rue Saint-Sabin, 75011 Paris',
+    'address': '16 Rue Saint-Sabin • 75011 Paris',
     'budget_scale': 5
   }, {
     'position': {
@@ -207,7 +207,7 @@ const restaurants = [
     },
     'title': 'Chez Celeste',
     'description': 'Musique et cuisine brésiliennes ou cap-verdiennes et rhums arrangés dans un restaurant et café-concert animé.',
-    'address': '29 rue de Charonne, 75011 Paris',
+    'address': '29 rue de Charonne • 75011 Paris',
     'budget_scale': 5
   }, {
     'position': {
@@ -216,7 +216,7 @@ const restaurants = [
     },
     'title': 'Mio Posto',
     'description': 'Pas aussi bon qu\'East Mamma. Mais très bon restaurant Italien.',
-    'address': '24 rue Keller, 75011 Paris',
+    'address': '24 rue Keller • 75011 Paris',
     'budget_scale': 5
   }
 ];

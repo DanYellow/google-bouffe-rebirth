@@ -27,7 +27,7 @@ class GBMarker extends Component {
     // console.log('marker', window.google);
     return (
       <Marker {...this.props} 
-        icon={markerIcon} 
+        icon={markerIcon}
         onClick={this.handleClick}>
       </Marker>
     );
