@@ -1,0 +1,30 @@
+.ListWrapper {
+  width: 340px; height: 630px;
+  position: absolute;
+  overflow-y: scroll;
+  z-index: 99;
+  bottom: 0; left: 25px;
+  opacity: .75;
+}
+
+.ListWrapper:hover {
+  opacity: 1;
+}
+
+.List {
+  width: 340px;
+  background-color: white;
+}
+
+.List li {
+  padding: 15px 18px;
+}
+
+.List li h1 {
+  font-size: 23px;
+  margin-bottom: 4px;
+}
+
+.List li p {
+  font-size: 14px;
+}
