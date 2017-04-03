@@ -1,9 +1,13 @@
 import * as ActionTypes from '../constants/action-types';
 
-export const selectedRestaurant = id => ({
+export const selectedRestaurant = (id, position = {}) => ({
   type: ActionTypes.CURRENT_INDEX,
-  id
+  id,
+  position
 });
 
 
-window.selectedRestaurant = selectedRestaurant;
+export const listType = (listType) => ({
+  type: ActionTypes.LIST_TYPE,
+  listType
+})

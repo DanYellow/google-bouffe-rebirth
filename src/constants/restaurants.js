@@ -218,6 +218,14 @@ const restaurants = [
     'description': 'Pas aussi bon qu\'East Mamma. Mais très bon restaurant Italien.',
     'address': '24 rue Keller • 75011 Paris',
     'budget_scale': 5
+  }, {
+    'position': {
+      'lat': 48.856498,
+      'lng': 2.381935
+    },
+    title: 'Moses',
+    address: '144 Boulevard Voltaire • 75011 Paris',
+    budget_scale: 3
   }
 ];
 

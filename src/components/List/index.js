@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import uuidV1 from 'uuid/v1';
 import classNames from 'classnames';
 
+import { listType } from '../../actions';
 import ListItem from './list-item';
 import './index.css';
 
@@ -27,34 +28,32 @@ class List extends Component {
   }
 }
 
-// const mapStateToProps = state => ({
-//   currentIndex: state.list.currentIndex
-// });
-
-function mapStateToProps(state) {
-  return {
-    currentIndex: state.list.currentIndex
-  }
-}
+const mapStateToProps = state => ({
+  currentIndex: state.restaurant.currentIndex
+});
 
 export default connect(mapStateToProps, {})(List);
 
 
-class Header extends Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      type: 'my'
-    }
+function mapStateToPropsHeader(state) {
+  return {
+    currentIndex: state.restaurant.currentIndex,
+    type: state.list.type
   }
+}
 
+const mapDispatchToProps = {
+  listType
+}
+
+const Header = connect(mapStateToPropsHeader, mapDispatchToProps)(class Header extends Component {
   render() {
+    const {listType, type} = this.props;
     return (
       <section className='Header'>
-        <button onClick={() => this.setState({type: 'my'})} type='button' className={classNames('reset', { active: this.state.type === 'my'})}>Ma liste</button>
-        <button onClick={() => this.setState({type: 'all'})} type='button' className={classNames('reset', { active: this.state.type === 'all'})}>Tout</button>
+        <button onClick={() => listType('my')} type='button' className={classNames('reset', { active: type === 'my'})}>Ma liste</button>
+        <button onClick={() => listType('all')} type='button' className={classNames('reset', { active: type === 'all'})}>Tout</button>
       </section>
     )
   }
-}
+});

@@ -2,6 +2,7 @@
   width: 340px; height: 630px;
   position: absolute;
   overflow-y: scroll;
+  overflow-x: hidden;
   z-index: 99;
   bottom: 0; left: 25px;
   opacity: .75;
@@ -21,6 +22,10 @@
   padding: 15px 0px;
   margin: 0 18px;
   border-bottom: 1px solid #141414;
+}
+
+.List li.active {
+  background-color: rgba(245, 10, 50, .25);
 }
 
 .List li h1 {

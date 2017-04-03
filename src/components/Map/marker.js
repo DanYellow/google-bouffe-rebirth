@@ -26,8 +26,10 @@ class GBMarker extends Component {
   }
 
   render() {
+    let { datas, currentIndex} = this.props;
     const markerSize = 50;
-    const markerIcon = { url: (true) ? marker : activeMarker,
+
+    const markerIcon = { url: (datas.id === currentIndex) ? activeMarker : marker,
                          scaledSize: new window.google.maps.Size(markerSize, markerSize) };
     
     return (
@@ -43,8 +45,8 @@ const mapStateToProps = state => ({
   currentIndex: state.list.currentIndex
 });
 
-const mapDispatchToProps = () => ({
+const mapDispatchToProps = {
   selectedRestaurant
-})
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(GBMarker);

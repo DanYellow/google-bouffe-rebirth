@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 
 import { GoogleMap, Polygon } from 'react-google-maps';
 import { default as ScriptLoader } from 'react-google-maps/lib/async/ScriptjsLoader';
@@ -69,7 +71,10 @@ class Map extends Component {
             fillColor: '#FF0000',
             fillOpacity: 0.35
           }} />
-          
+    const {mapPosition} = this.props;
+
+    this.defaultMapProps = Object.assign(this.defaultMapProps, {center: mapPosition});
+
     const markers = restaurants.map((restaurant, key) => {
       const {title, description, address, id} = restaurant;
       const datas = { title, description, address, id };
@@ -84,15 +89,12 @@ class Map extends Component {
     scriptLoaderOptions.googleMapElement =
       <GoogleMap 
           ref={(map) => { this.map = map; }}
-          defaultCenter={this.defaultMapProps.center}
+   
+          center={this.defaultMapProps.center}
           defaultOptions={this.defaultMapProps.options}
           defaultZoom={this.defaultMapProps.zoom}>
-
           {digitasPolygon}
-        
           {markers}
-        {/*<FindPostOfficeMapMarkerClusterer>{markers}</FindPostOfficeMapMarkerClusterer>
-         userLocation && <FindPostOfficeMapMarker position={userLocation}>Vous êtes ici!</FindPostOfficeMapMarker> */}
       </GoogleMap>
     ;
 
@@ -102,19 +104,10 @@ class Map extends Component {
   }
 }
 
-function withStyles(BaseComponent, ...styles) {
-  return class StyledComponent extends Component {
+const mapStateToProps = state => ({
+  currentIndex: state.restaurant.currentIndex,
+  mapPosition: state.restaurant.mapPosition,
+});
 
-    static contextTypes = {
-      insertCss: PropTypes.func,
-    };
-
-    render() {
-      return <BaseComponent {...this.props} />;
-    }
-  };
-}
-
-// export default Map;
-export default withStyles(Map, {});
+export default connect(mapStateToProps)(Map);
 

@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux'
 
-import list from './list';
+import restaurant, {list} from './list';
 
 const reducer = combineReducers({
+  restaurant,
   list
 });
 
