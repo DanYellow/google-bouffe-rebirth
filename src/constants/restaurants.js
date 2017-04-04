@@ -224,6 +224,14 @@ const restaurants = [
     title: 'Moses',
     address: '144 Boulevard Voltaire • 75011 Paris',
     budget_scale: 3
+  }, {
+    'position': {
+      'lat': 48.855183,
+      'lng': 2.363188
+    },
+    title: 'Savannah coffee',
+    address: '5 Rue de Turenne • 75004 Paris',
+    budget_scale: 7
   }
 ];
 
