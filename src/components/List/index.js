@@ -15,8 +15,8 @@ class List extends Component {
       return <ListItem {...restaurant} isActive={isActive} key={uuidV1()}/>
     }).filter((restaurant) => {
       if (this.props.type === 'all') { return true; }
-      return this.props.type === 'my' && restaurant.props.id < 3;
-    })
+      return this.props.type === 'my' && this.props.favs.includes(restaurant.props.id);
+    });
 
     return (
       <div className='ListWrapper'>
@@ -31,7 +31,8 @@ class List extends Component {
 
 const mapStateToProps = state => ({
   currentIndex: state.restaurant.currentIndex,
-  type: state.list.type
+  type: state.list.type,
+  favs: state.restaurant.favs,
 });
 
 export default connect(mapStateToProps, {})(List);
@@ -53,7 +54,10 @@ const Header = connect(mapStateToPropsHeader, mapDispatchToProps)(class Header e
     const {listType, type} = this.props;
     return (
       <section className='Header'>
-        <button onClick={() => listType('my')} type='button' className={classNames('reset', { active: type === 'my'})}>Ma liste</button>
+        <button onClick={() => listType('my')} type='button' className={classNames('reset', { active: type === 'my'})}>
+          <span className='icon-fav' />
+          Ma liste
+        </button>
         <button onClick={() => listType('all')} type='button' className={classNames('reset', { active: type === 'all'})}>Tout</button>
       </section>
     )

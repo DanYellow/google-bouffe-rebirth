@@ -78,9 +78,12 @@ class Map extends Component {
     const markers = restaurants.map((restaurant, key) => {
       const {title, description, address, id} = restaurant;
       const datas = { title, description, address, id };
-
       const opts = { key, position: restaurant.position, datas };
+
       return <GBMarker {...opts} />
+    }).filter((restaurant) => {
+      if (this.props.type === 'all') { return true; }
+      return this.props.type === 'my' && this.props.favs.includes(restaurant.props.datas.id);
     });
 
     scriptLoaderOptions.loadingElement = <p>{texts.loading}</p>;
@@ -107,6 +110,8 @@ class Map extends Component {
 const mapStateToProps = state => ({
   currentIndex: state.restaurant.currentIndex,
   mapPosition: state.restaurant.mapPosition,
+  type: state.list.type,
+  favs: state.restaurant.favs,
 });
 
 export default connect(mapStateToProps)(Map);
