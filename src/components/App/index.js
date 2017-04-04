@@ -18,6 +18,8 @@ class App extends Component {
       return 0;
     });
 
+    console.log('greger')
+
     return (
       <div className='App'>
         <List restaurants={restaurantsMapped} />

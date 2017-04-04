@@ -2,17 +2,37 @@ import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames'
 
-import { selectedRestaurant } from '../../actions';
+import { selectedRestaurant, toggleFav } from '../../actions';
 import './index.css';
 
-const ListItem = ({title, description, address, id, isActive, selectedRestaurant, position}) =>
+const ListItem = ({title, description, address, id, isActive, selectedRestaurant, position, toggleFav}) =>
   <li id={id} className={classNames({active: isActive})}>
-    <a onClick={() => selectedRestaurant(id, position)} 
-       href='#' className='reset'>
-      <h1>{title}</h1>
-      <p>{address}</p>
-    </a>
-    {(description && isActive) && <blockquote className='description'>{description}</blockquote>}
+    <section>
+      <a onClick={() => selectedRestaurant(id, position)}
+         onDoubleClick={() => alert(title)}
+         href='#' className='reset'>
+        <h1>{title}</h1>
+        <p>{address}</p>
+      </a>
+      {(description && isActive) && 
+        <blockquote className='description'>{description}</blockquote>}
+
+      {(isActive) && 
+      <ul className='toolbox'>
+        <li>
+          <button type='button' className='reset' onClick={() => toggleFav(id)}>
+            <span className='icon-fav icon' />
+            Ajouter à ma liste
+          </button>
+        </li>
+        <li>
+          <button type='button' className='reset'>
+            <span className='icon'>X</span>
+            Ajouter à ma liste
+          </button>
+        </li>
+      </ul>}
+    </section>
   </li>
 
 const mapStateToProps = state => ({
@@ -21,7 +41,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  selectedRestaurant
+  selectedRestaurant,
+  toggleFav
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListItem);

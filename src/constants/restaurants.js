@@ -47,15 +47,13 @@ const restaurants = [
       'budget_scale': 5
   }, {
     'position': {
-      'lat': 48.8544782,
-      'lng': 2.3711407
+      'lat': 48.854403,
+      'lng': 2.371164
     },
     'title': 'Momji',
-
-      'description': '',
-      'address': '20 Rue Daval • 75011 Paris',
-      'budget_scale': 5
-    
+    'description': '',
+    'address': '20 Rue Daval • 75011 Paris',
+    'budget_scale': 5
   }, {
     'position': {
       'lat': 48.8544782,
@@ -211,8 +209,8 @@ const restaurants = [
     'budget_scale': 5
   }, {
     'position': {
-      'lat': 48.853364,
-      'lng': 2.375627
+      'lat': 48.855014,
+      'lng': 2.37597
     },
     'title': 'Mio Posto',
     'description': 'Pas aussi bon qu\'East Mamma. Mais très bon restaurant Italien.',

@@ -6,8 +6,12 @@ export const selectedRestaurant = (id, position = {}) => ({
   position
 });
 
-
 export const listType = (listType) => ({
   type: ActionTypes.LIST_TYPE,
   listType
 })
+
+export const toggleFav = (id) => ({
+  type: ActionTypes.TOGGLE_FAV,
+  id
+});

@@ -18,14 +18,25 @@
   /* margin-top: 34px; */
 }
 
-.List li {
+.List li section {
   padding: 15px 0px;
   margin: 0 18px;
   border-bottom: 1px solid #141414;
 }
 
+.List li section .toolbox {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 25px;
+}
+
+.List li section .toolbox li {
+  font-size: 11px;
+  
+}
+
 .List li.active {
-  background-color: rgba(245, 10, 50, .25);
+  background-color: rgba(177, 1, 5, .1);
 }
 
 .List li h1 {
@@ -41,11 +52,22 @@
 .List li a {
   color: #141414;
   font-family: 'OpenSansSemibold', sans-serif;
+  display: block;
+}
+
+.List li button {
+  display: flex;
+  flex-direction: column;
+}
+
+.List li button .icon {
+  font-size: 22px;
 }
 
 .List li .description {
   margin-top: 20px;
   font-family: 'Georgia', serif;
+  font-style: italic;
 }
 
 .List li .description:before {

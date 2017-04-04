@@ -6,3 +6,7 @@ a.reset, button.reset {
   background: none;
   border: 0;
 }
+
+body {
+  font-family: 'OpenSansRegular', sans-serif;
+}

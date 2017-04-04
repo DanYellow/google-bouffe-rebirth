@@ -13,9 +13,10 @@ class List extends Component {
     const restaurants = this.props.restaurants.map((restaurant) => {
       const isActive = (this.props.currentIndex === restaurant.id);
       return <ListItem {...restaurant} isActive={isActive} key={uuidV1()}/>
-    });
-
-    console.log('this.props', this.props);
+    }).filter((restaurant) => {
+      if (this.props.type === 'all') { return true; }
+      return this.props.type === 'my' && restaurant.props.id < 3;
+    })
 
     return (
       <div className='ListWrapper'>
@@ -29,7 +30,8 @@ class List extends Component {
 }
 
 const mapStateToProps = state => ({
-  currentIndex: state.restaurant.currentIndex
+  currentIndex: state.restaurant.currentIndex,
+  type: state.list.type
 });
 
 export default connect(mapStateToProps, {})(List);
