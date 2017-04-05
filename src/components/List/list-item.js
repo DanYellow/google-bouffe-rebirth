@@ -5,7 +5,10 @@ import classNames from 'classnames'
 import { selectedRestaurant, toggleFav } from '../../actions';
 import './index.css';
 
-const ListItem = ({title, description, address, id, isActive, selectedRestaurant, position, toggleFav, favs}) =>
+const ListItem = ({title, description, address, id, isActive, selectedRestaurant, position, toggleFav, favs}) => {
+
+  
+  return (
   <li id={id} className={classNames({active: isActive})}>
     <section>
       <a onClick={() => selectedRestaurant(id, position)}
@@ -35,6 +38,9 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
       </ul>}
     </section>
   </li>
+  )
+}
+
 
 const mapStateToProps = state => ({
   currentIndex: state.list.currentIndex,

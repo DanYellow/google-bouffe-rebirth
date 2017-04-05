@@ -9,7 +9,7 @@ const Toast = ({message, actions}) => {
   //   'growler--hiding': growler.status === 'hide' ? true : false,
   //   'growler--hidden': growler.status === 'hidden' ? true : false,
   // });
-  console.log('mefe', message);
+
   return (
     <section className='Toast'>
         <div className='wrapper'>
@@ -20,16 +20,9 @@ const Toast = ({message, actions}) => {
 };
 
 
-// const mapStateToProps = state => ({
-//   message: state.toast.message
-// });
-
-const mapStateToProps = function(state) {
-  console.log(state);
-  return {
-     message: state.toast.message
-  }
-}
+const mapStateToProps = state => ({
+  message: state.toast.message
+});
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(ToastActions, dispatch)
