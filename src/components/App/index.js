@@ -5,6 +5,7 @@ import restaurants from '../../constants/restaurants';
 
 import Map from './../Map';
 import List from './../List';
+import Toast from './../Toast';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
 
     return (
       <div className='App'>
+        <Toast message='Hello' />
         <List restaurants={restaurantsMapped} />
         <Map restaurants={restaurantsMapped} />
       </div>

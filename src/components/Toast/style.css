@@ -1,0 +1,26 @@
+.Toast{
+  position: absolute;
+  z-index: 5;
+  display: flex;
+
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  /* top: -1500px; */
+  transition: top .7s ease-in-out 1s;
+}
+
+.Toast.active {
+  top: 15px;
+}
+
+.Toast .wrapper {
+  padding: 7px 5px;
+  border: 1px solid #043959;
+  text-align: center;
+  display: inline-block;
+  background-color: #1da1f2;
+  color: white;
+  border-radius: 5px;
+}

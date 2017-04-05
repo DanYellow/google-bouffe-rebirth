@@ -18,14 +18,17 @@ const restaurant = (state = initialState, action) => {
       }
     case ActionTypes.TOGGLE_FAV:
       let favs = state.favs;
+      let isDeletion = false;
       if (favs.includes(action.id)) {
         favs = without(favs, action.id);
+        isDeletion = true;
       } else {
         favs = [...favs, action.id];
       }
       window.localStorage.setItem('favs', JSON.stringify(favs));
       return { ...state,
-        favs: favs
+        favs: favs,
+        deletion: isDeletion
       }
     default:
       return state

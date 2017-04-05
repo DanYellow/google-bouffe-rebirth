@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { Marker } from 'react-google-maps';
 
@@ -9,6 +10,10 @@ import markerActiveFav from '../../images/marker-active-fav.png';
 
 import marker from '../../images/marker.png';
 import markerActive from '../../images/marker-active.png';
+
+import * as ToastActions from '../Toast/actions';
+
+// import {show as showToast} from '../Toast/actions';
 
 class GBMarker extends Component {
   constructor(props) {
@@ -24,8 +29,18 @@ class GBMarker extends Component {
   handleClick() {
     const id = this.props.datas.id;
 
-    this.props.selectedRestaurant(id, this.props.position);
+    // this.props.selectedRestaurant(id, this.props.position);
     document.getElementById(id).scrollIntoView();
+
+    // this.props.dispatch({
+    //   type: 'TOAST_SHOW',
+    //   payload: {
+    //     message: 'Please enter your JIRA url',
+    //   },
+    // })
+    console.log('th', this.props);
+
+    this.props.toast.show(this.props.datas.title);
   }
 
   render() {
@@ -57,8 +72,26 @@ const mapStateToProps = state => ({
   favs: state.restaurant.favs,
 });
 
-const mapDispatchToProps = {
-  selectedRestaurant
+// const mapDispatchToProps = dispatch => ({
+//   selectedRestaurant,
+//   ...bindActionCreators(showToast, dispatch)
+// })
+
+const mapDispatchToProps = function(dispatch) {
+  return {
+    selectedRestaurant,
+    toast: bindActionCreators(ToastActions, dispatch)
+  }
 }
+
+// const mapDispatchToProps = {
+//   selectedRestaurant,
+  // showToast: dispatch({
+  //     type: 'TOAST_SHOW',
+  //     payload: {
+  //       message: 'Please enter your JIRA url',
+  //     },
+  //   })
+// }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GBMarker);

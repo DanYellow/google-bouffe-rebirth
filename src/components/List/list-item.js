@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import { selectedRestaurant, toggleFav } from '../../actions';
 import './index.css';
 
-const ListItem = ({title, description, address, id, isActive, selectedRestaurant, position, toggleFav}) =>
+const ListItem = ({title, description, address, id, isActive, selectedRestaurant, position, toggleFav, favs}) =>
   <li id={id} className={classNames({active: isActive})}>
     <section>
       <a onClick={() => selectedRestaurant(id, position)}
@@ -22,7 +22,8 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
         <li>
           <button type='button' className='reset' onClick={() => toggleFav(id)}>
             <span className='icon-fav icon' />
-            Ajouter à ma liste
+            {!favs.includes(id) && 'Ajouter à ma liste'}
+            {favs.includes(id) && 'Retirer de ma liste'}
           </button>
         </li>
         <li>
@@ -38,6 +39,7 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
 const mapStateToProps = state => ({
   currentIndex: state.list.currentIndex,
   mapPosition: state.list.mapPosition,
+  favs: state.restaurant.favs,
 });
 
 const mapDispatchToProps = {
