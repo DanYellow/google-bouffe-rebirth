@@ -5,6 +5,11 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from './reducers';
 
+import {
+  HashRouter as Router,
+  Route
+} from 'react-router-dom';
+
 import App from './components/App';
 import './reset.css';
 import './index.css';
@@ -14,7 +19,9 @@ let store = createStore(reducer);
 
 render(
   <Provider store={store}>
-    <App />
+    <Router>
+      <Route path="/" component={App}/>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );

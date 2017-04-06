@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+import { find } from 'lodash';
 
 
 import { GoogleMap, Polygon } from 'react-google-maps';
 import { default as ScriptLoader } from 'react-google-maps/lib/async/ScriptjsLoader';
+
 
 import GBMarker from './marker';
 import restaurants from '../../constants/restaurants';
@@ -78,6 +82,7 @@ class Map extends Component {
     const markers = restaurants.map((restaurant, key) => {
       const {title, description, address, id} = restaurant;
       const datas = { title, description, address, id };
+      datas.isActive = (id === this.props.currentIndex);
       const opts = { key, position: restaurant.position, datas };
 
       return <GBMarker {...opts} />
@@ -107,12 +112,33 @@ class Map extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  currentIndex: state.restaurant.currentIndex,
-  mapPosition: state.restaurant.mapPosition,
-  type: state.list.type,
-  favs: state.restaurant.favs,
-});
+const mapStateToProps = (state, ownProps) => {
+  let {restaurant: {currentIndex}, restaurant:{mapPosition}} = state;
+  currentIndex = (currentIndex === -1) ? Number(ownProps.match.params.id_restaurant) : currentIndex;
 
-export default connect(mapStateToProps)(Map);
+  if(find(ownProps.restaurants, {id: Number(currentIndex)})) {
+    mapPosition = find(ownProps.restaurants, {id: Number(currentIndex)}).position;
+  }
+
+  return {
+    currentIndex: currentIndex,
+    mapPosition: mapPosition,
+    // mapPosition: state.restaurant.mapPosition,
+    type: state.list.type,
+    favs: state.restaurant.favs,
+  }
+};
+
+
+// const mapStateToProps = (state, ownProps) => {
+//   let {restaurant: {currentIndex}} = state;
+//   currentIndex = (currentIndex !== -1) ? ownProps.match.params.id_restaurant : currentIndex;
+  
+//   return {
+//     currentIndex: currentIndex,
+//     favs: state.restaurant.favs,
+//   }
+// }
+
+export default withRouter(connect(mapStateToProps)(Map));
 

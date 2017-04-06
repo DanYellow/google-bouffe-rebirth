@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import uuidV1 from 'uuid/v1';
 import classNames from 'classnames';
@@ -10,8 +11,11 @@ import './index.css';
 
 class List extends Component {
   render() {
+    const { match } = this.props
+
     const restaurants = this.props.restaurants.map((restaurant) => {
-      const isActive = (this.props.currentIndex === restaurant.id);
+      const isActive = (this.props.currentIndex === restaurant.id || Number(match.params.id_restaurant) === restaurant.id);
+
       return <ListItem {...restaurant} isActive={isActive} key={uuidV1()}/>
     }).filter((restaurant) => {
       if (this.props.type === 'all') { return true; }
@@ -35,7 +39,7 @@ const mapStateToProps = state => ({
   favs: state.restaurant.favs,
 });
 
-export default connect(mapStateToProps, {})(List);
+export default withRouter(connect(mapStateToProps, {})(List));
 
 
 function mapStateToPropsHeader(state) {

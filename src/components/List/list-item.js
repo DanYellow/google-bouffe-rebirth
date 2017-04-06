@@ -1,22 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import classNames from 'classnames'
+import classNames from 'classnames';
+import { withRouter, Link } from 'react-router-dom';
 
 import { selectedRestaurant, toggleFav } from '../../actions';
 import './index.css';
 
-const ListItem = ({title, description, address, id, isActive, selectedRestaurant, position, toggleFav, favs}) => {
-
-  
+const ListItem = ({title, description, address, id, isActive, selectedRestaurant, position, toggleFav, favs, match}) => {
   return (
   <li id={id} className={classNames({active: isActive})}>
     <section>
-      <a onClick={() => selectedRestaurant(id, position)}
+      <Link to={`/${id}`} onClick={() => selectedRestaurant(id, position)}
          onDoubleClick={() => alert(title)}
          href='#' className='reset'>
         <h1>{title}</h1>
         <p>{address}</p>
-      </a>
+      </Link>
       {(description && isActive) && 
         <blockquote className='description'>{description}</blockquote>}
 
@@ -53,4 +52,4 @@ const mapDispatchToProps = {
   toggleFav
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListItem);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ListItem));

@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Marker } from 'react-google-maps';
+import { withRouter } from 'react-router-dom';
+
+console.log('Marker', Marker);
 
 import { selectedRestaurant } from '../../actions';
 import markerFav from '../../images/marker-fav.png';
@@ -33,7 +36,7 @@ class GBMarker extends Component {
   }
 
   render() {
-    let { datas, currentIndex, favs} = this.props;
+    let { datas, currentIndex, favs, datas: {isActive}} = this.props;
     const markerSize = 60;
 
     let markerPath = (datas.id === currentIndex) ? markerActive : marker;
@@ -50,16 +53,23 @@ class GBMarker extends Component {
     return (
       <Marker {...this.props} 
         icon={markerIcon}
+        zIndex={(isActive) ? 9999 : 0}
         onClick={this.handleClick}>
       </Marker>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  currentIndex: state.restaurant.currentIndex,
-  favs: state.restaurant.favs,
-});
+const mapStateToProps = (state, ownProps) => {
+  let {restaurant: {currentIndex}} = state;
+  currentIndex = (currentIndex === -1) ? Number(ownProps.match.params.id_restaurant) : currentIndex;
+
+  return {
+    currentIndex: currentIndex,
+    favs: state.restaurant.favs,
+  }
+}
+
 
 const mapDispatchToProps = {
   selectedRestaurant,
@@ -67,4 +77,4 @@ const mapDispatchToProps = {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(GBMarker);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GBMarker));

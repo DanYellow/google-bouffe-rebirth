@@ -47,6 +47,7 @@
 .List li a p {
   font-size: 14px;
   font-family: 'OpenSansRegular', sans-serif;
+  white-space: nowrap;
 }
 
 .List li a {
@@ -91,6 +92,10 @@
   height: 38px;
   font-size: 16px;
   opacity: .5;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   background: none;
   border: 0;
