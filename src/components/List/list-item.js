@@ -7,6 +7,7 @@ import { selectedRestaurant, toggleFav } from '../../actions';
 import './index.css';
 
 const ListItem = ({title, description, address, id, isActive, selectedRestaurant, position, toggleFav, favs, match}) => {
+  const isFav = favs.includes(id);
   return (
   <li id={id} className={classNames({active: isActive})}>
     <section>
@@ -22,18 +23,18 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
       {(isActive) && 
       <ul className='toolbox'>
         <li>
-          <button type='button' className='reset' onClick={() => toggleFav(id)}>
-            <span className='icon-fav icon' />
-            {!favs.includes(id) && 'Ajouter à ma liste'}
-            {favs.includes(id) && 'Retirer de ma liste'}
+          <button type='button' className='reset fav' onClick={() => toggleFav(id)}>
+            <span className={classNames('icon', {'icon-fav': !isFav, 'icon-fav-no': isFav})} />
+            {!isFav && 'Ajouter à ma liste'}
+            {isFav && 'Retirer de ma liste'}
           </button>
         </li>
-        <li>
+        { /*<li>
           <button type='button' className='reset'>
             <span className='icon'>X</span>
             Ajouter à ma liste
           </button>
-        </li>
+        </li> */}
       </ul>}
     </section>
   </li>

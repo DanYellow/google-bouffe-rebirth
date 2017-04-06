@@ -28,11 +28,15 @@
   display: flex;
   align-items: flex-end;
   margin-top: 25px;
+  justify-content: center;
 }
 
 .List li section .toolbox li {
   font-size: 11px;
-  
+}
+
+.List li section .toolbox li button.fav:hover {
+  color: red;
 }
 
 .List li.active {
