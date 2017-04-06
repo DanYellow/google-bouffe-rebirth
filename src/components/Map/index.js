@@ -4,10 +4,8 @@ import { withRouter } from 'react-router-dom';
 
 import { find } from 'lodash';
 
-
 import { GoogleMap, Polygon } from 'react-google-maps';
 import { default as ScriptLoader } from 'react-google-maps/lib/async/ScriptjsLoader';
-
 
 import GBMarker from './marker';
 import restaurants from '../../constants/restaurants';
@@ -62,7 +60,6 @@ class Map extends Component {
         }]
       }
     }
-
   }
 
   render() {
@@ -91,10 +88,10 @@ class Map extends Component {
       return this.props.type === 'my' && this.props.favs.includes(restaurant.props.datas.id);
     });
 
-    scriptLoaderOptions.loadingElement = <p>{texts.loading}</p>;
+    scriptLoaderOptions.loadingElement = (<p>{texts.loading}</p>);
     // scriptLoaderOptions.loadingElement = <Loader loaded={false} lines={10} length={10} width={4} />;
-    scriptLoaderOptions.containerElement = <div {...this.props} style={{ height: '680px' }} />;
-    scriptLoaderOptions.googleMapElement =
+    scriptLoaderOptions.containerElement = (<div style={{ height: '680px' }} />);
+    scriptLoaderOptions.googleMapElement = (
       <GoogleMap 
           ref={(map) => { this.map = map; }}
    
@@ -104,11 +101,11 @@ class Map extends Component {
           {digitasPolygon}
           {markers}
       </GoogleMap>
-    ;
+    );
 
     return (
-     <ScriptLoader {...scriptLoaderOptions} />
-    );
+      <ScriptLoader {...scriptLoaderOptions} />
+    )
   }
 }
 
@@ -123,22 +120,9 @@ const mapStateToProps = (state, ownProps) => {
   return {
     currentIndex: currentIndex,
     mapPosition: mapPosition,
-    // mapPosition: state.restaurant.mapPosition,
     type: state.list.type,
     favs: state.restaurant.favs,
   }
 };
 
-
-// const mapStateToProps = (state, ownProps) => {
-//   let {restaurant: {currentIndex}} = state;
-//   currentIndex = (currentIndex !== -1) ? ownProps.match.params.id_restaurant : currentIndex;
-  
-//   return {
-//     currentIndex: currentIndex,
-//     favs: state.restaurant.favs,
-//   }
-// }
-
 export default withRouter(connect(mapStateToProps)(Map));
-

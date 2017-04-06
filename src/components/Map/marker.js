@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { Marker } from 'react-google-maps';
 import { withRouter } from 'react-router-dom';
 
-console.log('Marker', Marker);
-
 import { selectedRestaurant } from '../../actions';
 import markerFav from '../../images/marker-fav.png';
 import markerActiveFav from '../../images/marker-active-fav.png';

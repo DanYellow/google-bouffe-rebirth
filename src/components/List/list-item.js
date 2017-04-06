@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { withRouter, Link } from 'react-router-dom';
+import { find } from 'lodash';
 
 import { selectedRestaurant, toggleFav } from '../../actions';
 import './index.css';
@@ -42,11 +43,16 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
 }
 
 
-const mapStateToProps = state => ({
-  currentIndex: state.list.currentIndex,
-  mapPosition: state.list.mapPosition,
-  favs: state.restaurant.favs,
-});
+const mapStateToProps = (state, ownProps) => {
+  let {restaurant: {currentIndex}, restaurant:{mapPosition}} = state;
+  currentIndex = (currentIndex === -1) ? Number(ownProps.match.params.id_restaurant) : currentIndex;
+
+  return {
+    currentIndex: currentIndex,
+    mapPosition: state.list.mapPosition,
+    favs: state.restaurant.favs,
+  }
+};
 
 const mapDispatchToProps = {
   selectedRestaurant,
