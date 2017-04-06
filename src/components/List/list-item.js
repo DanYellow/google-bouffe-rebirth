@@ -11,9 +11,9 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
   return (
   <li id={id} className={classNames({active: isActive})}>
     <section>
-      <Link to={`/${id}`} onClick={() => selectedRestaurant(id, position)}
+      <Link to={`${id}`}
          onDoubleClick={() => alert(title)}
-         href='#' className='reset'>
+         className='reset'>
         <h1>{title}</h1>
         <p>{address}</p>
       </Link>

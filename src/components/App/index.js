@@ -35,7 +35,6 @@ class App extends Component {
       
       return 0;
     });
-        console.log(match.url)
 
     return (
       <div className='App'>
@@ -45,7 +44,7 @@ class App extends Component {
           <Locator restaurants={restaurantsMapped} />
         )}/>
 
-        <Route exact path={`${match.url}:id_restaurant`} render={({match}) => (
+        <Route path={`${match.url}:id_restaurant`} render={() => (
           <Locator restaurants={restaurantsMapped} />
         )}/>
         
