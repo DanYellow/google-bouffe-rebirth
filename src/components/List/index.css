@@ -56,6 +56,11 @@
   margin-bottom: 4px;
 }
 
+.List li h1 sup {
+  color: #da032c;
+  font-size: 10px;
+}
+
 .List li a p {
   font-size: 14px;
   font-family: 'OpenSansRegular', sans-serif;
@@ -68,10 +73,16 @@
   display: block;
 }
 
-.List li button {
+.List li button, .List li a {
   display: flex;
   flex-direction: column;
   font-size: 10px;
+  text-align: center;
+  padding: 0 6px;
+}
+
+.List li a {
+  padding-bottom: 3px;
 }
 
 .List li button .icon {
@@ -128,7 +139,7 @@
 .itinerary:hover .path-2, .itinerary:hover .path-3, 
 .itinerary:hover .path-4, .itinerary:hover .path-end {
   animation-fill-mode:both;
-  animation: 4s infinite linear;
+  animation: 3s infinite linear;
   opacity: 0;
 }
 

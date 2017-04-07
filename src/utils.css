@@ -7,6 +7,10 @@ a.reset, button.reset {
   border: 0;
 }
 
+sup {
+  vertical-align: super;
+}
+
 body {
   font-family: 'OpenSansRegular', sans-serif;
 }

@@ -29,10 +29,13 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
   return (
   <li id={id} className={classNames({active: isActive})}>
     <section>
-      <Link to={`${id}`}
+      <Link to={`/${id}`}
          onDoubleClick={() => alert(title)}
          className='reset'>
-        <h1>{title}</h1>
+        <h1>
+        {title}
+        {isFav && <sup className='icon-fav'></sup> }
+        </h1>
         <p>{address}</p>
       </Link>
       {(description && isActive) && 
@@ -50,10 +53,13 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
         
         
         <li>
-          <button type='button' className='reset itinerary'>
+          <Link to={{
+              pathname: `/${id}/itinerary`,
+            }}
+            className='reset'>
             <div className="svg-container" dangerouslySetInnerHTML={itinerarySVG} />
-            Ajouter à ma liste
-          </button>
+            Afficher itinéraire
+          </Link>
         </li>
       </ul>}
     </section>

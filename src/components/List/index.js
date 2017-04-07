@@ -14,7 +14,7 @@ class List extends Component {
     const { match } = this.props
 
     const restaurants = this.props.restaurants.map((restaurant) => {
-      const isActive = (this.props.currentIndex === restaurant.id || Number(match.params.id_restaurant) === restaurant.id);
+      const isActive = Number(match.params.id_restaurant) === restaurant.id;
 
       return <ListItem {...restaurant} isActive={isActive} key={uuidV1()}/>
     }).filter((restaurant) => {
