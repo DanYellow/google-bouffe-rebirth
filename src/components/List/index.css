@@ -125,6 +125,11 @@
   border: 0;
 }
 
+.ListWrapper .Header .icon-fav {
+  color: #da032c;
+  font-size: 9px;
+}
+
 .ListWrapper .Header button.active {
   opacity: 1;
   color: #da032c;

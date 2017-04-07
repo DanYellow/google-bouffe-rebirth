@@ -56,7 +56,7 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
           <Link to={{
               pathname: `/${id}/itinerary`,
             }}
-            className='reset'>
+            className='reset itinerary'>
             <div className="svg-container" dangerouslySetInnerHTML={itinerarySVG} />
             Afficher itinéraire
           </Link>

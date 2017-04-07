@@ -59,10 +59,14 @@ const Header = connect(mapStateToPropsHeader, mapDispatchToProps)(class Header e
     return (
       <section className='Header'>
         <button onClick={() => listType('my')} type='button' className={classNames('reset', { active: type === 'my'})}>
-          <span className='icon-fav' />
-          Ma liste
+          <p>
+            Ma liste
+            <sup className='icon-fav'></sup>
+          </p>
         </button>
-        <button onClick={() => listType('all')} type='button' className={classNames('reset', { active: type === 'all'})}>Tout</button>
+        <button onClick={() => listType('all')} type='button' className={classNames('reset', { active: type === 'all'})}>
+          <p>Tout</p>
+        </button>
       </section>
     )
   }

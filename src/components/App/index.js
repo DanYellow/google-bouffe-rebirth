@@ -14,11 +14,18 @@ import Map from './../Map';
 import List from './../List';
 import Toast from './../Toast';
 
-const Locator = ({restaurants}) => {
+const Locator = ({restaurants, match}) => {
+  console.log(match.url)
   return (
     <section className='wrapper'>
       <List restaurants={restaurants} />
       <Map restaurants={restaurants} />
+
+      <Route path={`${match.url}/itinerary`} render={() => (
+          <div>
+          reggerger
+          </div>
+        )}/>
     </section>
   )
 }
@@ -44,8 +51,8 @@ class App extends Component {
           <Locator restaurants={restaurantsMapped} />
         )}/>
 
-        <Route path={`${match.url}:id_restaurant`} render={() => (
-          <Locator restaurants={restaurantsMapped} />
+        <Route path={`${match.url}:id_restaurant`} render={({match}) => (
+          <Locator restaurants={restaurantsMapped} match={match} />
         )}/>
         
       </div>
