@@ -25,7 +25,7 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
       <ul className='toolbox'>
         <li>
           <button type='button' className='reset fav' onClick={() => toggleFav(id)}>
-            <span className={classNames('icon', {'icon-fav': !isFav, 'icon-fav-no': isFav})} />
+            <span className={classNames('icon', {'icon-fav': isFav, 'icon-fav-no': !isFav})} />
             {!isFav && 'Ajouter à ma liste'}
             {isFav && 'Retirer de ma liste'}
           </button>

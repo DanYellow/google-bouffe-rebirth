@@ -39,6 +39,14 @@
   color: red;
 }
 
+.List li section .toolbox li button.fav:hover .icon-fav:before {
+  content: "\e901";
+}
+
+.List li section .toolbox li button.fav:hover .icon-fav-no:before {
+  content: "\e900";
+}
+
 .List li.active {
   background-color: rgba(177, 1, 5, .1);
 }

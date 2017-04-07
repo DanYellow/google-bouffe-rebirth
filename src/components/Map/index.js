@@ -74,8 +74,6 @@ class Map extends Component {
           }} />
     const {mapPosition} = this.props;
 
-    this.defaultMapProps = Object.assign(this.defaultMapProps, {center: mapPosition});
-
     const markers = restaurants.map((restaurant, key) => {
       const {title, description, address, id} = restaurant;
       const datas = { title, description, address, id };
@@ -93,8 +91,7 @@ class Map extends Component {
     scriptLoaderOptions.containerElement = (<div style={{ height: '680px' }} />);
     scriptLoaderOptions.googleMapElement = (
       <GoogleMap 
-          ref={(map) => { this.map = map; }}
-   
+          ref={(map) => { this.map = map; this.map && map.panTo(mapPosition)}}   
           center={this.defaultMapProps.center}
           defaultOptions={this.defaultMapProps.options}
           defaultZoom={this.defaultMapProps.zoom}>
