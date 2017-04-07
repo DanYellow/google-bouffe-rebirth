@@ -71,10 +71,11 @@
 .List li button {
   display: flex;
   flex-direction: column;
+  font-size: 10px;
 }
 
 .List li button .icon {
-  font-size: 22px;
+  font-size: 50px;
 }
 
 .List li .description {
@@ -117,4 +118,120 @@
   opacity: 1;
   color: #da032c;
   border-bottom: 3px solid #da032c;
+}
+
+.path {
+  width: 50px;
+}
+
+.itinerary:hover .path-start, .itinerary:hover .path-1, 
+.itinerary:hover .path-2, .itinerary:hover .path-3, 
+.itinerary:hover .path-4, .itinerary:hover .path-end {
+  animation-fill-mode:both;
+  animation: 4s infinite linear;
+  opacity: 0;
+}
+
+.itinerary:hover .path-start {
+  animation-name: start;
+}
+
+.itinerary:hover .path-1 {
+  animation-name: one;
+}
+
+.itinerary:hover .path-2 {
+  animation-name: two;
+}
+
+.itinerary:hover .path-3 {
+  animation-name: three;
+}
+
+.itinerary:hover .path-4 {
+  animation-name: four;
+}
+
+.itinerary:hover .path-end {
+  animation-name: end;
+}
+
+@-webkit-keyframes start {
+    9% {
+        opacity:0;
+    }
+    10%, 90% {
+        opacity:1;
+    }
+    100% {
+      opacity: 0
+    }
+}
+
+@-webkit-keyframes one {
+    19% {
+        opacity:0;
+    }
+    20%, 90% {
+        opacity:1;
+    }
+    100% {
+      opacity: 0
+    }
+}
+@-webkit-keyframes two {
+    39% {
+        opacity:0;
+    }
+    40%, 90% {
+        opacity:1;
+    }
+    100% {
+      opacity: 0
+    }
+}
+@-webkit-keyframes three {
+    59% {
+        opacity:0;
+    }
+    60%, 90% {
+        opacity:1;
+    }
+    100% {
+      opacity: 0
+    }
+}
+@-webkit-keyframes four {
+    69% {
+        opacity:0;
+    }
+    70%, 90% {
+        opacity:1;
+    }
+    100% {
+      opacity: 0;
+    }
+}
+@-webkit-keyframes five {
+    79% {
+        opacity:0;
+    }
+    80%, 90% {
+        opacity:1;
+    }
+    100% {
+      opacity: 0
+    }
+}
+@-webkit-keyframes end {
+    90% {
+        opacity:0;
+    }
+    95% {
+        opacity:1;
+    }
+    100% {
+      opacity: 0
+    }
+
 }
