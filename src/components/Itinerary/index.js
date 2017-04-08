@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
-import { isEqual } from 'lodash'
+import { isEqual } from 'lodash';
+import { Link } from 'react-router-dom'
 
 import './index.css';
 
 import { itinerarySteps } from '../../actions';
+
+import { asyncComponent } from 'react-async-component';
+
 
 
 class Itinerary extends React.Component {
@@ -22,12 +25,6 @@ class Itinerary extends React.Component {
       if (status === google.maps.DirectionsStatus.OK) {
 
         itinerarySteps(response.routes[0].legs[0].steps);
-
-        // self.setState({ 
-        //   currentRestaurantItinerary: response.routes[0].legs[0].steps,
-        //   currentRestaurantDirections: response
-        // });
-        // self.directionsDisplay.setDirections(response);
       } else {
         window.alert('Directions request failed due to ' + status);
       }
@@ -35,63 +32,70 @@ class Itinerary extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.mapIsLoaded);
     if (this.props.mapIsLoaded) {
-      console.log("vgrr");
+      this._loadItinerary(this.props);
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // Called on first page load
+    if (this.props.mapIsLoaded && this.props.itinerary.length === 0) {
       this._loadItinerary(this.props);
     }
   }
 
   render() {
-    const {title, address, mapIsLoaded, position, itinerarySteps, itinerary} = this.props;
+    const {id, title, address, mapIsLoaded, position, itinerarySteps, itinerary} = this.props;
 
-    console.log('itinerarySteps', itinerary);
+ 
     return (
       <div className='ItineraryWrapper'>
         <header>
           <section>
-            <h1>{title}</h1>
-            <p>{address}</p>
+            <div>
+              <h1>{title}</h1>
+              <p>{address}</p>
+            </div>
+            <Link to={`/${id}`} className='reset'>
+              <span className={'icon-close'}></span>
+            </Link>
           </section>
         </header>
-        <ul className='itinerary-steps'>
-          <ItinerarySteps steps={itinerary} />
-        </ul>
+
+        <div className='itinerary-steps'>
+          <header>Itinéraire</header>
+          <ul>
+            <ItinerarySteps steps={itinerary} />
+          </ul>
+        </div>
       </div>
-    )
+    ) // <AsyncProduct position={position} id={56} />
   }
 }
 
-// const Itinerary = ({title, address, mapIsLoaded, position, itinerarySteps, itinerary}) => {
+// fetch('http://my.url').then(() => {
 
-//   if (mapIsLoaded) {
-    
-//   }
+// })
 
-//   return (
-//     <div className='ItineraryWrapper'>
-//       <header>
-//         <section>
-//           <h1>{title}</h1>
-//           <p>{address}</p>
-//         </section>
-//       </header>
-//       <ul className='itinerary-steps'>
-//         <ItinerarySteps steps={itinerary} />
-//       </ul>
-//     </div>
-//   )
-// }
+// const AsyncProduct = asyncComponent({
+//   resolve: () => new Promise(resolve =>
+    // setTimeout(function() {
+    //   resolve(ItinerarySteps);
+    // }, 4000)
+//   ),
+//   LoadingComponent: ({ productId }) => <div>Loading {productId}</div>, // Optional
+//   ErrorComponent: ({ error }) => <div>{error.message}</div> // Optional
+// });
 
-// const ItinerarySteps = () => {
-//   render() {
-//     return (
-//       <div>
-//         <Itinerary datas={this.props.datas} />
-//       </div>
-//     );
-//   }
-// }
+const AsyncProduct = asyncComponent({
+  resolve: (foo) => new Promise((resolve, reject) => {
+    setTimeout(function() {
+      resolve(ItinerarySteps);
+    }, 4000)
+  }),
+  LoadingComponent: ({ position }) => <div>Loading</div>, // Optional
+  ErrorComponent: ({ error }) => <div>{error.message}</div> // Optional
+});
 
 const ItinerarySteps = (props) => {
   let renderStep = (instruction, index) => {

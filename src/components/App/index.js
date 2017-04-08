@@ -4,11 +4,10 @@ import {
   Route
 } from 'react-router-dom'
 
-import {find} from 'lodash';
+import { find } from 'lodash';
 
 
 import './App.css';
-// import DirectionsExample from './foo.js';
 
 import restaurants from '../../constants/restaurants';
 
@@ -16,6 +15,8 @@ import Map from './../Map';
 import List from './../List';
 import Toast from './../Toast';
 import Itinerary from './../Itinerary';
+
+import AsyncProduct from './../AsyncProduct';
 
 
 
@@ -29,6 +30,7 @@ const Locator = ({restaurants, match, location}) => {
 
       <Route path={`${match.url}/itinerary`} exact render={
         () => {
+          console.log('currentRestaurant');
           if (currentRestaurant) {
             return ( <Itinerary {...currentRestaurant} /> )
           } else {
@@ -42,6 +44,13 @@ const Locator = ({restaurants, match, location}) => {
 }
 
 class App extends Component {
+  componentDidMount() {
+    fetch('./restaurants.json')
+      .then(response => response.json())
+      .then((restaurants) => {
+        console.log('restaurants', restaurants);
+      });
+  }
   render() {
     const {match} = this.props;
     let restaurantsMapped = restaurants.map((restaurant, index) => {
@@ -58,7 +67,9 @@ class App extends Component {
 
     return (
       <div className='App'>
+        <AsyncProduct id={40} />
         <Toast message='Hello' />
+
         
         <Route exact path={match.url} render={({match, location}) => (
           <Locator restaurants={restaurantsMapped} match={match} location={location} />

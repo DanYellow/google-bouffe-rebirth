@@ -29,6 +29,7 @@
 
 .ItineraryWrapper header p {
   font-family: 'OpenSansRegular', sans-serif;
+  font-size: 12px;
   /* white-space: nowrap; */
 }
 
@@ -36,12 +37,24 @@
   padding: 16px;
   height: 100%;
   box-sizing: border-box;
-  border-bottom: 1px solid #141414;
+  border: 1px solid #141414;
+  display: flex;
+  justify-content: space-between;
 }
 
 .ItineraryWrapper .itinerary-steps {
   margin-top: 30px;
   background-color: white;
+}
+
+.ItineraryWrapper .itinerary-steps header {
+  font-family: 'OpenSansSemibold';
+  margin-left: 16px;
+  padding-top: 16px;
+}
+
+.ItineraryWrapper .icon-close {
+  color: black;
 }
 
 .ItineraryWrapper .itinerary-steps li {

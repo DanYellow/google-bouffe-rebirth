@@ -45,7 +45,8 @@ export default withRouter(connect(mapStateToProps, {})(List));
 function mapStateToPropsHeader(state) {
   return {
     currentIndex: state.restaurant.currentIndex,
-    type: state.list.type
+    type: state.list.type,
+    favs: state.restaurant.favs,
   }
 }
 
@@ -55,13 +56,15 @@ const mapDispatchToProps = {
 
 const Header = connect(mapStateToPropsHeader, mapDispatchToProps)(class Header extends Component {
   render() {
-    const {listType, type} = this.props;
+    const {listType, type, favs} = this.props;
     return (
       <section className='Header'>
         <button onClick={() => listType('my')} type='button' className={classNames('reset', { active: type === 'my'})}>
           <p>
             Ma liste
-            <sup className='icon-fav'></sup>
+            <sup className='icon-fav'>
+            {(favs.length > 0) && <span>{favs.length}</span> }
+            </sup>
           </p>
         </button>
         <button onClick={() => listType('all')} type='button' className={classNames('reset', { active: type === 'all'})}>

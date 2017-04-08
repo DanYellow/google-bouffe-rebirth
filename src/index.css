@@ -57,6 +57,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-close:before {
+  content: "\e902";
+}
 .icon-fav-no:before {
   content: "\e901";
 }

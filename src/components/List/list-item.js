@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import { withRouter, Link } from 'react-router-dom';
 
 import { selectedRestaurant, toggleFav } from '../../actions';
+import texts from '../../constants/texts';
+
 import './index.css';
 
 const itinerarySVG = {__html:`
@@ -48,11 +50,10 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
           <li>
             <button type='button' className='reset fav' onClick={() => toggleFav(id)}>
               <span className={classNames('icon', {'icon-fav': isFav, 'icon-fav-no': !isFav})} />
-              {!isFav && 'Ajouter à ma liste'}
-              {isFav && 'Retirer de ma liste'}
+              {!isFav && texts.add_fav}
+              {isFav && texts.del_fav}
             </button>
           </li>
-          
           
           <li>
             <Link to={{
@@ -60,7 +61,7 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
               }}
               className='reset itinerary'>
               <div className="svg-container" dangerouslySetInnerHTML={itinerarySVG} />
-              Afficher itinéraire
+              {texts.display_itinerary}
             </Link>
           </li>
         </ul>}

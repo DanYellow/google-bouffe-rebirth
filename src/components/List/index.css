@@ -117,6 +117,7 @@
   width: 340px;
   background-color: white;
   justify-content: space-around;
+  padding-top: 15px;
 }
 
 .ListWrapper .Header button {
@@ -135,7 +136,22 @@
 
 .ListWrapper .Header .icon-fav {
   color: #da032c;
-  font-size: 9px;
+  font-size: 25px;
+  position: absolute;
+  top: 8px;
+}
+
+.ListWrapper .Header .icon-fav span {
+  font-family: 'OpenSansRegular', sans-serif;
+  position: absolute;
+  color: white;
+  top: 7px;
+  left: 0;
+  z-index: 10;
+  right: 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 900;
 }
 
 .ListWrapper .Header button.active {
@@ -149,11 +165,11 @@
 }
 
 .itinerary:hover,
-.itinerary .map:hover,
-.itinerary .path:hover {
-  fill: blue;
-  color: blue;
+.itinerary .map:hover, .itinerary .path:hover {
+  fill: #4093C6;
+  color: #4093C6;
 }
+
 
 .itinerary:hover .path-start, .itinerary:hover .path-1, 
 .itinerary:hover .path-2, .itinerary:hover .path-3, 
@@ -161,7 +177,7 @@
   animation-fill-mode:both;
   animation: 3s infinite linear;
   opacity: 0;
-  fill: blue;
+  fill: #4093C6;
 }
 
 .itinerary:hover .path-start {
@@ -196,7 +212,7 @@
         opacity:1;
     }
     100% {
-      opacity: 0
+      opacity: .5;
     }
 }
 
@@ -208,7 +224,7 @@
         opacity:1;
     }
     100% {
-      opacity: 0
+      opacity: .5;
     }
 }
 @-webkit-keyframes two {
@@ -219,7 +235,7 @@
         opacity:1;
     }
     100% {
-      opacity: 0
+      opacity: .5;
     }
 }
 @-webkit-keyframes three {
@@ -230,7 +246,7 @@
         opacity:1;
     }
     100% {
-      opacity: 0
+      opacity: .5;
     }
 }
 @-webkit-keyframes four {
@@ -241,7 +257,7 @@
         opacity:1;
     }
     100% {
-      opacity: 0;
+      opacity: .5;
     }
 }
 @-webkit-keyframes five {
@@ -252,7 +268,7 @@
         opacity:1;
     }
     100% {
-      opacity: 0
+      opacity: .5;
     }
 }
 @-webkit-keyframes end {
@@ -263,7 +279,7 @@
         opacity:1;
     }
     100% {
-      opacity: 0
+      opacity: .5;
     }
 
 }
