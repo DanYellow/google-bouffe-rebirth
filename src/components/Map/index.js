@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { find } from 'lodash';
 
 import { GoogleMap, Polygon } from 'react-google-maps';
 import { default as ScriptLoader } from 'react-google-maps/lib/async/ScriptjsLoader';
@@ -10,6 +9,7 @@ import { default as ScriptLoader } from 'react-google-maps/lib/async/ScriptjsLoa
 import GBMarker from './marker';
 import restaurants from '../../constants/restaurants';
 import texts from '../../constants/texts';
+import { mapIsLoaded } from '../../actions';
 
 let scriptLoaderOptions = {
   hostname: 'maps.googleapis.com',
@@ -24,7 +24,7 @@ class Map extends Component {
   constructor(props) {
     super(props);
     
-    this.defaultCenter = {lat: 48.857511, lng: 2.373364};
+    this.defaultCenter = {lat: 48.857511, lng: 2.373364}; // Digitas position
     this.defaultMapProps = {
       center: {lat: 48.857511, lng: 2.373364},
       zoom: 16,
@@ -36,9 +36,9 @@ class Map extends Component {
         clickableIcons: false,
         mapTypeControl: false,
 
-        // zoomControlOptions: {
-        //   style: window.google.maps.ZoomControlStyle.LARGE
-        // },
+        zoomControlOptions: {
+          style: 2
+        },
         styles: [{
           featureType: 'all',
           stylers: [
@@ -91,9 +91,19 @@ class Map extends Component {
     scriptLoaderOptions.containerElement = (<div style={{ height: '680px' }} />);
     scriptLoaderOptions.googleMapElement = (
       <GoogleMap 
-          ref={(map) => { this.map = map; this.map && map.panTo(mapPosition)}}   
+          ref={(map) => { 
+                this.map = map; 
+                this.map && map.panTo(mapPosition);
+
+                if (!this.props.isLoaded) {
+                  console.log('grgerre')
+                  this._mapLoaded();
+                }
+              }
+            }   
           center={this.defaultMapProps.center}
           defaultOptions={this.defaultMapProps.options}
+          onDragStart={this._mapLoaded}
           defaultZoom={this.defaultMapProps.zoom}>
           {digitasPolygon}
           {markers}
@@ -104,22 +114,32 @@ class Map extends Component {
       <ScriptLoader {...scriptLoaderOptions} />
     )
   }
+
+  _mapLoaded() {
+    this.props.mapIsLoaded();
+  }
 }
 
 const mapStateToProps = (state, ownProps) => {
   let {restaurant: {currentIndex}, restaurant:{mapPosition}} = state;
-  currentIndex = (currentIndex === -1) ? Number(ownProps.match.params.id_restaurant) : currentIndex;
+  // currentIndex = (currentIndex === -1) ? Number(ownProps.match.params.id_restaurant) : currentIndex;
 
-  if(find(ownProps.restaurants, {id: Number(currentIndex)})) {
-    mapPosition = find(ownProps.restaurants, {id: Number(currentIndex)}).position;
-  }
+  // if(find(ownProps.restaurants, {id: Number(currentIndex)})) {
+  //   mapPosition = find(ownProps.restaurants, {id: Number(currentIndex)}).position;
+  // }
+
 
   return {
     currentIndex: currentIndex,
     mapPosition: mapPosition,
     type: state.list.type,
     favs: state.restaurant.favs,
+    isLoaded: state.map.isLoaded,
   }
 };
 
-export default withRouter(connect(mapStateToProps)(Map));
+const mapDispatchToProps = {
+  mapIsLoaded
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Map));

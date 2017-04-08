@@ -4,28 +4,39 @@ import {
   Route
 } from 'react-router-dom'
 
+import {find} from 'lodash';
 
 
 import './App.css';
+// import DirectionsExample from './foo.js';
 
 import restaurants from '../../constants/restaurants';
 
 import Map from './../Map';
 import List from './../List';
 import Toast from './../Toast';
+import Itinerary from './../Itinerary';
 
-const Locator = ({restaurants, match}) => {
-  console.log(match.url)
+
+
+const Locator = ({restaurants, match, location}) => {
+  const currentRestaurant = find(restaurants, {id: Number(match.params.id_restaurant)});
+
   return (
     <section className='wrapper'>
-      <List restaurants={restaurants} />
+      <List restaurants={restaurants} isHidden={ (location.pathname.includes('itinerary')) } />
       <Map restaurants={restaurants} />
 
-      <Route path={`${match.url}/itinerary`} render={() => (
-          <div>
-          reggerger
-          </div>
-        )}/>
+      <Route path={`${match.url}/itinerary`} exact render={
+        () => {
+          if (currentRestaurant) {
+            return ( <Itinerary {...currentRestaurant} /> )
+          } else {
+            return null;
+          }
+        }
+      }/>
+    
     </section>
   )
 }
@@ -43,17 +54,19 @@ class App extends Component {
       return 0;
     });
 
+    // return ( <DirectionsExample />)
+
     return (
       <div className='App'>
         <Toast message='Hello' />
         
-        <Route exact path={match.url} render={() => (
-          <Locator restaurants={restaurantsMapped} />
-        )}/>
+        <Route exact path={match.url} render={({match, location}) => (
+          <Locator restaurants={restaurantsMapped} match={match} location={location} />
+        )} />
 
-        <Route path={`${match.url}:id_restaurant`} render={({match}) => (
-          <Locator restaurants={restaurantsMapped} match={match} />
-        )}/>
+        <Route path={`${match.url}:id_restaurant`} render={({match, location}) => (
+          <Locator restaurants={restaurantsMapped} match={match} location={location} />
+        )} />
         
       </div>
     );
@@ -61,5 +74,3 @@ class App extends Component {
 }
 
 export default App;
-
-

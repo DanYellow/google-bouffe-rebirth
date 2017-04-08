@@ -15,7 +15,7 @@ const itinerarySVG = {__html:`
 <circle class="path-start" fill="#010202" cx="10.318" cy="25.007" r="1.77"/>
 <path class="path-3" fill="#010202" d="M22.924,21.446l0.733,2.026c0.396-0.144,0.811-0.217,1.232-0.217
   c0.481,0,0.951,0.095,1.396,0.279l0.828-1.988c-0.706-0.295-1.456-0.446-2.224-0.446C24.218,21.103,23.556,21.218,22.924,21.446z"/>
-<path fill="#010202" d="M35.137,10.375L25,3.062l-10.137,7.312L3.062,3.062v36.562l11.801,7.312L25,39.625l10.137,7.312
+<path class="map" fill="#010202" d="M35.137,10.375L25,3.062l-10.137,7.312L3.062,3.062v36.562l11.801,7.312L25,39.625l10.137,7.312
   l11.801-7.312V3.062L35.137,10.375z M43.281,37.59l-7.312,4.531v-7.98h-1.828v7.569l-7.312-5.273v-7.78h-3.656v7.78l-7.312,5.273
   v-9.397h-1.828v9.809L6.719,37.59V9.63l7.312,4.532v5.354h1.828v-5.352l7.312-5.275v6.971h3.656V8.889l7.312,5.275v3.523h1.828
   v-3.526l7.312-4.532V37.59z"/>
@@ -26,62 +26,61 @@ const itinerarySVG = {__html:`
 
 const ListItem = ({title, description, address, id, isActive, selectedRestaurant, position, toggleFav, favs, match}) => {
   const isFav = favs.includes(id);
-  return (
-  <li id={id} className={classNames({active: isActive})}>
-    <section>
-      <Link to={`/${id}`}
-         onDoubleClick={() => alert(title)}
-         className='reset'>
-        <h1>
-        {title}
-        {isFav && <sup className='icon-fav'></sup> }
-        </h1>
-        <p>{address}</p>
-      </Link>
-      {(description && isActive) && 
-        <blockquote className='description'>{description}</blockquote>}
 
-      {(isActive) && 
-      <ul className='toolbox'>
-        <li>
-          <button type='button' className='reset fav' onClick={() => toggleFav(id)}>
-            <span className={classNames('icon', {'icon-fav': isFav, 'icon-fav-no': !isFav})} />
-            {!isFav && 'Ajouter à ma liste'}
-            {isFav && 'Retirer de ma liste'}
-          </button>
-        </li>
-        
-        
-        <li>
-          <Link to={{
-              pathname: `/${id}/itinerary`,
-            }}
-            className='reset itinerary'>
-            <div className="svg-container" dangerouslySetInnerHTML={itinerarySVG} />
-            Afficher itinéraire
-          </Link>
-        </li>
-      </ul>}
-    </section>
-  </li>
+  return (
+    <li id={id} className={classNames({active: isActive})}>
+      <section>
+        <Link to={`/${id}`}
+            onClick={() => selectedRestaurant(id, position)}
+            className='reset'>
+            
+          <h1>
+          {title}
+          {isFav && <sup className='icon-fav'></sup> }
+          </h1>
+          <p>{address}</p>
+        </Link>
+        {(description && isActive) && 
+          <blockquote className='description'>{description}</blockquote>}
+
+        {(isActive) && 
+        <ul className='toolbox'>
+          <li>
+            <button type='button' className='reset fav' onClick={() => toggleFav(id)}>
+              <span className={classNames('icon', {'icon-fav': isFav, 'icon-fav-no': !isFav})} />
+              {!isFav && 'Ajouter à ma liste'}
+              {isFav && 'Retirer de ma liste'}
+            </button>
+          </li>
+          
+          
+          <li>
+            <Link to={{
+                pathname: `/${id}/itinerary`,
+              }}
+              className='reset itinerary'>
+              <div className="svg-container" dangerouslySetInnerHTML={itinerarySVG} />
+              Afficher itinéraire
+            </Link>
+          </li>
+        </ul>}
+      </section>
+    </li>
   )
 }
 
-
 const mapStateToProps = (state, ownProps) => {
-  let {restaurant: {currentIndex}, restaurant:{mapPosition}} = state;
-  currentIndex = (currentIndex === -1) ? Number(ownProps.match.params.id_restaurant) : currentIndex;
-
+  let {restaurant: {currentIndex, favs, mapPosition}} = state;
   return {
     currentIndex: currentIndex,
-    mapPosition: state.list.mapPosition,
-    favs: state.restaurant.favs,
+    mapPosition: mapPosition,
+    favs: favs,
   }
 };
 
 const mapDispatchToProps = {
   selectedRestaurant,
   toggleFav
-}
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ListItem));

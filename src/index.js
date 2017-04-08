@@ -15,7 +15,7 @@ import './reset.css';
 import './index.css';
 import './utils.css';
 
-let store = createStore(reducer);
+let store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 render(
   <Provider store={store}>

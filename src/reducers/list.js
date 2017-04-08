@@ -47,3 +47,25 @@ export const list = (state = initialState, action) => {
       return state
   }
 }
+
+export const map = (state = {isLoaded: false}, action) => {
+  switch (action.type) {
+    case ActionTypes.MAP_LOADED: 
+      return { ...state, 
+        isLoaded: action.payload.isLoaded
+      }
+    default:
+      return state
+  }
+}
+
+export const itinerary = (state = {steps: []}, action) => {
+  switch (action.type) {
+    case ActionTypes.ITINERARY_LOADED: 
+      return { ...state, 
+        steps: action.payload.itinerary
+      }
+    default:
+      return state
+  }
+}

@@ -1,0 +1,57 @@
+.ItineraryWrapper {
+  width: 340px; height: 630px;
+  position: absolute;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  z-index: 99;
+  bottom: 0; left: 25px;
+  opacity: .75;
+  
+}
+
+.ItineraryWrapper:hover {
+  opacity: 1;
+}
+
+
+.ItineraryWrapper header {
+  background-color: white;
+  width: 100%;
+  max-height: 95px;
+  /* text-align: center; */
+}
+
+.ItineraryWrapper header h1 {
+  font-size: 23px;
+  margin-bottom: 4px;
+  font-family: 'OpenSansSemibold', sans-serif;
+}
+
+.ItineraryWrapper header p {
+  font-family: 'OpenSansRegular', sans-serif;
+  /* white-space: nowrap; */
+}
+
+.ItineraryWrapper header section {
+  padding: 16px;
+  height: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid #141414;
+}
+
+.ItineraryWrapper .itinerary-steps {
+  margin-top: 30px;
+  background-color: white;
+}
+
+.ItineraryWrapper .itinerary-steps li {
+  padding: 15px 0px;
+  margin: 0 18px;
+  border-bottom: 1px solid #141414;
+}
+
+.ItineraryWrapper .itinerary-steps li .infos {
+  margin-top: 7px;
+  font-size: 14px;
+
+}

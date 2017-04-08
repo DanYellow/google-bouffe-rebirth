@@ -5,6 +5,7 @@
   "devDependencies": {
     "classnames": "^2.2.5",
     "react-google-maps": "^4.11.0",
+    "react-helmet": "^5.0.2",
     "react-scripts": "0.9.5",
     "uuid": "^3.0.1"
   },

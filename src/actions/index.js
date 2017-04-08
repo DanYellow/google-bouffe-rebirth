@@ -16,4 +16,18 @@ export const toggleFav = (id) => ({
   id
 });
 
-// export const 
+
+export const mapIsLoaded = () => ({
+  type: ActionTypes.MAP_LOADED,
+  payload: {
+    isLoaded: true
+  }
+})
+
+
+export const itinerarySteps = (itinerary) => ({
+  type: ActionTypes.ITINERARY_LOADED,
+  payload: {
+    itinerary
+  }
+});

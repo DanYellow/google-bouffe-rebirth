@@ -11,10 +11,10 @@ import './index.css';
 
 class List extends Component {
   render() {
-    const { match } = this.props
+    const { match, isHidden } = this.props
 
     const restaurants = this.props.restaurants.map((restaurant) => {
-      const isActive = Number(match.params.id_restaurant) === restaurant.id;
+    const isActive = Number(match.params.id_restaurant) === restaurant.id;
 
       return <ListItem {...restaurant} isActive={isActive} key={uuidV1()}/>
     }).filter((restaurant) => {
@@ -23,7 +23,7 @@ class List extends Component {
     });
 
     return (
-      <div className='ListWrapper'>
+      <div className={classNames('ListWrapper', {hidden: isHidden})}>
         <Header />
         <ul className='List'>
           {restaurants}
