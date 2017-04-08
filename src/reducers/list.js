@@ -69,3 +69,16 @@ export const itinerary = (state = {steps: []}, action) => {
       return state
   }
 }
+
+export const restaurants = (state = {restaurants: []}, action) => {
+  switch (action.type) {
+    case ActionTypes.RESTAURANTS_LOADED: 
+      return { ...state, 
+        restaurants: action.payload.restaurants
+      }
+    default:
+      return state
+  }
+}
+
+

@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-
-
+import React from 'react';
 import { asyncComponent } from 'react-async-component';
 
 import Product from './Product'

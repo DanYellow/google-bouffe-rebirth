@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { isEqual } from 'lodash';
 import { Link } from 'react-router-dom'
 
 import './index.css';
 
 import { itinerarySteps } from '../../actions';
 
-import { asyncComponent } from 'react-async-component';
+// import { asyncComponent } from 'react-async-component';
 
 
 
@@ -24,7 +23,9 @@ class Itinerary extends React.Component {
     }, function(response, status) {
       if (status === google.maps.DirectionsStatus.OK) {
 
-        itinerarySteps(response.routes[0].legs[0].steps);
+        console.log('e', response);
+        itinerarySteps(response);
+        directionsDisplay.setDirections(response);
       } else {
         window.alert('Directions request failed due to ' + status);
       }
@@ -45,9 +46,12 @@ class Itinerary extends React.Component {
   }
 
   render() {
-    const {id, title, address, mapIsLoaded, position, itinerarySteps, itinerary} = this.props;
+    let {id, title, address, itinerary} = this.props;
+    
+    if (Object.keys(itinerary).length) {
+      itinerary = itinerary.routes[0].legs[0].steps
+    }
 
- 
     return (
       <div className='ItineraryWrapper'>
         <header>
@@ -73,29 +77,15 @@ class Itinerary extends React.Component {
   }
 }
 
-// fetch('http://my.url').then(() => {
-
-// })
-
 // const AsyncProduct = asyncComponent({
-//   resolve: () => new Promise(resolve =>
-    // setTimeout(function() {
-    //   resolve(ItinerarySteps);
-    // }, 4000)
-//   ),
-//   LoadingComponent: ({ productId }) => <div>Loading {productId}</div>, // Optional
+//   resolve: (foo) => new Promise((resolve, reject) => {
+//     setTimeout(function() {
+//       resolve(ItinerarySteps);
+//     }, 4000)
+//   }),
+//   LoadingComponent: ({ position }) => <div>Loading</div>, // Optional
 //   ErrorComponent: ({ error }) => <div>{error.message}</div> // Optional
 // });
-
-const AsyncProduct = asyncComponent({
-  resolve: (foo) => new Promise((resolve, reject) => {
-    setTimeout(function() {
-      resolve(ItinerarySteps);
-    }, 4000)
-  }),
-  LoadingComponent: ({ position }) => <div>Loading</div>, // Optional
-  ErrorComponent: ({ error }) => <div>{error.message}</div> // Optional
-});
 
 const ItinerarySteps = (props) => {
   let renderStep = (instruction, index) => {

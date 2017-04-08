@@ -31,3 +31,11 @@ export const itinerarySteps = (itinerary) => ({
     itinerary
   }
 });
+
+
+export const restaurantsListLoaded = (restaurants) => ({
+  type: ActionTypes.RESTAURANTS_LOADED,
+  payload: {
+    restaurants
+  }
+})

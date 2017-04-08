@@ -27,6 +27,7 @@ class GBMarker extends Component {
   handleClick() {
     const id = this.props.datas.id;
 
+    if (!id) { return; }
     this.props.history.push(`/${id}`);
     this.props.selectedRestaurant(id, this.props.position);
     document.getElementById(id).scrollIntoView();

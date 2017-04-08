@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
 import {
   Route
 } from 'react-router-dom'
 
 import { find } from 'lodash';
+import { restaurantsListLoaded } from '../../actions';
 
 
 import './App.css';
 
-import restaurants from '../../constants/restaurants';
+// import restaurants from '../../constants/restaurants';
 
 import Map from './../Map';
 import List from './../List';
 import Toast from './../Toast';
 import Itinerary from './../Itinerary';
+import Loader from './../Map/loader';
 
-import AsyncProduct from './../AsyncProduct';
-
-
+// import AsyncProduct from './../AsyncProduct';
 
 const Locator = ({restaurants, match, location}) => {
   const currentRestaurant = find(restaurants, {id: Number(match.params.id_restaurant)});
@@ -30,7 +30,6 @@ const Locator = ({restaurants, match, location}) => {
 
       <Route path={`${match.url}/itinerary`} exact render={
         () => {
-          console.log('currentRestaurant');
           if (currentRestaurant) {
             return ( <Itinerary {...currentRestaurant} /> )
           } else {
@@ -48,11 +47,12 @@ class App extends Component {
     fetch('./restaurants.json')
       .then(response => response.json())
       .then((restaurants) => {
-        console.log('restaurants', restaurants);
+        this.props.restaurantsListLoaded(restaurants);
       });
   }
   render() {
-    const {match} = this.props;
+    const {match, restaurants} = this.props;
+
     let restaurantsMapped = restaurants.map((restaurant, index) => {
       restaurant.id = index + 1;
       return restaurant;
@@ -63,14 +63,12 @@ class App extends Component {
       return 0;
     });
 
-    // return ( <DirectionsExample />)
-
     return (
       <div className='App'>
-        <AsyncProduct id={40} />
         <Toast message='Hello' />
 
-        
+        {!restaurants.length && <Loader />}
+
         <Route exact path={match.url} render={({match, location}) => (
           <Locator restaurants={restaurantsMapped} match={match} location={location} />
         )} />
@@ -84,4 +82,14 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    restaurants: state.restaurants.restaurants,
+  }
+};
+
+const mapDispatchToProps = {
+  restaurantsListLoaded,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

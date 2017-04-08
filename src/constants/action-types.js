@@ -3,3 +3,4 @@ export const LIST_TYPE = 'LIST_TYPE';
 export const TOGGLE_FAV = 'TOGGLE_FAV';
 export const MAP_LOADED = 'MAP_LOADED';
 export const ITINERARY_LOADED = 'ITINERARY_LOADED';
+export const RESTAURANTS_LOADED = 'RESTAURANTS_LOADED';
