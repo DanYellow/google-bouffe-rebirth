@@ -14,7 +14,6 @@ class Itinerary extends React.Component {
   _loadItinerary({position, itinerarySteps}) {
     const google = window.google;
     const directionsService = new google.maps.DirectionsService();
-    const directionsDisplay = new google.maps.DirectionsRenderer();
 
     directionsService.route({
       origin: {lat: 48.857927, lng: 2.373118}, // Digitas
@@ -22,10 +21,7 @@ class Itinerary extends React.Component {
       travelMode: google.maps.TravelMode.WALKING
     }, function(response, status) {
       if (status === google.maps.DirectionsStatus.OK) {
-
-        console.log('e', response);
         itinerarySteps(response);
-        directionsDisplay.setDirections(response);
       } else {
         window.alert('Directions request failed due to ' + status);
       }

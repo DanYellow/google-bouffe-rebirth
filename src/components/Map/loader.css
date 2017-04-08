@@ -2,4 +2,15 @@
   background-color: #C1272D;
   top: 0; left: 0; right: 0; bottom: 0;
   position: fixed;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.Loader p {
+  font-size: 32px;
+  font-family: 'OpenSansSemibold';
+  color: white;
 }

@@ -107,23 +107,13 @@ class Map extends Component {
           {digitasPolygon}
           {markers}
 
-          { Object.keys(itinerary).length > 0 && <DirectionsRenderer defaultOptions={{ suppressMarkers: true }} directions={itinerary} /> }
+          {/* Object.keys(itinerary).length > 0 && <DirectionsRenderer defaultOptions={{ suppressMarkers: true }} directions={itinerary} /> */}
       </GoogleMap>
     );
 
     return (
       <ScriptLoader {...scriptLoaderOptions} />
     )
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const {itinerary} = this.props;
-    if (itinerary && this.props.isLoaded) {
-      const directionsDisplay = new window.google.maps.DirectionsRenderer();
-      console.log('itinerary', this.map);
-      // directionsDisplay.setDirections(itinerary);
-      // directionsDisplay.setMap(this.map.props.map);
-    }
   }
 
   _mapLoaded() {
