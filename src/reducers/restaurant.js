@@ -1,9 +1,10 @@
 import * as ActionTypes from '../constants/action-types';
 
-import without  from 'lodash/without'
+import without from 'lodash/without'
 
 const initialState = {
-  restaurants: [], 
+  mapPosition: {lat: 48.857511, lng: 2.373364},
+  restaurants: [],
   survey:[],
   favs: JSON.parse(window.localStorage.getItem('favs')) || [],
 }
@@ -28,6 +29,7 @@ export const restaurants = (state = initialState, action) => {
       return { ...state, 
         restaurants: action.payload.restaurants
       }
+      
     case ActionTypes.TOGGLE_FAV:
       let favs = state.favs;
       let isDeletion = false;
@@ -42,9 +44,14 @@ export const restaurants = (state = initialState, action) => {
         favs: favs,
         deletion: isDeletion
       }
+
+    case ActionTypes.TOGGLE_SURVEY:
+      let survey = state.survey;
+      return { ...state,
+        survey: [...survey, action.id]
+      }
+      
     default:
       return state
   }
 }
-
-

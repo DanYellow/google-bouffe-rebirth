@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { withRouter, Link } from 'react-router-dom';
 
-import { selectedRestaurant, toggleFav } from '../../actions';
+import { selectedRestaurant, toggleFav, toggleSurvey } from '../../actions';
 import texts from '../../constants/texts';
 
 import './index.css';
@@ -26,8 +26,9 @@ const itinerarySVG = {__html:`
 <rect class="path-4" x="28.196" y="23.269" transform="matrix(-0.8689 -0.4949 0.4949 -0.8689 43.9088 60.3205)" fill="#010202" width="3.491" height="2.155"/>
 </svg> `}
 
-const ListItem = ({title, description, address, id, isActive, selectedRestaurant, position, toggleFav, favs, match}) => {
+const ListItem = ({title, description, address, id, isActive, selectedRestaurant, position, toggleFav, toggleSurvey, favs, match, survey}) => {
   const isFav = favs.includes(id);
+  const isInSurvey = survey.includes(id);
 
   return (
     <li id={id} className={classNames({active: isActive})}>
@@ -64,6 +65,14 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
               {texts.display_itinerary}
             </Link>
           </li>
+
+          <li>
+            <button type='button' className='reset' onClick={() => toggleSurvey(id)}>
+              <span className={classNames('icon', {'icon-survey-add': !isInSurvey, 'icon-survey-del': isInSurvey})} />
+              {!isInSurvey && texts.add_survey}
+              {isInSurvey && texts.del_survey}
+            </button>
+          </li>
         </ul>}
       </section>
     </li>
@@ -71,17 +80,20 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let {restaurant: {currentIndex, favs, mapPosition}} = state;
+  let {restaurant: {currentIndex, mapPosition}} = state;
+  let {restaurants: {favs, survey}} = state;
   return {
-    currentIndex: currentIndex,
-    mapPosition: mapPosition,
-    favs: favs,
+    currentIndex,
+    mapPosition,
+    favs,
+    survey
   }
 };
 
 const mapDispatchToProps = {
   selectedRestaurant,
-  toggleFav
+  toggleFav,
+  toggleSurvey
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ListItem));

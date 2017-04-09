@@ -1,7 +1,5 @@
 import * as ActionTypes from '../constants/action-types';
 
-import without  from 'lodash/without'
-
 const initialState = {
   currentIndex: -1,
   mapPosition: {lat: 48.857511, lng: 2.373364},

@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { map, sum } from 'lodash';
 
 import './index.css';
-
-import { map, sum } from 'lodash'
-
+import texts from '../../constants/texts';
 import { itinerarySteps } from '../../actions';
 
 // import { asyncComponent } from 'react-async-component';
@@ -16,7 +15,7 @@ class Itinerary extends React.Component {
   _loadItinerary({position, itinerarySteps}) {
     const google = window.google;
     const directionsService = new google.maps.DirectionsService();
-
+    console.log('position', position);
     directionsService.route({
       origin: {lat: 48.857927, lng: 2.373118}, // Digitas
       destination: position, // Restaurant position
@@ -69,12 +68,17 @@ class Itinerary extends React.Component {
   }
 
   _renderSteps(steps) {
+    const totalDistance = (sum(map(steps, 'distance.value')) / 1000).toFixed(2);
+    const totalDuration = (sum(map(steps, 'distance.value')) / 60).toFixed(0);
+    const totalCaloriesBurnt = (6 * totalDuration) / 4;
+
     return (
       <div className='itinerary-steps'>
         <header>
           <h1>Itinéraire</h1>
-          <p>Distance totale : {(sum(map(steps, 'distance.value')) / 1000).toFixed(2)} km</p>
-          <p>Durée totale : {(sum(map(steps, 'duration.value')) / 60).toFixed(0)} minute(s) </p>
+          <p>Distance totale : {totalDistance} km</p>
+          <p>{totalDuration} minute(s) de marche</p>
+          <abbr title={texts.info_cal}>Calories brûlées : {totalCaloriesBurnt} kcal </abbr>
         </header>
         <ul>
           <ItinerarySteps steps={steps} />

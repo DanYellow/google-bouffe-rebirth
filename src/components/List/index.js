@@ -36,7 +36,7 @@ class List extends Component {
 const mapStateToProps = state => ({
   currentIndex: state.restaurant.currentIndex,
   type: state.list.type,
-  favs: state.restaurant.favs,
+  favs: state.restaurants.favs,
 });
 
 export default withRouter(connect(mapStateToProps, {})(List));

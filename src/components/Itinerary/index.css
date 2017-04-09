@@ -58,7 +58,7 @@
   font-size: 17px;
 }
 
-.ItineraryWrapper .itinerary-steps header p {
+.ItineraryWrapper .itinerary-steps header p, .ItineraryWrapper .itinerary-steps header abbr {
   font-family: 'OpenSansSemibold';
   margin-left: 16px;
   font-size: 12px;

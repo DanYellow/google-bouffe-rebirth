@@ -16,6 +16,11 @@ export const toggleFav = (id) => ({
   id
 });
 
+export const toggleSurvey = (id) => ({
+  type: ActionTypes.TOGGLE_SURVEY,
+  id
+});
+
 
 export const mapIsLoaded = () => ({
   type: ActionTypes.MAP_LOADED,
