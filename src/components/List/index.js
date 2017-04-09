@@ -46,7 +46,7 @@ function mapStateToPropsHeader(state) {
   return {
     currentIndex: state.restaurant.currentIndex,
     type: state.list.type,
-    favs: state.restaurant.favs,
+    favs: state.restaurants.favs,
   }
 }
 

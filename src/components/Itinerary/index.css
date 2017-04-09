@@ -48,19 +48,48 @@
 }
 
 .ItineraryWrapper .itinerary-steps header {
+  padding-top: 16px;
+  margin-bottom: 10px;
+}
+
+.ItineraryWrapper .itinerary-steps header h1 {
   font-family: 'OpenSansSemibold';
   margin-left: 16px;
-  padding-top: 16px;
+  font-size: 17px;
+}
+
+.ItineraryWrapper .itinerary-steps header p {
+  font-family: 'OpenSansSemibold';
+  margin-left: 16px;
+  font-size: 12px;
 }
 
 .ItineraryWrapper .icon-close {
   color: black;
 }
 
+.ItineraryWrapper .icon-close:hover {
+  color: #da032c;
+}
+
+
+
 .ItineraryWrapper .itinerary-steps li {
   padding: 15px 0px;
   margin: 0 18px;
   border-bottom: 1px solid #141414;
+  position: relative;
+  overflow: hidden;
+}
+
+.ItineraryWrapper .itinerary-steps li:before {
+  content: attr(data-order);
+  font-size: 100px;
+  font-family: 'OpenSansRegular';
+  opacity: .19;
+  top: -5px;
+  position: absolute;
+  color: #da032c;
 }
 
 .ItineraryWrapper .itinerary-steps li .infos {

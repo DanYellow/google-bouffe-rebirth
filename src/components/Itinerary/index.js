@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 
 import './index.css';
 
+import { map, sum } from 'lodash'
+
 import { itinerarySteps } from '../../actions';
 
 // import { asyncComponent } from 'react-async-component';
@@ -61,15 +63,24 @@ class Itinerary extends React.Component {
             </Link>
           </section>
         </header>
-
-        <div className='itinerary-steps'>
-          <header>Itinéraire</header>
-          <ul>
-            <ItinerarySteps steps={itinerary} />
-          </ul>
-        </div>
+        { (Object.keys(itinerary).length > 0) && this._renderSteps(itinerary) }
       </div>
     ) // <AsyncProduct position={position} id={56} />
+  }
+
+  _renderSteps(steps) {
+    return (
+      <div className='itinerary-steps'>
+        <header>
+          <h1>Itinéraire</h1>
+          <p>Distance totale : {(sum(map(steps, 'distance.value')) / 1000).toFixed(2)} km</p>
+          <p>Durée totale : {(sum(map(steps, 'duration.value')) / 60).toFixed(0)} minute(s) </p>
+        </header>
+        <ul>
+          <ItinerarySteps steps={steps} />
+        </ul>
+      </div>
+    )
   }
 }
 
@@ -86,7 +97,7 @@ class Itinerary extends React.Component {
 const ItinerarySteps = (props) => {
   let renderStep = (instruction, index) => {
     return ( 
-      <li key={ Date.now() + index }>
+      <li key={ Date.now() + index } data-order={index + 1}>
         <p dangerouslySetInnerHTML={{__html: instruction.instructions}} />
         <section className='infos'>
           <p>

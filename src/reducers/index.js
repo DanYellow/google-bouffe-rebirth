@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 
-import restaurant, { list, map, itinerary, restaurants } from './list';
+import { list, map, itinerary } from './list';
+import restaurant, { restaurants } from './restaurant';
 import toastReducer from './../components/Toast/reducers'
 
 const reducer = combineReducers({

@@ -57,6 +57,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-survey-add:before {
+  content: "\e903";
+}
+.icon-survey-del:before {
+  content: "\e904";
+}
+.icon-survey:before {
+  content: "\e905";
+}
 .icon-close:before {
   content: "\e902";
 }
