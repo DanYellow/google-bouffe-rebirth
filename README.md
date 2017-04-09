@@ -11,3 +11,4 @@ Google Bouffe project revamped
 - [] Add toast to indicate flow
 - [] Add konami code
 - [x] Change .json structure for more reusability
+- [] Implements React-helmet

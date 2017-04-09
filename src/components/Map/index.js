@@ -86,11 +86,12 @@ class Map extends Component {
     }
 
     const extraGMProps = (Object.keys(itinerary).length <= 0) ? {zoom: 16} : {}
+    const mapHeight = window.innerHeight - document.getElementById('header').offsetHeight;
 
     this.defaultMapProps = {...this.defaultMapProps, ...{center: {lat: 45.9009, lng: 2.9008}}}
 
     scriptLoaderOptions.loadingElement = <Loader />;
-    scriptLoaderOptions.containerElement = (<div style={{ height: '600px' }} />);
+    scriptLoaderOptions.containerElement = (<div style={{ minHeight: `${mapHeight}px` }} />);
     scriptLoaderOptions.googleMapElement = (
       <GoogleMap
           ref={(map) => { 

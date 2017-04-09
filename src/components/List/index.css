@@ -1,5 +1,5 @@
 .ListWrapper {
-  width: 340px; height: 532px;
+  width: 340px; height: 85%;
   position: absolute;
   overflow-y: scroll;
   overflow-x: hidden;
