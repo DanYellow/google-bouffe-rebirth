@@ -43,4 +43,8 @@ export const restaurantsListLoaded = (restaurants) => ({
   payload: {
     restaurants
   }
-})
+});
+
+export const itineraryStepsCleared = () => ({
+  type: ActionTypes.ITINERARY_CLEARED,
+});

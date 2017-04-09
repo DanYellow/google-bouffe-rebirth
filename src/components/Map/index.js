@@ -32,7 +32,6 @@ class Map extends Component {
         scaleControl: true,
         clickableIcons: false,
         mapTypeControl: false,
-
         zoomControlOptions: {
           style: 2
         },
@@ -82,11 +81,13 @@ class Map extends Component {
               scaledSize: new window.google.maps.Size(50, 50)
             };
       markers.push(
-        <Marker
-          key={Math.random()}
-          {...homePosition}
-          icon={homeIcon} />);
+        <Marker key={Math.random()} {...homePosition} icon={homeIcon} />
+      );
     }
+
+    const extraGMProps = (Object.keys(itinerary).length <= 0) ? {zoom: 16} : {}
+
+    this.defaultMapProps = {...this.defaultMapProps, ...{center: {lat: 45.9009, lng: 2.9008}}}
 
     scriptLoaderOptions.loadingElement = <Loader />;
     scriptLoaderOptions.containerElement = (<div style={{ height: '600px' }} />);
@@ -102,11 +103,12 @@ class Map extends Component {
               }
             }
           center={this.defaultMapProps.center}
+          {...extraGMProps}
           defaultOptions={this.defaultMapProps.options}
           onDragStart={this._mapLoaded}
           defaultZoom={this.defaultMapProps.zoom}>
           {markers}
-          {/* Object.keys(itinerary).length > 0 && <DirectionsRenderer defaultOptions={{ suppressMarkers: true }} directions={itinerary} /> */}
+          { Object.keys(itinerary).length > 0 && <DirectionsRenderer defaultOptions={{ suppressMarkers: true }} directions={itinerary} /> }
       </GoogleMap>
     );
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { withRouter, Link } from 'react-router-dom';
 
-import { selectedRestaurant, toggleFav, toggleSurvey } from '../../actions';
+import { selectedRestaurant, toggleFav, toggleSurvey, itineraryStepsCleared } from '../../actions';
 import texts from '../../constants/texts';
 
 import './index.css';
@@ -26,15 +26,17 @@ const itinerarySVG = {__html:`
 <rect class="path-4" x="28.196" y="23.269" transform="matrix(-0.8689 -0.4949 0.4949 -0.8689 43.9088 60.3205)" fill="#010202" width="3.491" height="2.155"/>
 </svg> `}
 
-const ListItem = ({title, description, address, id, isActive, selectedRestaurant, position, toggleFav, toggleSurvey, favs, match, survey}) => {
+const ListItem = ({title, description, address, id, isActive, selectedRestaurant, position, toggleFav, toggleSurvey, favs, match, survey, itineraryStepsCleared}) => {
   const isFav = favs.includes(id);
   const isInSurvey = survey.includes(id);
-
+  
   return (
     <li id={id} className={classNames({active: isActive})}>
       <section>
         <Link to={`/${id}`}
-            onClick={() => selectedRestaurant(id, position)}
+            onClick={() => { 
+              selectedRestaurant(id, position); 
+              itineraryStepsCleared() }}
             className='reset'>
             
           <h1>
@@ -93,7 +95,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = {
   selectedRestaurant,
   toggleFav,
-  toggleSurvey
+  toggleSurvey,
+  itineraryStepsCleared
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ListItem));

@@ -5,7 +5,7 @@ import { map, sum } from 'lodash';
 
 import './index.css';
 import texts from '../../constants/texts';
-import { itinerarySteps } from '../../actions';
+import { itinerarySteps, itineraryStepsCleared } from '../../actions';
 
 // import { asyncComponent } from 'react-async-component';
 
@@ -57,7 +57,7 @@ class Itinerary extends React.Component {
               <h1>{title}</h1>
               <p>{address}</p>
             </div>
-            <Link to={`/${id}`} className='reset'>
+            <Link to={`/${id}`} onClick={this.props.itineraryStepsCleared} className='reset'>
               <span className={'icon-close'}></span>
             </Link>
           </section>
@@ -126,7 +126,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  itinerarySteps
+  itinerarySteps,
+  itineraryStepsCleared
 }
 
 
