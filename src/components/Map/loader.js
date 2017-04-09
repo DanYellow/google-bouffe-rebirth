@@ -8,7 +8,7 @@ import texts from '../../constants/texts';
 const Loader = (props) => {
   return (
     <div className='Loader'>
-      <img alt='loading image' src={hamburger} />
+      <img alt='loading' src={hamburger} />
       <p>{texts.loading}</p>
     </div>
   );

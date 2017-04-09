@@ -1,14 +1,21 @@
-[
-  {
+{
+  "home_position": {
+      "position": {
+        "lat": 48.857511,
+        "lng": 2.373364
+      },
+      "icon": "./dlbi.png"
+    },
+  "restaurants": [{
     "position": {
       "lat": 48.850861,
       "lng": 2.377926
     },
-  "title": "East mamma",
-    "description": "Restaurant Italien. Produits de qualité pour des plats de qualité.",
-    "address": "33 Rue du Faubourg Saint-Antoine • 75011 Paris",
-    "budget_scale": 4
-  }, {
+    "title": "East mamma",
+      "description": "Restaurant Italien. Produits de qualité pour des plats de qualité.",
+      "address": "33 Rue du Faubourg Saint-Antoine • 75011 Paris",
+      "budget_scale": 4
+    }, {
     "position": {
       "lat": 48.857127,
       "lng": 2.378408
@@ -234,3 +241,4 @@
     "budget_scale": 7
   }
 ]
+}

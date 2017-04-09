@@ -4,7 +4,7 @@ import without from 'lodash/without'
 
 const initialState = {
   mapPosition: {lat: 48.857511, lng: 2.373364},
-  restaurants: [],
+  list: [],
   survey:[],
   favs: JSON.parse(window.localStorage.getItem('favs')) || [],
 }
@@ -27,7 +27,7 @@ export const restaurants = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.RESTAURANTS_LOADED: 
       return { ...state, 
-        restaurants: action.payload.restaurants
+        list: action.payload.restaurants
       }
       
     case ActionTypes.TOGGLE_FAV:
@@ -41,14 +41,19 @@ export const restaurants = (state = initialState, action) => {
       }
       window.localStorage.setItem('favs', JSON.stringify(favs));
       return { ...state,
-        favs: favs,
+        favs,
         deletion: isDeletion
       }
 
     case ActionTypes.TOGGLE_SURVEY:
       let survey = state.survey;
+      if (survey.includes(action.id)) {
+        survey = without(survey, action.id);
+      } else {
+        survey = [...survey, action.id];
+      }
       return { ...state,
-        survey: [...survey, action.id]
+        survey
       }
       
     default:

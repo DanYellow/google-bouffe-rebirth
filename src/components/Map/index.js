@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 
-import { GoogleMap, Polygon, DirectionsRenderer } from 'react-google-maps';
+import { GoogleMap, DirectionsRenderer, Marker } from 'react-google-maps';
 import { default as ScriptLoader } from 'react-google-maps/lib/async/ScriptjsLoader';
 
 import GBMarker from './marker';
@@ -23,9 +23,7 @@ class Map extends Component {
   constructor(props) {
     super(props);
     
-    this.defaultCenter = {lat: 48.857511, lng: 2.373364}; // Digitas position
     this.defaultMapProps = {
-      center: {lat: 48.857511, lng: 2.373364},
       zoom: 16,
       options: {
         minZoom: 15,
@@ -62,19 +60,11 @@ class Map extends Component {
   }
 
   render() {
-    const {mapPosition, itinerary, restaurants} = this.props;
+    const {mapPosition, itinerary, restaurants, homePosition} = this.props;
+    
+    this.defaultMapProps = Object.assign(this.defaultMapProps, {center: homePosition.position})
 
-    const digitasPolygon = <Polygon options={{
-            paths: [{lat: 48.858347, lng: 2.372747}, {lat: 48.858516, lng: 2.373284},
-            {lat: 48.857719, lng: 2.373949}, {lat: 48.857468, lng: 2.373364}],
-            strokeColor: '#FFFFFF',
-            strokeOpacity: 0.8,
-            strokeWeight: 1,
-            fillColor: '#FF0000',
-            fillOpacity: 0.35
-          }} />
-
-    const markers = restaurants.map((restaurant, key) => {
+    let markers = restaurants.map((restaurant, key) => {
       const {title, description, address, id} = restaurant;
       const datas = { title, description, address, id };
       datas.isActive = (id === this.props.currentIndex);
@@ -84,9 +74,20 @@ class Map extends Component {
     }).filter((restaurant) => {
       if (this.props.type === 'all') { return true; }
       return this.props.type === 'my' && this.props.favs.includes(restaurant.props.datas.id);
-    });
+    })
 
-    
+    if (window.google) {
+      const homeIcon = {
+              url: homePosition.icon,
+              scaledSize: new window.google.maps.Size(50, 50)
+            };
+      markers.push(
+        <Marker
+          key={Math.random()}
+          {...homePosition}
+          icon={homeIcon} />);
+    }
+
     scriptLoaderOptions.loadingElement = <Loader />;
     scriptLoaderOptions.containerElement = (<div style={{ height: '600px' }} />);
     scriptLoaderOptions.googleMapElement = (
@@ -99,14 +100,12 @@ class Map extends Component {
                   this._mapLoaded();
                 }
               }
-            }   
+            }
           center={this.defaultMapProps.center}
           defaultOptions={this.defaultMapProps.options}
           onDragStart={this._mapLoaded}
           defaultZoom={this.defaultMapProps.zoom}>
-          {digitasPolygon}
           {markers}
-
           {/* Object.keys(itinerary).length > 0 && <DirectionsRenderer defaultOptions={{ suppressMarkers: true }} directions={itinerary} /> */}
       </GoogleMap>
     );
@@ -122,7 +121,11 @@ class Map extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let {restaurant: {currentIndex}, restaurant:{mapPosition}} = state;
+  let {
+    restaurant: {currentIndex}, 
+    restaurant:{mapPosition}
+  } = state;
+  const homePosition = state.restaurants.list.home_position || {};
 
   return {
     currentIndex: currentIndex,
@@ -131,6 +134,7 @@ const mapStateToProps = (state, ownProps) => {
     favs: state.restaurant.favs,
     isLoaded: state.map.isLoaded,
     itinerary: state.itinerary.steps,
+    homePosition,
   }
 };
 

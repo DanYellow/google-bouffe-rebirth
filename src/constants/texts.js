@@ -6,7 +6,8 @@ const texts = {
   'display_itinerary': 'Afficher itinéraire',
   'add_survey': 'Ajouter au sondage',
   'del_survey': 'Retirer du sondage',
-  'info_cal': 'Base calculée pour un individu de 80 kg à une allure de 3 km/h'
+  'info_cal': 'Base calculée pour un individu de 80 kg à une allure de 3 km/h',
+  'empty_list': 'Votre liste est vide'
 };
 
 export default texts;

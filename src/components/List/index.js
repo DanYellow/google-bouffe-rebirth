@@ -7,6 +7,7 @@ import classNames from 'classnames';
 
 import { listType } from '../../actions';
 import ListItem from './list-item';
+import texts from '../../constants/texts';
 import './index.css';
 
 class List extends Component {
@@ -25,11 +26,22 @@ class List extends Component {
     return (
       <div className={classNames('ListWrapper', {hidden: isHidden})}>
         <Header />
-        <ul className='List'>
-          {restaurants}
-        </ul>
+        {(restaurants.length > 0) && 
+          <ul className='List'>{restaurants}</ul>
+        }
+
+        {(!restaurants.length) && this._renderEmptyState() }
       </div>
     );
+  }
+
+  _renderEmptyState() {
+    return (
+      <div className='empty-list'>
+        <span className='icon-fav-no icon' />
+        <p>{texts.empty_list}</p>
+      </div>
+    )
   }
 }
 
