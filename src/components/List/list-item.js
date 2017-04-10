@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { withRouter, Link } from 'react-router-dom';
+import { some } from 'lodash'
 
 import { selectedRestaurant, toggleFav, toggleSurvey, itineraryStepsCleared } from '../../actions';
 import texts from '../../constants/texts';
@@ -28,7 +29,13 @@ const itinerarySVG = {__html:`
 
 const ListItem = ({title, description, address, id, isActive, selectedRestaurant, position, toggleFav, toggleSurvey, favs, match, survey, itineraryStepsCleared}) => {
   const isFav = favs.includes(id);
-  const isInSurvey = survey.includes(id);
+  const isInSurvey = some(survey, {id: id});
+  const surveyAvailable = (survey.length === 4 && isInSurvey || survey.length < 4) ? true : false;
+  const surveyObject = {
+    title,
+    description,
+    id
+  };
   
   return (
     <li id={id} className={classNames({active: isActive})}>
@@ -69,7 +76,7 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
           </li>
 
           <li>
-            <button type='button' className='reset' onClick={() => toggleSurvey(id)}>
+            <button type='button' disabled={!surveyAvailable} className='reset' onClick={() => toggleSurvey(surveyObject)}>
               <span className={classNames('icon', {'icon-survey-add': !isInSurvey, 'icon-survey-del': isInSurvey})} />
               {!isInSurvey && texts.add_survey}
               {isInSurvey && texts.del_survey}

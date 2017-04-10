@@ -1,6 +1,6 @@
 import * as ActionTypes from '../constants/action-types';
 
-import without from 'lodash/without'
+import { without, some, filter } from 'lodash';
 
 const initialState = {
   mapPosition: {lat: 48.857511, lng: 2.373364},
@@ -47,11 +47,17 @@ export const restaurants = (state = initialState, action) => {
 
     case ActionTypes.TOGGLE_SURVEY:
       let survey = state.survey;
-      if (survey.includes(action.id)) {
-        survey = without(survey, action.id);
+
+
+      if (some(survey, action.payload.restaurant)) {
+        survey = filter(survey, (surveyItem) => {
+          return surveyItem.id !== action.payload.restaurant.id;
+        });
       } else {
-        survey = [...survey, action.id];
+        survey = [...survey, action.payload.restaurant];
       }
+      
+
       return { ...state,
         survey
       }

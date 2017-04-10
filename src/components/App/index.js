@@ -13,16 +13,17 @@ import Map from './../Map';
 import List from './../List';
 import Toast from './../Toast';
 import Itinerary from './../Itinerary';
+import Survey from './../Survey';
 import Loader from './../Map/loader';
 
-const Locator = ({restaurants, match, location}) => {
+const Locator = ({restaurants, match, location, survey}) => {
   const currentRestaurant = find(restaurants, {id: Number(match.params.id_restaurant)});
 
   return (
     <section className='wrapper'>
       <List restaurants={restaurants} isHidden={ (location.pathname.includes('itinerary')) } />
       {restaurants.length && <Map restaurants={restaurants} />}
-
+      {survey.length && <Survey /> }
       <Route path={`${match.url}/itinerary`} exact render={
         () => {
           if (currentRestaurant) {
@@ -45,7 +46,7 @@ class App extends Component {
       });
   }
   render() {
-    const {match, restaurants} = this.props;
+    const {match, restaurants, survey} = this.props;
 
     let restaurantsMapped = restaurants.map((restaurant, index) => {
       restaurant.id = index + 1;
@@ -64,11 +65,11 @@ class App extends Component {
         {!restaurants.length && <Loader />}
 
         <Route exact path={match.url} render={({match, location}) => (
-          <Locator restaurants={restaurantsMapped} match={match} location={location} />
+          <Locator restaurants={restaurantsMapped} match={match} location={location} survey={survey} />
         )} />
 
         <Route path={`${match.url}:id_restaurant`} render={({match, location}) => (
-          <Locator restaurants={restaurantsMapped} match={match} location={location} />
+          <Locator restaurants={restaurantsMapped} match={match} location={location} survey={survey} />
         )} />
         
       </div>
@@ -79,6 +80,7 @@ class App extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     restaurants: state.restaurants.list.restaurants || [],
+    survey: state.restaurants.survey
   }
 };
 

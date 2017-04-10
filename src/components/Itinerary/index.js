@@ -15,7 +15,7 @@ class Itinerary extends React.Component {
   _loadItinerary({position, itinerarySteps}) {
     const google = window.google;
     const directionsService = new google.maps.DirectionsService();
-    console.log('position', position);
+ 
     directionsService.route({
       origin: {lat: 48.857927, lng: 2.373118}, // Digitas
       destination: position, // Restaurant position

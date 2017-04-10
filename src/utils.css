@@ -17,6 +17,10 @@ body {
   flex-direction: column;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 #header {
   margin-top: 3px;
   display: flex;

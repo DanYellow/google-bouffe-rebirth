@@ -1,0 +1,81 @@
+.SurveyCreatorWrapper {
+  opacity: .3;
+  width: 310px;
+  position: absolute;
+  right: 25px; top: 68px;
+  z-index: 9999;
+  
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: left;
+}
+
+.SurveyCreatorWrapper:hover {
+  opacity: 1;
+}
+
+.SurveyCreatorWrapper header {
+  font-family: 'OpenSansSemibold';
+  color: #C1272D;
+  background-color: white;
+  margin-bottom: 15px;
+  padding: 16px;
+  width: 100%;
+}
+
+.SurveyCreatorWrapper .choices {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.SurveyCreatorWrapper .choices li {
+  width: 100%;
+  padding: 0 16px;
+  
+  background-color: white;
+}
+
+.SurveyCreatorWrapper .choices li button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid #C1272D;
+}
+
+.SurveyCreatorWrapper .choices li:hover .icon-close {
+  color: #C1272D;
+}
+
+.SurveyCreatorWrapper .choices li:hover {
+  text-decoration: line-through;
+}
+
+.SurveyCreatorWrapper .btns {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.SurveyCreatorWrapper .btns button {
+  font-size: 16px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid black;
+}
+
+.SurveyCreatorWrapper .btns button.create {
+  color: green;
+  border-color: green;
+}
+
+.SurveyCreatorWrapper .btns button.cancel {
+  color: #C1272D;
+  border-color: #C1272D;
+}
+
