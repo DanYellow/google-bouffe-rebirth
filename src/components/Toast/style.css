@@ -1,5 +1,5 @@
 .Toast{
-  /* position: absolute; */
+  position: absolute;
   z-index: 5;
   display: flex;
 
@@ -9,6 +9,7 @@
   right: 0;
   /* top: -1500px; */
   transition: top .7s ease-in-out 1s;
+  justify-content: center;
 }
 
 .Toast.active {

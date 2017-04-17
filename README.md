@@ -12,3 +12,4 @@ Google Bouffe project revamped
 - [] Add konami code
 - [x] Change .json structure for more reusability
 - [] Implements React-helmet
+- [] Better readme

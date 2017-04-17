@@ -30,7 +30,7 @@ const itinerarySVG = {__html:`
 const ListItem = ({title, description, address, id, isActive, selectedRestaurant, position, toggleFav, toggleSurvey, favs, match, survey, itineraryStepsCleared}) => {
   const isFav = favs.includes(id);
   const isInSurvey = some(survey, {id: id});
-  const surveyAvailable = (survey.length === 4 && isInSurvey || survey.length < 4) ? true : false;
+  const surveyAvailable = ((survey.length === 4 && isInSurvey) || survey.length < 4) ? true : false;
   const surveyObject = {
     title,
     description,
@@ -60,8 +60,8 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
           <li>
             <button type='button' className='reset fav' onClick={() => toggleFav(id)}>
               <span className={classNames('icon', {'icon-fav': isFav, 'icon-fav-no': !isFav})} />
-              {!isFav && texts.add_fav}
-              {isFav && texts.del_fav}
+              <span className='label'>{!isFav && texts.add_fav}
+              {isFav && texts.del_fav}</span>
             </button>
           </li>
           
@@ -71,15 +71,15 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
               }}
               className='reset itinerary'>
               <div className="svg-container" dangerouslySetInnerHTML={itinerarySVG} />
-              {texts.display_itinerary}
+              <span className='label'>{texts.display_itinerary}</span>
             </Link>
           </li>
 
           <li>
             <button type='button' disabled={!surveyAvailable} className='reset' onClick={() => toggleSurvey(surveyObject)}>
               <span className={classNames('icon', {'icon-survey-add': !isInSurvey, 'icon-survey-del': isInSurvey})} />
-              {!isInSurvey && texts.add_survey}
-              {isInSurvey && texts.del_survey}
+              <span className='label'>{!isInSurvey && texts.add_survey}
+              {isInSurvey && texts.del_survey}</span>
             </button>
           </li>
         </ul>}

@@ -8,8 +8,7 @@ import './index.css';
 import { toggleSurvey } from '../../actions';
 
 
-const Survey = ({survey, toggleSurvey}) => {
-
+export const Survey = ({survey, toggleSurvey}) => {
   return (
     <div className='SurveyCreatorWrapper'>
       <header>{`${texts.current_survey} (${survey.length}/4)`}</header>
@@ -43,4 +42,6 @@ const mapDispatchToProps = {
   toggleSurvey
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Survey);
+let SurveyContainer = connect(mapStateToProps, mapDispatchToProps)(Survey);
+
+export default SurveyContainer;

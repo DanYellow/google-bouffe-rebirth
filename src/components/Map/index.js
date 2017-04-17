@@ -85,7 +85,10 @@ class Map extends Component {
       );
     }
 
-    const extraGMProps = (Object.keys(itinerary).length <= 0) ? {zoom: 16} : {}
+    let extraGMProps = {};
+    if (this.map) {
+      extraGMProps = (Object.keys(itinerary).length <= 0) ? {zoom: this.map.props.map.zoom} : {};
+    }
     const mapHeight = window.innerHeight - document.getElementById('header').offsetHeight;
 
     this.defaultMapProps = {...this.defaultMapProps, ...{center: {lat: 45.9009, lng: 2.9008}}}

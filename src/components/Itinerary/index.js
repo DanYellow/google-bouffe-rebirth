@@ -80,9 +80,7 @@ class Itinerary extends React.Component {
           <p>{totalDuration} minute(s) de marche</p>
           <abbr title={texts.info_cal}>Calories brûlées : {totalCaloriesBurnt} kcal </abbr>
         </header>
-        <ul>
-          <ItinerarySteps steps={steps} />
-        </ul>
+        <ItinerarySteps steps={steps} />
       </div>
     )
   }

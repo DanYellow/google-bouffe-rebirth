@@ -90,10 +90,13 @@
   text-align: center;
   padding: 0 6px;
   align-items: center;
+  justify-content: center;
+  height: 65px;
+  white-space: nowrap;
 }
 
-.List li a {
-  padding-bottom: 3px;
+.List li button .label, .List li a .label {
+  font-family: 'OpenSansRegular', sans-serif;
 }
 
 .List li button .icon {

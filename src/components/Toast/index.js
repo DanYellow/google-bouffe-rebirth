@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as ToastActions from './actions';
 
+import './style.css';
+
 const Toast = ({message, actions}) => {
 
   // const growlerClass = classNames('growler', growler.type, {

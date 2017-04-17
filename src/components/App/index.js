@@ -23,7 +23,7 @@ const Locator = ({restaurants, match, location, survey}) => {
     <section className='wrapper'>
       <List restaurants={restaurants} isHidden={ (location.pathname.includes('itinerary')) } />
       {restaurants.length && <Map restaurants={restaurants} />}
-      {survey.length && <Survey /> }
+      {(survey.length > 0) && <Survey /> }
       <Route path={`${match.url}/itinerary`} exact render={
         () => {
           if (currentRestaurant) {

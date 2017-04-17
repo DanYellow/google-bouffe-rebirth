@@ -48,6 +48,8 @@
   border-bottom: 1px solid #C1272D;
 }
 
+
+
 .SurveyCreatorWrapper .choices li:hover .icon-close {
   color: #C1272D;
 }
@@ -78,4 +80,9 @@
   color: #C1272D;
   border-color: #C1272D;
 }
+
+.SurveyCreatorWrapper .btns button:hover {
+  background-color: rgba(255, 255, 255, .7);
+}
+
 
