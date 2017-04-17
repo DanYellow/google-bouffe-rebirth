@@ -7,8 +7,6 @@ import './index.css';
 import texts from '../../constants/texts';
 import { itinerarySteps, itineraryStepsCleared } from '../../actions';
 
-// import { asyncComponent } from 'react-async-component';
-
 
 
 class Itinerary extends React.Component {
@@ -86,16 +84,6 @@ class Itinerary extends React.Component {
   }
 }
 
-// const AsyncProduct = asyncComponent({
-//   resolve: (foo) => new Promise((resolve, reject) => {
-//     setTimeout(function() {
-//       resolve(ItinerarySteps);
-//     }, 4000)
-//   }),
-//   LoadingComponent: ({ position }) => <div>Loading</div>, // Optional
-//   ErrorComponent: ({ error }) => <div>{error.message}</div> // Optional
-// });
-
 const ItinerarySteps = (props) => {
   let renderStep = (instruction, index) => {
     return ( 
@@ -127,6 +115,5 @@ const mapDispatchToProps = {
   itinerarySteps,
   itineraryStepsCleared
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Itinerary);

@@ -126,11 +126,12 @@
   padding-top: 15px;
 }
 
-.ListWrapper .Header button {
+.ListWrapper .Header button, .ListWrapper .Header a {
   width: 50%;
   height: 38px;
   font-size: 16px;
   opacity: .5;
+  position: relative;
 
   display: flex;
   justify-content: center;
@@ -144,7 +145,8 @@
   color: #da032c;
   font-size: 25px;
   position: absolute;
-  top: 8px;
+  top: -3px;
+  right: 40px;
 }
 
 .ListWrapper .Header .icon-fav span {
@@ -172,7 +174,7 @@
   font-size: 42px;
 }
 
-.ListWrapper .Header button.active {
+.ListWrapper .Header button.active, .ListWrapper .Header a.active {
   opacity: 1;
   color: #da032c;
   border-bottom: 3px solid #da032c;

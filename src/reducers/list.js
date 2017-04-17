@@ -4,7 +4,6 @@ const initialState = {
   currentIndex: -1,
   mapPosition: {lat: 48.857511, lng: 2.373364},
   type: 'all',
-  favs: JSON.parse(window.localStorage.getItem('favs')) || [],
 }
 
 const restaurant = (state = initialState, action) => {

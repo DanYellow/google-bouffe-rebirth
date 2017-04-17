@@ -31,6 +31,7 @@ class Map extends Component {
         streetViewControl: false,
         scaleControl: true,
         clickableIcons: false,
+        scrollwheel: false,
         mapTypeControl: false,
         zoomControlOptions: {
           style: 2
@@ -137,7 +138,7 @@ const mapStateToProps = (state, ownProps) => {
     currentIndex: currentIndex,
     mapPosition: mapPosition,
     type: state.list.type,
-    favs: state.restaurant.favs,
+    favs: state.restaurants.favs,
     isLoaded: state.map.isLoaded,
     itinerary: state.itinerary.steps,
     homePosition,

@@ -49,7 +49,8 @@
 
 .ItineraryWrapper .itinerary-steps header {
   padding-top: 16px;
-  margin-bottom: 10px;
+  border-bottom: 1px dashed black;
+  padding-bottom: 25px;
 }
 
 .ItineraryWrapper .itinerary-steps header h1 {
@@ -71,8 +72,6 @@
 .ItineraryWrapper .icon-close:hover {
   color: #da032c;
 }
-
-
 
 .ItineraryWrapper .itinerary-steps li {
   padding: 15px 0px;

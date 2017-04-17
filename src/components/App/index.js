@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  Route
-} from 'react-router-dom'
+  Route,
+  Switch
+} from 'react-router-dom';
+import { Helmet } from "react-helmet";
 
 import { find } from 'lodash';
 
@@ -21,6 +23,7 @@ const Locator = ({restaurants, match, location, survey}) => {
 
   return (
     <section className='wrapper'>
+      {currentRestaurant && <Helmet><title>{currentRestaurant.title}</title></Helmet>}
       <List restaurants={restaurants} isHidden={ (location.pathname.includes('itinerary')) } />
       {restaurants.length && <Map restaurants={restaurants} />}
       {(survey.length > 0) && <Survey /> }
@@ -58,19 +61,21 @@ class App extends Component {
       return 0;
     });
 
+    // <Toast message='Hello' />
     return (
       <div className='App'>
-        <Toast message='Hello' />
 
         {!restaurants.length && <Loader />}
 
-        <Route exact path={match.url} render={({match, location}) => (
-          <Locator restaurants={restaurantsMapped} match={match} location={location} survey={survey} />
-        )} />
+        <Switch>
+          <Route exact path={match.url} render={({match, location}) => (
+            <Locator restaurants={restaurantsMapped} match={match} location={location} survey={survey} />
+          )} />
 
-        <Route path={`${match.url}:id_restaurant`} render={({match, location}) => (
-          <Locator restaurants={restaurantsMapped} match={match} location={location} survey={survey} />
-        )} />
+          <Route path={`${match.url}:id_restaurant`} render={({match, location}) => (
+            <Locator restaurants={restaurantsMapped} match={match} location={location} survey={survey} />
+          )} />
+        </Switch>
         
       </div>
     );

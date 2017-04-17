@@ -16,11 +16,15 @@ export const toggleFav = (id) => ({
   id
 });
 
-export const toggleSurvey = (restaurant) => ({
+export const toggleSurveyItem = (restaurant) => ({
   type: ActionTypes.TOGGLE_SURVEY,
   payload: {
     restaurant
   }
+});
+
+export const cancelSurvey = () => ({
+  type: ActionTypes.CANCEL_SURVEY,
 });
 
 

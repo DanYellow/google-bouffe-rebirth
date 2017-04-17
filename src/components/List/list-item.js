@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { withRouter, Link } from 'react-router-dom';
 import { some } from 'lodash'
 
-import { selectedRestaurant, toggleFav, toggleSurvey, itineraryStepsCleared } from '../../actions';
+import { selectedRestaurant, toggleFav, toggleSurveyItem, itineraryStepsCleared } from '../../actions';
 import texts from '../../constants/texts';
 
 import './index.css';
@@ -27,7 +27,7 @@ const itinerarySVG = {__html:`
 <rect class="path-4" x="28.196" y="23.269" transform="matrix(-0.8689 -0.4949 0.4949 -0.8689 43.9088 60.3205)" fill="#010202" width="3.491" height="2.155"/>
 </svg> `}
 
-const ListItem = ({title, description, address, id, isActive, selectedRestaurant, position, toggleFav, toggleSurvey, favs, match, survey, itineraryStepsCleared}) => {
+const ListItem = ({title, description, address, id, isActive, selectedRestaurant, position, toggleFav, toggleSurveyItem, favs, match, survey, itineraryStepsCleared}) => {
   const isFav = favs.includes(id);
   const isInSurvey = some(survey, {id: id});
   const surveyAvailable = ((survey.length === 4 && isInSurvey) || survey.length < 4) ? true : false;
@@ -76,7 +76,7 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
           </li>
 
           <li>
-            <button type='button' disabled={!surveyAvailable} className='reset' onClick={() => toggleSurvey(surveyObject)}>
+            <button type='button' disabled={!surveyAvailable} className='reset' onClick={() => toggleSurveyItem(surveyObject)}>
               <span className={classNames('icon', {'icon-survey-add': !isInSurvey, 'icon-survey-del': isInSurvey})} />
               <span className='label'>{!isInSurvey && texts.add_survey}
               {isInSurvey && texts.del_survey}</span>
@@ -102,7 +102,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = {
   selectedRestaurant,
   toggleFav,
-  toggleSurvey,
+  toggleSurveyItem,
   itineraryStepsCleared
 };
 

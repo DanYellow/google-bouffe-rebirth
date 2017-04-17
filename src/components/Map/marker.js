@@ -67,16 +67,14 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     currentIndex: currentIndex,
-    favs: state.restaurant.favs,
+    favs: state.restaurants.favs,
   }
 }
-
 
 const mapDispatchToProps = {
   selectedRestaurant,
   showToast,
   itineraryStepsCleared
 }
-
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GBMarker));

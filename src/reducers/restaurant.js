@@ -4,9 +4,6 @@ import { without, some, filter } from 'lodash';
 
 const initialState = {
   mapPosition: {lat: 48.857511, lng: 2.373364},
-  list: [],
-  survey:[],
-  favs: JSON.parse(window.localStorage.getItem('favs')) || [],
 }
 
 const restaurant = (state = initialState, action) => {
@@ -23,7 +20,14 @@ const restaurant = (state = initialState, action) => {
 
 export default restaurant;
 
-export const restaurants = (state = initialState, action) => {
+const initialStateRestaurants = {
+  mapPosition: {lat: 48.857511, lng: 2.373364},
+  survey:[],
+  list: [],
+  favs: JSON.parse(window.localStorage.getItem('favs')) || [],
+}
+
+export const restaurants = (state = initialStateRestaurants, action) => {
   switch (action.type) {
     case ActionTypes.RESTAURANTS_LOADED: 
       return { ...state, 
@@ -48,7 +52,6 @@ export const restaurants = (state = initialState, action) => {
     case ActionTypes.TOGGLE_SURVEY:
       let survey = state.survey;
 
-
       if (some(survey, action.payload.restaurant)) {
         survey = filter(survey, (surveyItem) => {
           return surveyItem.id !== action.payload.restaurant.id;
@@ -56,10 +59,14 @@ export const restaurants = (state = initialState, action) => {
       } else {
         survey = [...survey, action.payload.restaurant];
       }
-      
 
       return { ...state,
         survey
+      }
+
+    case ActionTypes.CANCEL_SURVEY: 
+      return { ...state,
+        survey: []
       }
       
     default:
