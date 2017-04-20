@@ -12,7 +12,7 @@ export const Survey = ({surveyContent, toggleSurveyItem, cancelSurvey, createSur
 
   const _surveyCreationTpl = () => {
     return (
-      <div>
+      <div className='SurveyCreatorWrapper'>
       <header>{`${texts.current_survey} (${surveyContent.length}/4)`}</header>
 
       <ul className='choices'>
@@ -36,21 +36,21 @@ export const Survey = ({surveyContent, toggleSurveyItem, cancelSurvey, createSur
 
   const _surveyURLTpl = () => {
     return (
-      <div>
-        <header>{`${texts.current_survey} (${surveyContent.length}/4)`}</header>
+      <div className='SurveyCreatorWrapper'>
+        <header>{texts.survey_link}</header>
         <form>
-          <input type='text' value={url} readOnly />
+          <input type='text' value={`${document.location.origin}/#${url}`} readOnly />
         </form>
+
+        <ul className='btns'>
+          <button type='button' className='reset cancel' onClick={() => cancelSurvey()}>Annuler sondage</button>
+        </ul>
       </div>
     )
   }
 
-  return (
-    <div className='SurveyCreatorWrapper'>
-      {!url && _surveyCreationTpl()}
-      {url && _surveyURLTpl()}
-    </div>
-  )
+  if (!url) { return _surveyCreationTpl() }
+  if (url) { return _surveyURLTpl() }
 }
 
 
