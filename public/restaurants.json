@@ -239,6 +239,22 @@
     "title": "Savannah coffee",
     "address": "5 Rue de Turenne • 75004 Paris",
     "budget_scale": 7
+  }, {
+    "position": {
+      "lat": 48.857511,
+      "lng": 2.373364
+    },
+    "title": "Cantine",
+    "address": "30/34 rue bréguet • 75011 Paris",
+    "budget_scale": 7
+  }, {
+    "position": {
+      "lat": 48.854923,
+      "lng": 2.369882
+    },
+    "title": "Le marché de Bastille",
+    "description": "Traiteurs en tout genre. Présent le jeudi en semaine.",
+    "address": "8 Boulevard Richard Lenoir • 75011 Paris",
+    "budget_scale": 7
   }
-]
-}
+]}
