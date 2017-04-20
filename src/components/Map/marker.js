@@ -32,15 +32,16 @@ class GBMarker extends Component {
 
     this.props.itineraryStepsCleared()
     this.props.selectedRestaurant(id, this.props.position);
-    document.getElementById(id).scrollIntoView();
+
+    
     this.props.showToast(this.props.datas.title);
   }
 
   render() {
-    let { datas, currentIndex, favs, datas: {isActive}} = this.props;
+    let { match, datas, currentIndex, favs, datas: {isActive}} = this.props;
     const markerSize = 60;
 
-    let markerPath = (datas.id === currentIndex) ? markerActive : marker;
+    let markerPath = (datas.id === currentIndex || datas.id === Number(match.params.id_restaurant)) ? markerActive : marker;
 
     if (favs.includes(datas.id) && datas.id === currentIndex) {
       markerPath = markerActiveFav;

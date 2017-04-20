@@ -5,16 +5,18 @@ import uuidV1 from 'uuid/v1';
 
 import texts from '../../constants/texts';
 import './index.css';
-import { toggleSurveyItem, cancelSurvey } from '../../actions';
+import { toggleSurveyItem, cancelSurvey, createSurvey } from '../../actions';
 
 
-export const Survey = ({survey, toggleSurveyItem, cancelSurvey}) => {
-  return (
-    <div className='SurveyCreatorWrapper'>
-      <header>{`${texts.current_survey} (${survey.length}/4)`}</header>
+export const Survey = ({surveyContent, toggleSurveyItem, cancelSurvey, createSurvey, url}) => {
+
+  const _surveyCreationTpl = () => {
+    return (
+      <div>
+      <header>{`${texts.current_survey} (${surveyContent.length}/4)`}</header>
 
       <ul className='choices'>
-        {survey.map((item) => {
+        {surveyContent.map((item) => {
           return (<li key={uuidV1()}>
             <button className='reset' onClick={() => toggleSurveyItem(item)} type='button'>
               <p>{item.title}</p>
@@ -23,10 +25,30 @@ export const Survey = ({survey, toggleSurveyItem, cancelSurvey}) => {
           </li>)
         })}
       </ul>
-      {survey.length >= 2 && <ul className='btns'>
-        <button type='button' className='reset create'>Créer sondage</button>
+
+      {surveyContent.length >= 2 && <ul className='btns'>
+        <button type='button' className='reset create' onClick={() => createSurvey(surveyContent)}>Créer sondage</button>
         <button type='button' className='reset cancel' onClick={() => cancelSurvey()}>Annuler sondage</button>
       </ul>}
+      </div>
+    )
+  }
+
+  const _surveyURLTpl = () => {
+    return (
+      <div>
+        <header>{`${texts.current_survey} (${surveyContent.length}/4)`}</header>
+        <form>
+          <input type='text' value={url} readOnly />
+        </form>
+      </div>
+    )
+  }
+
+  return (
+    <div className='SurveyCreatorWrapper'>
+      {!url && _surveyCreationTpl()}
+      {url && _surveyURLTpl()}
     </div>
   )
 }
@@ -34,13 +56,15 @@ export const Survey = ({survey, toggleSurveyItem, cancelSurvey}) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    survey: state.restaurants.survey
+    surveyContent: state.survey.proposals,
+    url: state.survey.url
   }
 };
 
 const mapDispatchToProps = {
   toggleSurveyItem,
-  cancelSurvey
+  cancelSurvey,
+  createSurvey
 }
 
 let SurveyContainer = connect(mapStateToProps, mapDispatchToProps)(Survey);

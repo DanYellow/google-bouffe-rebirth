@@ -1,8 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
-
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+
 import reducer from './reducers';
 
 import {
@@ -15,7 +16,13 @@ import './reset.css';
 import './index.css';
 import './utils.css';
 
-let store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(
+  reducer,
+  compose(
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
+);
 
 render(
   <Provider store={store}>

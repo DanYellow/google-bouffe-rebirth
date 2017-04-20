@@ -90,12 +90,12 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
 
 const mapStateToProps = (state, ownProps) => {
   let {restaurant: {currentIndex, mapPosition}} = state;
-  let {restaurants: {favs, survey}} = state;
+  let {restaurants: {favs}} = state;
   return {
     currentIndex,
     mapPosition,
     favs,
-    survey
+    survey: state.survey.proposals
   }
 };
 

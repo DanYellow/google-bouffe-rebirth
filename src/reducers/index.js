@@ -2,7 +2,9 @@ import { combineReducers } from 'redux'
 
 import { list, map, itinerary } from './list';
 import restaurant, { restaurants } from './restaurant';
+import survey from './survey';
 import toastReducer from './../components/Toast/reducers'
+
 
 const reducer = combineReducers({
   restaurant,
@@ -10,6 +12,7 @@ const reducer = combineReducers({
   map,
   itinerary,
   restaurants,
+  survey,
   toast: toastReducer
 });
 

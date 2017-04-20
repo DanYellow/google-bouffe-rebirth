@@ -11,6 +11,7 @@ const texts = {
   'current_survey': 'Sondage en cours',
   'cancel_survey': 'Annuler sondage',
   'generate_survey': 'Créer sondage',
+  'calories_burnt': 'Calories brûlées : __placeholder__ kcal',
 };
 
 export default texts;

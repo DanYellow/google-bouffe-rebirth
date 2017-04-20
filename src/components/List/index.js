@@ -15,8 +15,7 @@ class List extends Component {
     const { match, isHidden } = this.props
 
     const restaurants = this.props.restaurants.map((restaurant) => {
-    const isActive = Number(match.params.id_restaurant) === restaurant.id;
-
+      const isActive = Number(match.params.id_restaurant) === restaurant.id
       return <ListItem {...restaurant} isActive={isActive} key={uuidV1()}/>
     }).filter((restaurant) => {
       if (this.props.type === 'all') { return true; }
@@ -26,7 +25,7 @@ class List extends Component {
     return (
       <div className={classNames('ListWrapper', {hidden: isHidden})}>
         <Header />
-        {(restaurants.length > 0) && 
+        {(restaurants.length > 0) &&
           <ul className='List'>{restaurants}</ul>
         }
 

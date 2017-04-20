@@ -1,5 +1,7 @@
 import * as ActionTypes from '../constants/action-types';
 
+import { gbapimanager as GBAPIManager } from '../utils/gb-apimanager';
+
 export const selectedRestaurant = (id, position = {}) => ({
   type: ActionTypes.CURRENT_INDEX,
   id,
@@ -54,3 +56,26 @@ export const restaurantsListLoaded = (restaurants) => ({
 export const itineraryStepsCleared = () => ({
   type: ActionTypes.ITINERARY_CLEARED,
 });
+
+
+const createSurveySuccess = (response) => {
+  return {
+    type: ActionTypes.CREATE_SURVEY,
+    payload: {
+      response
+    }
+  }
+}
+
+export const createSurvey = (restaurants) => {
+  console.log('fe', restaurants);
+  return (dispatch) => {
+    return GBAPIManager.createSurvey(restaurants).then((response) => {
+      dispatch(
+        createSurveySuccess(response)
+      )
+    }).catch((error) => {
+      console.log('er', error);
+    })
+  }
+};

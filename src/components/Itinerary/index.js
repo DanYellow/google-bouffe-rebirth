@@ -2,11 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { map, sum } from 'lodash';
+import v from 'voca';
 
 import './index.css';
 import texts from '../../constants/texts';
-import { itinerarySteps, itineraryStepsCleared } from '../../actions';
 
+import { itinerarySteps, itineraryStepsCleared } from '../../actions';
 
 
 class Itinerary extends React.Component {
@@ -15,7 +16,7 @@ class Itinerary extends React.Component {
     const directionsService = new google.maps.DirectionsService();
  
     directionsService.route({
-      origin: {lat: 48.857927, lng: 2.373118}, // Digitas
+      origin: this.props.homePosition,
       destination: position, // Restaurant position
       travelMode: google.maps.TravelMode.WALKING
     }, function(response, status) {
@@ -47,6 +48,9 @@ class Itinerary extends React.Component {
       itinerary = itinerary.routes[0].legs[0].steps
     }
 
+
+
+
     return (
       <div className='ItineraryWrapper'>
         <header>
@@ -62,7 +66,7 @@ class Itinerary extends React.Component {
         </header>
         { (Object.keys(itinerary).length > 0) && this._renderSteps(itinerary) }
       </div>
-    ) // <AsyncProduct position={position} id={56} />
+    )
   }
 
   _renderSteps(steps) {
@@ -76,7 +80,7 @@ class Itinerary extends React.Component {
           <h1>Itinéraire</h1>
           <p>Distance totale : {totalDistance} km</p>
           <p>{totalDuration} minute(s) de marche</p>
-          <abbr title={texts.info_cal}>Calories brûlées : {totalCaloriesBurnt} kcal </abbr>
+          <abbr title={texts.info_cal}>{v.replace(texts.calories_burnt, '__placeholder__', totalCaloriesBurnt)}</abbr>
         </header>
         <ItinerarySteps steps={steps} />
       </div>
@@ -109,6 +113,7 @@ const ItinerarySteps = (props) => {
 const mapStateToProps = state => ({
   mapIsLoaded: state.map.isLoaded,
   itinerary: state.itinerary.steps,
+  homePosition: state.restaurants.list.home_position.position
 });
 
 const mapDispatchToProps = {

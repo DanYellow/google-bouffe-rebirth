@@ -45,11 +45,11 @@ class App extends Component {
     fetch('./restaurants.json')
       .then(response => response.json())
       .then((response) => {
-        this.props.restaurantsListLoaded(response);
+        this.props.restaurantsListLoaded(response)
       });
   }
   render() {
-    const {match, restaurants, survey} = this.props;
+    const {match, restaurants, survey} = this.props
 
     let restaurantsMapped = restaurants.map((restaurant, index) => {
       restaurant.id = index + 1;
@@ -76,7 +76,6 @@ class App extends Component {
             <Locator restaurants={restaurantsMapped} match={match} location={location} survey={survey} />
           )} />
         </Switch>
-        
       </div>
     );
   }
@@ -85,7 +84,7 @@ class App extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     restaurants: state.restaurants.list.restaurants || [],
-    survey: state.restaurants.survey
+    survey: state.survey.proposals
   }
 };
 
