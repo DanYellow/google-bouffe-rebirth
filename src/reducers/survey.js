@@ -6,6 +6,8 @@ import * as ActionTypes from '../constants/action-types';
 const initialState = {
   url: '',
   proposals: [],
+  results: {},
+  content: [] // contains response from API
 }
 
 const survey = (state = initialState, action) => {
@@ -35,6 +37,22 @@ const survey = (state = initialState, action) => {
         proposals: [],
         url: ''
       }
+
+    case ActionTypes.GET_SURVEY_SUCCESS: 
+      return { ...state,
+        content: action.payload.response
+      }
+
+    case ActionTypes.VOTE_PROPOSAL:
+      return { ...state,
+        voteConfirmation: action.payload.response
+      }
+    
+    case ActionTypes.SURVEY_RESULTS:
+      return { ...state,
+        results: action.payload.results.response
+      }
+    
 
     default:
       return state

@@ -34,12 +34,24 @@ export const Survey = ({surveyContent, toggleSurveyItem, cancelSurvey, createSur
     )
   }
 
+  const selectLink = (e) => {
+    e.currentTarget.setSelectionRange(0, 9999);
+  }
+
+  let completeURL = '';
+  if (url) {
+    completeURL = `${document.location.origin}/#${url}`
+    window.localStorage.setItem('survey_url', completeURL)
+  }
+
   const _surveyURLTpl = () => {
     return (
       <div className='SurveyCreatorWrapper'>
         <header>{texts.survey_link}</header>
         <form>
-          <input type='text' value={`${document.location.origin}/#${url}`} readOnly />
+          <input
+            onClick={selectLink}            
+            type='text' value={completeURL} readOnly />
         </form>
 
         <ul className='btns'>

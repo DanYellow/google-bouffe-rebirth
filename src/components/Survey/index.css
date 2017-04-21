@@ -1,10 +1,9 @@
 .SurveyCreatorWrapper {
-  opacity: .3;
+  opacity: .75;
   width: 310px;
   position: absolute;
-  right: 25px; top: 68px;
+  right: 25px; top: 88px;
   z-index: 9999;
-  
 
   display: flex;
   justify-content: center;
@@ -97,3 +96,79 @@
 }
 
 
+
+.SurveyDisplayWrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.SurveyDisplayWrapper h1 {
+  font-size: 40px;
+  font-family: 'OpenSansSemibold';
+  color: #131313;
+  margin-bottom: 15px;
+  align-self: center;
+}
+
+.SurveyDisplayWrapper .proposals {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.SurveyDisplayWrapper .proposals li {
+  margin-bottom: 10px;
+}
+
+.SurveyDisplayWrapper .proposals li button {
+  font-size: 27px;
+  border: 2px solid #C1272D;
+  padding: 5px;
+}
+
+.SurveyDisplayWrapper .proposals li button[disabled] {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+.SurveyDisplayWrapper .proposals li button:hover {
+  background-color: #C1272D;
+  color: white;
+}
+
+.SurveyDisplayWrapper .VoteConfirmationContainer b {
+  font-family: 'OpenSansSemibold';
+}
+
+.SurveyDisplayWrapper .VoteConfirmationContainer {
+  display: flex;
+  align-self: center;
+  flex-direction: row;
+  font-size: 35px;
+  justify-content: center;
+  margin-top: 15px;
+  position: relative;
+  padding-top: 10px;
+}
+
+.SurveyDisplayWrapper .VoteConfirmationContainer .icon-checkmark {
+  color: green;
+}
+
+.SurveyDisplayWrapper .VoteConfirmationContainer:before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background-color: black;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -20px;
+}
+
+.SurveyDisplayWrapper .VoteConfirmationContainer p {
+  margin-left: 15px;
+}

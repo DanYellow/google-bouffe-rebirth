@@ -32,7 +32,7 @@ class GBMarker extends Component {
 
     this.props.itineraryStepsCleared()
     this.props.selectedRestaurant(id, this.props.position);
-
+    document.getElementById(id).scrollIntoView();
     
     this.props.showToast(this.props.datas.title);
   }

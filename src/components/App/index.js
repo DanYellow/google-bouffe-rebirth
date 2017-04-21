@@ -16,6 +16,8 @@ import List from './../List';
 import Toast from './../Toast';
 import Itinerary from './../Itinerary';
 import Survey from './../Survey';
+import SurveyDisplayContainer from './../Survey/survey';
+import SurveyResultsContainer from './../Survey/results';
 import Loader from './../Map/loader';
 
 const Locator = ({restaurants, match, location, survey}) => {
@@ -72,9 +74,18 @@ class App extends Component {
             <Locator restaurants={restaurantsMapped} match={match} location={location} survey={survey} />
           )} />
 
+          <Route exact path={`${match.url}survey/:hash`} render={({match, location}) => (
+            <SurveyDisplayContainer match={match} />
+          )} />
+
+          <Route exact path={`${match.url}survey/results/:hash`} render={SurveyResultsContainer} />
+
           <Route path={`${match.url}:id_restaurant`} render={({match, location}) => (
             <Locator restaurants={restaurantsMapped} match={match} location={location} survey={survey} />
           )} />
+
+
+
         </Switch>
       </div>
     );
