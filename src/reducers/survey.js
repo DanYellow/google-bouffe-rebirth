@@ -40,7 +40,6 @@ const survey = (state = initialState, action) => {
     case ActionTypes.CANCEL_SURVEY: 
       return { ...state,
         proposals: [],
-        url: '',
         inProgress: false,
       }
 

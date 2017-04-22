@@ -27,7 +27,7 @@ class SurveyDisplay extends React.Component {
     this.props.getProposalsForSurvey(hash);
   }
 
-  _renderProposals(proposals) {
+  _renderProposals({proposals}) {
     const hash = this.props.match.params.hash;
     const isDisabled = (this.props.voteConfirmation || typeof this.props.oldVote !== 'undefined') ? true : false;
 
@@ -99,17 +99,16 @@ class SurveyDisplay extends React.Component {
 
   render() {
     const {surveyContent, voteConfirmation, oldVote} = this.props;
+
     return (
       <div className='SurveyDisplayWrapper'>
         <Helmet><title>Sondage</title></Helmet>
         <h1>
           Alors ce midi, <br/>
-          on se fait ?
+          on se fait quoi ?
         </h1>
-        {surveyContent.response && this._renderProposals(surveyContent.proposals) }
+        {surveyContent.response && this._renderProposals(surveyContent.response) }
         {surveyContent.error && this._renderSurveyErrorTpl() }
-        
-
 
         {(voteConfirmation && surveyContent.response) && this._renderVoteConfirmationTpl() }
         {(oldVote && surveyContent.response) && this._renderAlreadyVotedTpl() }
@@ -124,10 +123,9 @@ const mapStateToProps = (state, ownProps) => {
   const hash = ownProps.match.params.hash
   const oldVote = filter(survey.voted, {survey_hash: hash})[0];
   
-  // 
   return {
-    surveyContent: state.survey.content,
-    voteConfirmation: state.survey.voteConfirmation,
+    surveyContent: survey.content,
+    voteConfirmation: survey.voteConfirmation,
     oldVote
   }
 };
