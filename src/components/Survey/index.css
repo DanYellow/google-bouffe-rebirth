@@ -28,8 +28,18 @@
   padding: 16px;
   width: 100%;
   display: flex;
+  flex-direction: column;
+}
+
+.SurveyCreatorWrapper header section {
+  display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: row;
+}
+
+.SurveyCreatorWrapper header .btns {
+  margin-top: 15px;
 }
 
 .SurveyCreatorWrapper header .icon-warning {
@@ -114,11 +124,15 @@
   border-color: #C1272D;
 }
 
-.SurveyCreatorWrapper .btns button:hover {
-  background-color: rgba(255, 255, 255, .7);
+.SurveyCreatorWrapper .btns button.cancel:hover {
+  background-color: rgba(193, 39, 45, .7);
+  color: white;
 }
 
-
+.SurveyCreatorWrapper .btns button.create:hover {
+  background-color: rgba(0, 128, 0, .7);
+  color: white;
+}
 
 .SurveyDisplayWrapper {
   display: flex;

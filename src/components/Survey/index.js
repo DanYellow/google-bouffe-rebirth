@@ -5,13 +5,16 @@ import v from 'voca';
 
 import texts from '../../constants/texts';
 import './index.css';
-import { toggleSurveyItem, cancelSurvey, createSurvey } from '../../actions';
+import { toggleSurveyItem, cancelSurvey, createSurvey,
+          deleteExistingSurvey, displayExistingSurvey
+       } from '../../actions';
 
 
 export const Survey = (
   {
     surveyContent, toggleSurveyItem, cancelSurvey, 
-    createSurvey, url, inProgress, isRequestPending
+    createSurvey, url, inProgress, isRequestPending,
+    displayExistingSurvey, deleteExistingSurvey
   }) => {
 
   const _surveyCreationTpl = () => {
@@ -20,8 +23,14 @@ export const Survey = (
     return (
       <div>
         <header>
-          <h1>{`${texts.current_survey} (${surveyContent.length}/${limitProposals})`}</h1>
-          {url && <button type='button' title={texts.survey_exists} className='icon-warning icon reset' />}
+          <section className='title'>
+            <h1>{`${texts.current_survey} (${surveyContent.length}/${limitProposals})`}</h1>
+            {url && <button type='button' title={texts.survey_exists} className='icon-warning icon reset' />}
+          </section>
+          {url && <ul className='btns'>
+            <button type='button' className='reset create' onClick={() => displayExistingSurvey()}>{texts.survey_display_existing}</button>
+            <button type='button' className='reset cancel' onClick={() => deleteExistingSurvey()}>{texts.survey_delete_existing}</button>
+          </ul> }
         </header>
 
         <ul className='choices'>
@@ -114,7 +123,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = {
   toggleSurveyItem,
   cancelSurvey,
-  createSurvey
+  createSurvey,
+  displayExistingSurvey,
+  deleteExistingSurvey
 }
 
 let SurveyContainer = connect(mapStateToProps, mapDispatchToProps)(Survey);

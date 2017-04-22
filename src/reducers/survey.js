@@ -67,6 +67,17 @@ const survey = (state = initialState, action) => {
         results: action.payload.results.response
       }
     
+    case ActionTypes.EXISTING_SURVEY_DISPLAY:
+      return { ...state,
+        proposals: [],
+        inProgress: false,
+      }
+
+    case ActionTypes.EXISTING_SURVEY_DELETE:
+      window.localStorage.setItem('last_survey_hash', '')
+      return { ...state,
+        url: '',
+      }
 
     default:
       return state

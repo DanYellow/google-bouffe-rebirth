@@ -58,4 +58,18 @@ export const itineraryStepsCleared = () => ({
 });
 
 
+export const deleteExistingSurvey = () => ({
+  type: ActionTypes.EXISTING_SURVEY_DELETE,
+});
+
+export const displayExistingSurvey = () => ({
+  type: ActionTypes.EXISTING_SURVEY_DISPLAY,
+});
+
+
+ 
+
+
+
+
 
