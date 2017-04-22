@@ -1,10 +1,9 @@
 import { some, filter } from 'lodash';
 
-
 import * as ActionTypes from '../constants/action-types';
 
 const initialState = {
-  url: '',
+  url: window.localStorage.getItem('last_survey_hash') || '',
   proposals: [],
   results: {},
   inProgress: false,
@@ -15,7 +14,8 @@ const initialState = {
 const survey = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.CREATE_SURVEY:
-      return { ...state, 
+      return {
+        ...state,
         url: action.payload.response.url,
         proposals: [],
         inProgress: false,
@@ -31,10 +31,10 @@ const survey = (state = initialState, action) => {
       } else {
         proposals = [...proposals, action.payload.restaurant];
       }
-
+      const inProgress = (proposals.length) ? true : false;
       return { ...state,
         proposals,
-        inProgress: true
+        inProgress: inProgress
       }
 
     case ActionTypes.CANCEL_SURVEY: 

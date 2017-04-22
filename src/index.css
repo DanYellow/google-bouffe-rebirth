@@ -57,9 +57,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-checkmark:before {
-  content: "\e906";
-}
 .icon-survey-add:before {
   content: "\e903";
 }
@@ -78,4 +75,9 @@
 .icon-fav:before {
   content: "\e900";
 }
-
+.icon-warning:before {
+  content: "\e907";
+}
+.icon-checkmark:before {
+  content: "\e906";
+}

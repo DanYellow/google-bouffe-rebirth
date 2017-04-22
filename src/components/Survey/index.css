@@ -27,6 +27,14 @@
   margin-bottom: 15px;
   padding: 16px;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.SurveyCreatorWrapper header .icon-warning {
+  color: orange;
+  font-size: 20px;
 }
 
 .SurveyCreatorWrapper .choices {
@@ -75,11 +83,11 @@
 }
 
 
-.SurveyCreatorWrapper .choices li:hover .icon-close {
+.SurveyCreatorWrapper .choices li:hover button:enabled .icon-close {
   color: #C1272D;
 }
 
-.SurveyCreatorWrapper .choices li:hover {
+.SurveyCreatorWrapper .choices li:hover button:enabled {
   text-decoration: line-through;
 }
 

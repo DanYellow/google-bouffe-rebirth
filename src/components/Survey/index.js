@@ -11,19 +11,23 @@ import { toggleSurveyItem, cancelSurvey, createSurvey } from '../../actions';
 export const Survey = (
   {
     surveyContent, toggleSurveyItem, cancelSurvey, 
-    createSurvey, url, inProgress
+    createSurvey, url, inProgress, isRequestPending
   }) => {
 
   const _surveyCreationTpl = () => {
     const limitProposals = 4;
+    const isDisabled = isRequestPending;
     return (
       <div>
-        <header>{`${texts.current_survey} (${surveyContent.length}/${limitProposals})`}</header>
+        <header>
+          <h1>{`${texts.current_survey} (${surveyContent.length}/${limitProposals})`}</h1>
+          {url && <button type='button' title={texts.survey_exists} className='icon-warning icon reset' />}
+        </header>
 
         <ul className='choices'>
           {surveyContent.map((item) => {
             return (<li key={uuidV1()}>
-              <button className='reset' onClick={() => toggleSurveyItem(item)} type='button'>
+              <button className='reset' disabled={isDisabled} onClick={() => toggleSurveyItem(item)} type='button'>
                 <p>{item.title}</p>
                 <span className='icon-close' />
               </button>
@@ -98,12 +102,12 @@ export const Survey = (
   )
 }
 
-
 const mapStateToProps = (state, ownProps) => {
   return {
     surveyContent: state.survey.proposals,
     url: state.survey.url,
-    inProgress: state.survey.inProgress
+    inProgress: state.survey.inProgress,
+    isRequestPending: state.isRequestPending
   }
 };
 
