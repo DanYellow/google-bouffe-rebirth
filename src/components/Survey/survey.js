@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import uuidV1 from 'uuid/v1';
 import { filter } from 'lodash';
+import { Helmet } from 'react-helmet'; 
+
 
 
 // import texts from '../../constants/texts';
@@ -81,6 +83,7 @@ class SurveyDisplay extends React.Component {
     const {surveyContent, voteConfirmation, oldVote} = this.props;
     return (
       <div className='SurveyDisplayWrapper'>
+        <Helmet><title>Sondage</title></Helmet>
         <h1>
           Alors ce midi, <br/>
           on se fait ?

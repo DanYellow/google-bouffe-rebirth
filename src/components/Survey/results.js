@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import uuidV1 from 'uuid/v1';
+import { Helmet } from 'react-helmet'; 
 
 
 // import texts from '../../constants/texts';
@@ -17,11 +18,14 @@ class SurveyResults extends React.Component {
 
   _renderResults(results) {
     return (
-      <ul>
-        {results.reverse().map((vote) => {
-          return <li key={uuidV1()}> { vote.title } : { vote.nbResponses }</li>
-        })}
-      </ul>
+      <div>
+        <Helmet><title>Résultat sondage</title></Helmet>
+        <ul>
+          {results.reverse().map((vote) => {
+            return <li key={uuidV1()}> { vote.title } : { vote.nbResponses }</li>
+          })}
+        </ul>
+      </div>
     )
   }
 

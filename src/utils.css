@@ -33,3 +33,13 @@ body {
 #header img {
   margin-bottom: 5px;
 }
+
+#header a {
+  text-align: center;
+  color: black;
+  text-decoration: none;
+}
+
+#header a:hover {
+  color: #C1272D;
+}

@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   Route,
-  Switch
+  Switch,
+  Link
 } from 'react-router-dom';
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet'; 
 
 import { find } from 'lodash';
 
@@ -67,8 +68,10 @@ class App extends Component {
     return (
       <div className='App'>
         <header id='header'>
-          <img src="logo.png" alt="logo" width="75"/>
-          <h1>Google bouffe</h1>
+          <Link to='/' title='La meilleure carte pour savoir où manger à midi'>
+            <img src="logo.png" alt="logo" width="75"/>
+            <h1>Google bouffe</h1>
+          </Link>
         </header>
 
         {!restaurants.length && <Loader />}
