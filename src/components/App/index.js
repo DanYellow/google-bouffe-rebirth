@@ -29,7 +29,7 @@ const Locator = ({restaurants, match, location, survey}) => {
       {currentRestaurant && <Helmet><title>{currentRestaurant.title}</title></Helmet>}
       <List restaurants={restaurants} isHidden={ (location.pathname.includes('itinerary')) } />
       {restaurants.length && <Map restaurants={restaurants} />}
-      {(survey.length > 0) && <Survey /> }
+      {survey && <Survey /> }
       <Route path={`${match.url}/itinerary`} exact render={
         () => {
           if (currentRestaurant) {
@@ -102,7 +102,7 @@ class App extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     restaurants: state.restaurants.list.restaurants || [],
-    survey: state.survey.proposals
+    survey: state.survey.proposals.length > 0 || state.survey.url
   }
 };
 

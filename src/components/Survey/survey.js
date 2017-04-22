@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import uuidV1 from 'uuid/v1';
 import { filter } from 'lodash';
 import { Helmet } from 'react-helmet'; 
 
 
 
-// import texts from '../../constants/texts';
+import texts from '../../constants/texts';
 import './index.css';
 import { getProposalsForSurvey, voteForAProposal } from '../../actions';
 
@@ -56,8 +56,10 @@ class SurveyDisplay extends React.Component {
     return (
       <div>
         <section className='VoteConfirmationContainer'>
-          <span className='icon-checkmark' />
-          <p>Vous avez déjà voté pour ce sondage, <br/> vous aviez choisi : <b>{this.props.oldVote.restaurant}</b></p>
+          <p>
+            <span className='icon-checkmark icon' />
+            Vous avez déjà voté pour ce sondage, <br/> vous aviez choisi : <b>{this.props.oldVote.restaurant}</b>
+          </p>
         </section>
       </div>
     )
@@ -72,8 +74,24 @@ class SurveyDisplay extends React.Component {
     return (
       <div>
         <section className='VoteConfirmationContainer'>
-          <span className='icon-checkmark' />
-          <p>Vous avez voté pour : <b>{this.props.voteConfirmation.title}</b></p>
+          <p>
+            <span className='icon-checkmark icon' />
+            Vous avez voté pour : <b>{this.props.voteConfirmation.title}</b>
+          </p>
+        </section>
+      </div>
+    )
+  }
+
+  _renderSurveyErrorTpl() {
+    return (
+      <div>
+        <section className='SurveyError'>
+          <p>
+            <span className='icon-close icon' />
+            <b>{texts.survey_error_404}</b>
+          </p>
+          <Link to='/'>Retour à l'accueil</Link>
         </section>
       </div>
     )
@@ -88,10 +106,13 @@ class SurveyDisplay extends React.Component {
           Alors ce midi, <br/>
           on se fait ?
         </h1>
-        {Object.keys(surveyContent).length && this._renderProposals(surveyContent.proposals) }
+        {surveyContent.response && this._renderProposals(surveyContent.proposals) }
+        {surveyContent.error && this._renderSurveyErrorTpl() }
         
-        {voteConfirmation && this._renderVoteConfirmationTpl() }
-        {oldVote && this._renderAlreadyVotedTpl() }
+
+
+        {(voteConfirmation && surveyContent.response) && this._renderVoteConfirmationTpl() }
+        {(oldVote && surveyContent.response) && this._renderAlreadyVotedTpl() }
       </div>
     )
   }

@@ -182,6 +182,10 @@
   color: green;
 }
 
+.SurveyDisplayWrapper .icon {
+  margin-right: 15px;
+}
+
 .SurveyDisplayWrapper .VoteConfirmationContainer:before {
   content: '';
   display: block;
@@ -194,6 +198,23 @@
   margin-left: -20px;
 }
 
-.SurveyDisplayWrapper .VoteConfirmationContainer p {
-  margin-left: 15px;
+
+.SurveyDisplayWrapper .SurveyError {
+  color: #C1272D;
+
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  font-size: 35px;
+  justify-content: center;
+  margin-top: 15px;
+  position: relative;
+  padding-top: 10px;
+  padding-left: 15px;
+}
+
+.SurveyDisplayWrapper .SurveyError a {
+  font-size: 14px;
+  margin-top: 7px;
+  color: #313131;
 }

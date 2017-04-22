@@ -15,6 +15,7 @@ const texts = {
   'survey_links': 'Liens : ',
   'survey_': 'Sondage : ',
   'survey_results': 'Résultats : ',
+  'survey_error_404': 'Bah rien. Ce sondage n\'existe plus.',
 };
 
 export default texts;

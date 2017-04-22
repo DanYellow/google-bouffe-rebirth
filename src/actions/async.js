@@ -2,6 +2,12 @@ import * as ActionTypes from '../constants/action-types';
 
 import { gbapimanager as GBAPIManager } from '../utils/gb-apimanager'
 
+const requestPending = (isRequestPending) => {
+  return {
+    type: ActionTypes.REQUEST_PENDING,
+    isRequestPending
+  }
+}
 
 const createSurveySuccess = (response) => {
   return {
@@ -43,11 +49,11 @@ export const getProposalsForSurvey = (hash) => {
     return GBAPIManager.getSurvey(hash).then((response) => {
       dispatch(requestPending(false))
       dispatch(
-        getProposalsForSurveySuccess(response.response)
+        getProposalsForSurveySuccess(response)
       )
     }).catch((error) => {
       dispatch(requestPending(false))
-      console.log('er', error);
+      console.log('getProposalsForSurvey', error);
     })
   }
 }
@@ -101,9 +107,4 @@ export const getSurveyResults = (hash) => {
 };
 
 
-const requestPending = (isRequestPending) => {
-  return {
-    type: ActionTypes.REQUEST_PENDING,
-    isRequestPending
-  }
-}
+

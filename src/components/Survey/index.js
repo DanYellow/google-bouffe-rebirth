@@ -8,28 +8,33 @@ import './index.css';
 import { toggleSurveyItem, cancelSurvey, createSurvey } from '../../actions';
 
 
-export const Survey = ({surveyContent, toggleSurveyItem, cancelSurvey, createSurvey, url}) => {
+export const Survey = (
+  {
+    surveyContent, toggleSurveyItem, cancelSurvey, 
+    createSurvey, url, inProgress
+  }) => {
 
   const _surveyCreationTpl = () => {
+    const limitProposals = 4;
     return (
-      <div className='SurveyCreatorWrapper'>
-      <header>{`${texts.current_survey} (${surveyContent.length}/4)`}</header>
+      <div>
+        <header>{`${texts.current_survey} (${surveyContent.length}/${limitProposals})`}</header>
 
-      <ul className='choices'>
-        {surveyContent.map((item) => {
-          return (<li key={uuidV1()}>
-            <button className='reset' onClick={() => toggleSurveyItem(item)} type='button'>
-              <p>{item.title}</p>
-              <span className={'icon-close'}></span>
-            </button>
-          </li>)
-        })}
-      </ul>
+        <ul className='choices'>
+          {surveyContent.map((item) => {
+            return (<li key={uuidV1()}>
+              <button className='reset' onClick={() => toggleSurveyItem(item)} type='button'>
+                <p>{item.title}</p>
+                <span className='icon-close' />
+              </button>
+            </li>)
+          })}
+        </ul>
 
-      {surveyContent.length >= 2 && <ul className='btns'>
-        <button type='button' className='reset create' onClick={() => createSurvey(surveyContent)}>Créer sondage</button>
-        <button type='button' className='reset cancel' onClick={() => cancelSurvey()}>Annuler sondage</button>
-      </ul>}
+        {surveyContent.length >= 2 && <ul className='btns'>
+          <button type='button' className='reset create' onClick={() => createSurvey(surveyContent)}>Créer sondage</button>
+          <button type='button' className='reset cancel' onClick={() => cancelSurvey()}>Annuler sondage</button>
+        </ul>}
       </div>
     )
   }
@@ -42,8 +47,6 @@ export const Survey = ({surveyContent, toggleSurveyItem, cancelSurvey, createSur
   if (url) {
     completeURL = `${document.location.origin}/#${url}`
     window.localStorage.setItem('last_survey_hash', url)
-
-
   }
 
   const _surveyURLTpl = () => {
@@ -51,27 +54,25 @@ export const Survey = ({surveyContent, toggleSurveyItem, cancelSurvey, createSur
     const urlResults = `${document.location.origin}/#${v.insert(lastSurveyHash, '/results', 7)}`
 
     return (
-      <div className='SurveyCreatorWrapper'>
-      
-          <header>{texts.survey_links}</header>
-          <form>
-            <fieldset>
-              <label htmlFor='survey'>{texts.survey_}</label>
-              <input
-                id='survey'
-                onClick={selectLink}
-                type='text' value={completeURL} readOnly />
-            </fieldset>
+      <div>
+        <header>{texts.survey_links}</header>
+        <form>
+          <fieldset>
+            <label htmlFor='survey'>{texts.survey_}</label>
+            <input
+              id='survey'
+              onClick={selectLink}
+              type='text' value={completeURL} readOnly />
+          </fieldset>
 
-            <fieldset>
-              <label htmlFor='results'>{texts.survey_results}</label>
-              <input
-                id='results'
-                onClick={selectLink}
-                type='text' value={urlResults} readOnly />
-            </fieldset>
-          </form>
-               
+          <fieldset>
+            <label htmlFor='results'>{texts.survey_results}</label>
+            <input
+              id='results'
+              onClick={selectLink}
+              type='text' value={urlResults} readOnly />
+          </fieldset>
+        </form>
 
         <ul className='btns'>
           <button type='button' className='reset cancel' onClick={() => cancelSurvey()}>Annuler sondage</button>
@@ -80,15 +81,29 @@ export const Survey = ({surveyContent, toggleSurveyItem, cancelSurvey, createSur
     )
   }
 
-  if (!url) { return _surveyCreationTpl() }
-  if (url) { return _surveyURLTpl() }
+  const _tplCombined = () => {
+    return (
+      <div>
+        {_surveyCreationTpl()}
+        {_surveyURLTpl()}
+      </div>
+    )
+  }
+
+  return (
+    <div className='SurveyCreatorWrapper'>
+      {(url && !inProgress) && _surveyURLTpl()}
+      {(!url || inProgress) && _surveyCreationTpl()}
+    </div>
+  )
 }
 
 
 const mapStateToProps = (state, ownProps) => {
   return {
     surveyContent: state.survey.proposals,
-    url: state.survey.url
+    url: state.survey.url,
+    inProgress: state.survey.inProgress
   }
 };
 

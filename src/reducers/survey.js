@@ -7,6 +7,7 @@ const initialState = {
   url: '',
   proposals: [],
   results: {},
+  inProgress: false,
   voted: JSON.parse(window.localStorage.getItem('voted')) || [],
   content: [] // contains response from API
 }
@@ -15,7 +16,9 @@ const survey = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.CREATE_SURVEY:
       return { ...state, 
-        url: action.payload.response.url
+        url: action.payload.response.url,
+        proposals: [],
+        inProgress: false,
       }
 
     case ActionTypes.TOGGLE_SURVEY:
@@ -30,18 +33,20 @@ const survey = (state = initialState, action) => {
       }
 
       return { ...state,
-        proposals
+        proposals,
+        inProgress: true
       }
 
     case ActionTypes.CANCEL_SURVEY: 
       return { ...state,
         proposals: [],
-        url: ''
+        url: '',
+        inProgress: false,
       }
 
-    case ActionTypes.GET_SURVEY_SUCCESS: 
+    case ActionTypes.GET_SURVEY_SUCCESS:
       return { ...state,
-        content: action.payload.response
+        content: action.payload.response,
       }
 
     case ActionTypes.VOTE_PROPOSAL:
