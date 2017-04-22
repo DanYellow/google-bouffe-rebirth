@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import uuidV1 from 'uuid/v1';
+import { filter } from 'lodash';
 
 
 // import texts from '../../constants/texts';
@@ -26,7 +27,7 @@ class SurveyDisplay extends React.Component {
 
   _renderProposals(proposals) {
     const hash = this.props.match.params.hash;
-    const isDisabled = (this.props.voteConfirmation && !this.state.canFakeVote) ? true : false;
+    const isDisabled = (this.props.voteConfirmation || typeof this.props.oldVote !== 'undefined') ? true : false;
 
     return (
       <ul className='proposals'>
@@ -35,7 +36,8 @@ class SurveyDisplay extends React.Component {
             <li key={uuidV1()}>
               <button className='reset' type='button' disabled={isDisabled}
               onClick={() => this.props.voteForAProposal(hash, proposal.id)}>
-                <p>{proposal.title}</p>
+                <h1>{proposal.title}</h1>
+                <p>{proposal.description}</p>
               </button>
             </li>
           )
@@ -48,7 +50,18 @@ class SurveyDisplay extends React.Component {
     this.setState({canFakeVote: true})
   }
 
-  _renderVoteConfirmation() {
+  _renderAlreadyVotedTpl() {
+    return (
+      <div>
+        <section className='VoteConfirmationContainer'>
+          <span className='icon-checkmark' />
+          <p>Vous avez déjà voté pour ce sondage, <br/> vous aviez choisi : <b>{this.props.oldVote.restaurant}</b></p>
+        </section>
+      </div>
+    )
+  }
+
+  _renderVoteConfirmationTpl() {
     /*<section className='FakeVotesContainer'>
       <button type='button' className='reset' onClick={() => this.renableVotes()}>
         Truquer les votes
@@ -58,15 +71,14 @@ class SurveyDisplay extends React.Component {
       <div>
         <section className='VoteConfirmationContainer'>
           <span className='icon-checkmark' />
-          <p>Vous avez voté pour : <b>{this.props.voteConfirmation}</b></p>
+          <p>Vous avez voté pour : <b>{this.props.voteConfirmation.title}</b></p>
         </section>
-        
       </div>
     )
   }
 
   render() {
-    const {surveyContent, voteConfirmation} = this.props;
+    const {surveyContent, voteConfirmation, oldVote} = this.props;
     return (
       <div className='SurveyDisplayWrapper'>
         <h1>
@@ -75,7 +87,8 @@ class SurveyDisplay extends React.Component {
         </h1>
         {Object.keys(surveyContent).length && this._renderProposals(surveyContent.proposals) }
         
-        {voteConfirmation && this._renderVoteConfirmation() }
+        {voteConfirmation && this._renderVoteConfirmationTpl() }
+        {oldVote && this._renderAlreadyVotedTpl() }
       </div>
     )
   }
@@ -83,9 +96,15 @@ class SurveyDisplay extends React.Component {
 
 
 const mapStateToProps = (state, ownProps) => {
+  const {survey} = state
+  const hash = ownProps.match.params.hash
+  const oldVote = filter(survey.voted, {survey_hash: hash})[0];
+  
+  // 
   return {
     surveyContent: state.survey.content,
     voteConfirmation: state.survey.voteConfirmation,
+    oldVote
   }
 };
 

@@ -66,6 +66,10 @@ class App extends Component {
     // <Toast message='Hello' />
     return (
       <div className='App'>
+        <header id='header'>
+          <img src="logo.png" alt="logo" width="75"/>
+          <h1>Google bouffe</h1>
+        </header>
 
         {!restaurants.length && <Loader />}
 

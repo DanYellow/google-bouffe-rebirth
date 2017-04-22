@@ -12,7 +12,9 @@ const texts = {
   'cancel_survey': 'Annuler sondage',
   'generate_survey': 'Créer sondage',
   'calories_burnt': 'Calories brûlées : __placeholder__ kcal',
-  'survey_link': 'Lien du sondage : ',
+  'survey_links': 'Liens : ',
+  'survey_': 'Sondage : ',
+  'survey_results': 'Résultats : ',
 };
 
 export default texts;

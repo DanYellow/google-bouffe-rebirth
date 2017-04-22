@@ -7,6 +7,7 @@ const initialState = {
   url: '',
   proposals: [],
   results: {},
+  voted: JSON.parse(window.localStorage.getItem('voted')) || [],
   content: [] // contains response from API
 }
 
@@ -44,8 +45,17 @@ const survey = (state = initialState, action) => {
       }
 
     case ActionTypes.VOTE_PROPOSAL:
+      let votePayload = {
+        date: new Date(),
+        restaurant: action.payload.response.title,
+        survey_hash: action.payload.response.survey_hash,
+      }
+      let voted = [...state.voted, votePayload];
+      
+      window.localStorage.setItem('voted', JSON.stringify(voted))
+
       return { ...state,
-        voteConfirmation: action.payload.response
+        ...{ voteConfirmation: action.payload.response }
       }
     
     case ActionTypes.SURVEY_RESULTS:

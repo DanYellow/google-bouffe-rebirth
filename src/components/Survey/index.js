@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import uuidV1 from 'uuid/v1';
-
+import v from 'voca';
 
 import texts from '../../constants/texts';
 import './index.css';
@@ -41,18 +41,37 @@ export const Survey = ({surveyContent, toggleSurveyItem, cancelSurvey, createSur
   let completeURL = '';
   if (url) {
     completeURL = `${document.location.origin}/#${url}`
-    window.localStorage.setItem('survey_url', completeURL)
+    window.localStorage.setItem('last_survey_hash', url)
+
+
   }
 
   const _surveyURLTpl = () => {
+    const lastSurveyHash = window.localStorage.getItem('last_survey_hash')
+    const urlResults = `${document.location.origin}/#${v.insert(lastSurveyHash, '/results', 7)}`
+
     return (
       <div className='SurveyCreatorWrapper'>
-        <header>{texts.survey_link}</header>
-        <form>
-          <input
-            onClick={selectLink}            
-            type='text' value={completeURL} readOnly />
-        </form>
+      
+          <header>{texts.survey_links}</header>
+          <form>
+            <fieldset>
+              <label htmlFor='survey'>{texts.survey_}</label>
+              <input
+                id='survey'
+                onClick={selectLink}
+                type='text' value={completeURL} readOnly />
+            </fieldset>
+
+            <fieldset>
+              <label htmlFor='results'>{texts.survey_results}</label>
+              <input
+                id='results'
+                onClick={selectLink}
+                type='text' value={urlResults} readOnly />
+            </fieldset>
+          </form>
+               
 
         <ul className='btns'>
           <button type='button' className='reset cancel' onClick={() => cancelSurvey()}>Annuler sondage</button>
