@@ -1,6 +1,6 @@
 import * as ActionTypes from '../constants/action-types';
 
-import { gbapimanager as GBAPIManager } from '../utils/gb-apimanager';
+export * from './async'
 
 export const selectedRestaurant = (id, position = {}) => ({
   type: ActionTypes.CURRENT_INDEX,
@@ -58,87 +58,4 @@ export const itineraryStepsCleared = () => ({
 });
 
 
-const createSurveySuccess = (response) => {
-  return {
-    type: ActionTypes.CREATE_SURVEY,
-    payload: {
-      response
-    }
-  }
-}
 
-export const createSurvey = (restaurants) => {
-  return (dispatch) => {
-    return GBAPIManager.createSurvey(restaurants).then((response) => {
-      dispatch(
-        createSurveySuccess(response)
-      )
-    }).catch((error) => {
-      console.error('er', error);
-    })
-  }
-};
-
-
-const getProposalsForSurveySuccess = (response) => {
-  return {
-    type: ActionTypes.GET_SURVEY_SUCCESS,
-    payload: {
-      response
-    }
-  }
-}
-
-export const getProposalsForSurvey = (hash) => {
-  return (dispatch) => {
-    return GBAPIManager.getSurvey(hash).then((response) => {
-      dispatch(
-        getProposalsForSurveySuccess(response.response)
-      )
-    }).catch((error) => {
-      console.log('er', error);
-    })
-  }
-}
-
-const voteForAProposalSuccess = (response) => {
-  return {
-    type: ActionTypes.VOTE_PROPOSAL,
-    payload: {
-      response: response.response
-    }
-  }
-}
-
-export const voteForAProposal = (hash, id) => {
-  return (dispatch) => {
-    return GBAPIManager.vote(hash, id).then((response) => {
-      dispatch(
-        voteForAProposalSuccess(response)
-      )
-    }).catch((error) => {
-      console.error('voteForAProposal', error);
-    })
-  }
-};
-
-const getSurveyResultsSuccess = (response) => {
-  return {
-    type: ActionTypes.SURVEY_RESULTS,
-    payload: {
-      results: response
-    }
-  }
-}
-
-export const getSurveyResults = (hash) => {
-  return (dispatch) => {
-    return GBAPIManager.getResults(hash).then((response) => {
-      dispatch(
-        getSurveyResultsSuccess(response)
-      )
-    }).catch((error) => {
-      console.error('getSurveyResults', error);
-    })
-  }
-};
