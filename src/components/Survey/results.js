@@ -39,7 +39,6 @@ class SurveyResults extends React.Component {
 
 
 const mapStateToProps = (state) => {
-  console.log(state.survey)
   return {
     results: state.survey.results,
   }

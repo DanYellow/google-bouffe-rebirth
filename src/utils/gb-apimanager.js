@@ -3,8 +3,8 @@ import 'whatwg-fetch';
 class GBAPIManager {
 
   constructor(height, width) {
-    this.baseURL = 'http://localhost:8000';
-    // this.baseURL = 'goobouffe.danyellow.net';
+    // this.baseURL = 'http://localhost:8000';
+    this.baseURL = 'https://goobouffebo.danyellow.net';
   }
 
   /**

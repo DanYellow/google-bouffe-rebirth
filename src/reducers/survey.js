@@ -37,10 +37,12 @@ const survey = (state = initialState, action) => {
         inProgress: inProgress
       }
 
-    case ActionTypes.CANCEL_SURVEY: 
+    case ActionTypes.CANCEL_SURVEY:
+      window.localStorage.setItem('last_survey_hash', '')
       return { ...state,
         proposals: [],
         inProgress: false,
+        url: ''
       }
 
     case ActionTypes.GET_SURVEY_SUCCESS:

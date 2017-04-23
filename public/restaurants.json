@@ -256,5 +256,14 @@
     "description": "Traiteurs en tout genre. Présent le jeudi en semaine.",
     "address": "8 Boulevard Richard Lenoir • 75011 Paris",
     "budget_scale": 7
+  }, {
+    "position": {
+      "lat": 48.861935,
+      "lng": 2.382845
+    },
+    "title": "Yemma",
+    "description": "",
+    "address": "119 Rue du Chemin Vert • 75011 Paris",
+    "budget_scale": 7
   }
 ]}
