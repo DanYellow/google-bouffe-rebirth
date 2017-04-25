@@ -14,7 +14,7 @@ import './App.css';
 
 import Map from './../Map';
 import List from './../List';
-import Toast from './../Toast';
+// import Toast from './../Toast';
 import Itinerary from './../Itinerary';
 import Survey from './../Survey';
 import SurveyDisplayContainer from './../Survey/survey';
@@ -57,7 +57,7 @@ class App extends Component {
     let restaurantsMapped = restaurants.map((restaurant, index) => {
       restaurant.id = index + 1;
       return restaurant;
-    }).sort(function(a, b){
+    }).sort((a, b) => {
       if(a.title < b.title) return -1;
       if(a.title > b.title) return 1;
       
@@ -90,9 +90,6 @@ class App extends Component {
           <Route path={`${match.url}:id_restaurant`} render={({match, location}) => (
             <Locator restaurants={restaurantsMapped} match={match} location={location} survey={survey} />
           )} />
-
-
-
         </Switch>
       </div>
     );
