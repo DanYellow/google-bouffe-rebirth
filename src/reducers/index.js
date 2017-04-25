@@ -7,6 +7,7 @@ import toastReducer from './../components/Toast/reducers'
 
 import { REQUEST_PENDING } from '../constants/action-types';
 
+import { foo } from '../components/App/foo';
 
 
 export const isRequestPending = (state = false, action) => {
@@ -27,7 +28,9 @@ const reducer = combineReducers({
   restaurants,
   survey,
   toast: toastReducer,
-  isRequestPending
+  isRequestPending,
+  foo1 : foo('foo'),
+  foo2 : foo('foo2')
 });
 
 export default reducer;

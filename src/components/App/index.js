@@ -21,6 +21,8 @@ import SurveyDisplayContainer from './../Survey/survey';
 import SurveyResultsContainer from './../Survey/results';
 import Loader from './../Map/loader';
 
+import FooContainer from './foo';
+
 const Locator = ({restaurants, match, location, survey}) => {
   const currentRestaurant = find(restaurants, {id: Number(match.params.id_restaurant)});
 
@@ -74,6 +76,8 @@ class App extends Component {
           </Link>
         </header>
 
+        <FooContainer text={{foo: "Hello world"}} namespace="foo" />
+        <FooContainer text={{foo: "Hello world 2"}} namespace="foo2" />
         {!restaurants.length && <Loader />}
 
         <Switch>
