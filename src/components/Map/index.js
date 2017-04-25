@@ -77,9 +77,10 @@ class Map extends Component {
     })
 
     if (window.google) {
+      const homeIconSize = 50;
       const homeIcon = {
               url: homePosition.icon,
-              scaledSize: new window.google.maps.Size(50, 50)
+              scaledSize: new window.google.maps.Size(homeIconSize, homeIconSize)
             };
       markers.push(
         <Marker key={Math.random()} {...homePosition} icon={homeIcon} />
@@ -92,7 +93,7 @@ class Map extends Component {
     }
     const mapHeight = window.innerHeight - document.getElementById('header').offsetHeight;
 
-    this.defaultMapProps = {...this.defaultMapProps, ...{center: {lat: 45.9009, lng: 2.9008}}}
+    this.defaultMapProps = {...this.defaultMapProps, ...{center: homePosition.position}}
 
     scriptLoaderOptions.loadingElement = <Loader />;
     scriptLoaderOptions.containerElement = (<div style={{ minHeight: `${mapHeight}px` }} />);
@@ -101,7 +102,6 @@ class Map extends Component {
           ref={(map) => { 
                 this.map = map;
                 this.map && map.panTo(mapPosition);
-
                 if (!this.props.isLoaded) {
                   this._mapLoaded();
                 }

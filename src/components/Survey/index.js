@@ -19,7 +19,9 @@ export const Survey = (
 
   const _surveyCreationTpl = () => {
     const limitProposals = 4;
+    const minProposalsForSurvey = 2;
     const isDisabled = isRequestPending;
+    
     return (
       <div>
         <header>
@@ -44,7 +46,7 @@ export const Survey = (
           })}
         </ul>
 
-        {surveyContent.length >= 2 && <ul className='btns'>
+        {surveyContent.length >= minProposalsForSurvey && <ul className='btns'>
           <button type='button' className='reset create' onClick={() => createSurvey(surveyContent)}>Créer sondage</button>
           <button type='button' className='reset cancel' onClick={() => cancelSurvey()}>Annuler sondage</button>
         </ul>}
