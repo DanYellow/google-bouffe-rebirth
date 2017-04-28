@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import { Helmet } from 'react-helmet'; 
 
-import { find } from 'lodash';
+import { find, includes } from 'lodash';
 
 import { restaurantsListLoaded } from '../../actions';
 import './App.css';
@@ -27,7 +27,7 @@ const Locator = ({restaurants, match, location, survey}) => {
   return (
     <section className='wrapper'>
       {currentRestaurant && <Helmet><title>{currentRestaurant.title}</title></Helmet>}
-      <List restaurants={restaurants} isHidden={ (location.pathname.includes('itinerary')) } />
+      <List restaurants={restaurants} isHidden={ (includes(location.pathname, 'itinerary')) } />
       {restaurants.length && <Map restaurants={restaurants} />}
       {survey && <Survey /> }
       <Route path={`${match.url}/itinerary`} exact render={

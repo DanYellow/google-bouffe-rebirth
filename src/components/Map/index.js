@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-
+import { includes } from 'lodash';
 
 import { GoogleMap, DirectionsRenderer, Marker } from 'react-google-maps';
 import { default as ScriptLoader } from 'react-google-maps/lib/async/ScriptjsLoader';
@@ -73,7 +73,7 @@ class Map extends Component {
       return <GBMarker {...opts} />
     }).filter((restaurant) => {
       if (this.props.type === 'all') { return true; }
-      return this.props.type === 'my' && this.props.favs.includes(restaurant.props.datas.id);
+      return this.props.type === 'my' && includes(this.props.favs, restaurant.props.datas.id);
     })
 
     if (window.google) {

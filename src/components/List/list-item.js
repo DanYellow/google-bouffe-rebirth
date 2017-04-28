@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { withRouter, Link } from 'react-router-dom';
-import { some } from 'lodash'
+import { some, includes } from 'lodash'
 
 import { selectedRestaurant, toggleFav, toggleSurveyItem, itineraryStepsCleared } from '../../actions';
 import texts from '../../constants/texts';
@@ -28,7 +28,7 @@ const itinerarySVG = {__html:`
 </svg> `}
 
 const ListItem = ({title, description, address, id, isActive, selectedRestaurant, position, toggleFav, toggleSurveyItem, favs, match, survey, itineraryStepsCleared}) => {
-  const isFav = favs.includes(id);
+  const isFav = includes(favs, id);
   const isInSurvey = some(survey, {id: id});
   const surveyAvailable = ((survey.length === 4 && isInSurvey) || survey.length < 4) ? true : false;
   const surveyObject = {

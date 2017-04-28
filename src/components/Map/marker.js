@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { Marker } from 'react-google-maps';
 import { withRouter } from 'react-router-dom';
+import { includes } from 'lodash';
 
 import { selectedRestaurant, itineraryStepsCleared } from '../../actions';
 import markerFav from '../../images/marker-fav.png';
@@ -43,9 +44,9 @@ class GBMarker extends Component {
 
     let markerPath = (datas.id === currentIndex || datas.id === Number(match.params.id_restaurant)) ? markerActive : marker;
 
-    if (favs.includes(datas.id) && datas.id === currentIndex) {
+    if (includes(favs, datas.id) && datas.id === currentIndex) {
       markerPath = markerActiveFav;
-    } else if (favs.includes(datas.id)) {
+    } else if (includes(favs, datas.id)) {
       markerPath = markerFav;
     }
 

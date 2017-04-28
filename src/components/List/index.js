@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import uuidV1 from 'uuid/v1';
 import classNames from 'classnames';
+import { includes } from 'lodash';
 
 import { listType } from '../../actions';
 import ListItem from './list-item';
@@ -19,7 +20,7 @@ class List extends Component {
       return <ListItem {...restaurant} isActive={isActive} key={uuidV1()}/>
     }).filter((restaurant) => {
       if (this.props.type === 'all') { return true; }
-      return this.props.type === 'my' && this.props.favs.includes(restaurant.props.id);
+      return this.props.type === 'my' && includes(this.props.favs, restaurant.props.id);
     });
 
     return (

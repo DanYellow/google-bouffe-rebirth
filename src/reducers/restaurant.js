@@ -1,6 +1,6 @@
 import * as ActionTypes from '../constants/action-types';
 
-import { without } from 'lodash';
+import { without, includes } from 'lodash';
 
 const initialState = {
   mapPosition: {lat: 48.857511, lng: 2.373364},
@@ -36,7 +36,7 @@ export const restaurants = (state = initialStateRestaurants, action) => {
     case ActionTypes.TOGGLE_FAV:
       let favs = state.favs;
       let isDeletion = false;
-      if (favs.includes(action.id)) {
+      if (includes(favs, action.id)) {
         favs = without(favs, action.id);
         isDeletion = true;
       } else {
