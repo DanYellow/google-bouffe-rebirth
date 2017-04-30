@@ -1,10 +1,14 @@
 import 'whatwg-fetch';
+// import axios from 'axios';
 
 class GBAPIManager {
 
   constructor(height, width) {
-    // this.baseURL = 'http://localhost:8000';
-    this.baseURL = 'https://goobouffebo.danyellow.net';
+    if (process.env.NODE_ENV === 'production') {
+      this.baseURL = 'https://goobouffebo.danyellow.net';
+    } else {
+      this.baseURL = 'http://localhost:8000';
+    }
   }
 
   /**

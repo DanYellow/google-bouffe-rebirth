@@ -52,8 +52,7 @@ class App extends Component {
       });
   }
   render() {
-    const {match, restaurants, survey} = this.props
-
+    const {match, restaurants, survey} = this.props;
     let restaurantsMapped = restaurants.map((restaurant, index) => {
       restaurant.id = index + 1;
       return restaurant;

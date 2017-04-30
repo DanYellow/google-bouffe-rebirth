@@ -16,12 +16,20 @@ import './reset.css';
 import './index.css';
 import './utils.css';
 
+let composition = null;
+
+if (process.env.NODE_ENV === 'production') {
+  composition = compose(applyMiddleware(thunk));
+} else {
+  composition = compose(
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  );
+}
+
 const store = createStore(
   reducer,
-  compose(
-    applyMiddleware(thunk),
-    //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
+  composition
 );
 
 render(
