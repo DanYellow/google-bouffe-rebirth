@@ -1,0 +1,58 @@
+.NewRestaurantForm {
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+}
+
+.form {
+  width: 500px;
+}
+
+.form * {
+  width: 100%;
+}
+
+.form input[type='text'], .form textarea {
+  padding: 10px;
+}
+
+.NewRestaurantForm fieldset {
+  margin-bottom: 10px;
+}
+
+.NewRestaurantForm legend {
+  margin-bottom: 25px;
+  font-size: 30px;
+  text-align: center;
+  font-family: 'OpenSansSemibold';
+}
+
+
+.NewRestaurantForm .btns {
+  margin-top: 15px;
+}
+
+.NewRestaurantForm .btns button {
+  font-size: 16px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid black;
+}
+
+.NewRestaurantForm .btns button.valid {
+  color: green;
+  border-color: green;
+}
+
+.NewRestaurantForm .btns button.cancel {
+  color: #C1272D;
+  border-color: #C1272D;
+}
+
+
+.foo {
+    background-image: image-set(url(./../../images/marker.png) 1x,
+                                url(./../../images/marker.png) 2x,
+                                url(./../../images/marker.png) 600dpi);
+}
+
