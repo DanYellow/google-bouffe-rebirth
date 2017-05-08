@@ -5,7 +5,6 @@ WORKDIR /app
 COPY . /app/
 
 RUN npm cache clean
-RUN npm install
-# RUN npm install -g yarn
+RUN yarn install
 
-CMD [ "npm", "start" ]
+CMD [ "yarn", "run", "start" ]
