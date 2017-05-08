@@ -15,14 +15,14 @@ import './App.css';
 import Map from './../Map';
 import List from './../List';
 // import Toast from './../Toast';
-import NewRestaurantForm from './../NewRestaurantForm';
+// import NewRestaurantForm from './../NewRestaurantForm';
 import Itinerary from './../Itinerary';
 import Survey from './../Survey';
 import SurveyDisplayContainer from './../Survey/survey';
 import SurveyResultsContainer from './../Survey/results';
 import Loader from './../Map/loader';
 
-import { addNewRestaurant } from './../../ducks/new-restaurant-form/';
+// import { addNewRestaurant } from './../../ducks/new-restaurant-form/';
 
 
 const Locator = ({restaurants, match, location, survey}) => {
@@ -90,9 +90,9 @@ class App extends Component {
 
           <Route exact path={`${match.url}survey/results/:hash`} render={SurveyResultsContainer} />
 
-          <Route exact path={`${match.url}add-new-restaurant`} render={() => (
+          {/*<Route exact path={`${match.url}add-new-restaurant`} render={() => (
             <NewRestaurantForm onSubmit={addNewRestaurant} />
-          )} />
+          )} /> */ }
 
           <Route path={`${match.url}:id_restaurant`} render={({match, location}) => (
             <Locator restaurants={restaurantsMapped} match={match} location={location} survey={survey} />
