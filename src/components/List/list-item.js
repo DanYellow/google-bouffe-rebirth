@@ -55,7 +55,7 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
         {(description && isActive) && 
           <blockquote className='description'>{description}</blockquote>}
 
-        {(isActive) && 
+        {(isActive) &&
         <ul className='toolbox'>
           <li>
             <button type='button' className='reset fav' onClick={() => toggleFav(id)}>
@@ -65,15 +65,16 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
             </button>
           </li>
           
-          <li>
-            <Link to={{
-                pathname: `/${id}/itinerary`,
-              }}
-              className='reset itinerary'>
-              <div className="svg-container" dangerouslySetInnerHTML={itinerarySVG} />
-              <span className='label'>{texts.display_itinerary}</span>
-            </Link>
-          </li>
+          {(position) &&
+            <li>
+              <Link to={{
+                  pathname: `/${id}/itinerary`,
+                }}
+                className='reset itinerary'>
+                <div className="svg-container" dangerouslySetInnerHTML={itinerarySVG} />
+                <span className='label'>{texts.display_itinerary}</span>
+              </Link>
+            </li>}
 
           <li>
             <button type='button' disabled={!surveyAvailable} className='reset' onClick={() => toggleSurveyItem(surveyObject)}>

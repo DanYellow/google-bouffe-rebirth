@@ -1,5 +1,4 @@
 import 'whatwg-fetch';
-// import axios from 'axios';
 
 class GBAPIManager {
 

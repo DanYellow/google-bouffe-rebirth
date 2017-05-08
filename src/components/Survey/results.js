@@ -13,7 +13,10 @@ import { getSurveyResults } from '../../actions';
 class SurveyResults extends React.Component {
   componentWillMount() {
     const hash = this.props.match.params.hash;
-    this.props.getSurveyResults(hash);
+
+    if (hash) {
+      this.props.getSurveyResults(hash);
+    }
   }
 
   _renderResults(results) {
@@ -32,8 +35,10 @@ class SurveyResults extends React.Component {
   render() {
     const {results} = this.props;
 
+    console.log(Object.keys(results).length, results);
+
     if (Object.keys(results).length) { return this._renderResults(results.votes)}
-    if (!Object.keys(results).length) { return <div />}
+    if (!Object.keys(results).length) { return (<p>Chargement...</p>)}
   }
 }
 

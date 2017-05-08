@@ -19,6 +19,9 @@ const texts = {
   'survey_exists': 'Un sondage existe',
   'survey_delete_existing': 'Supprimer le sondage existant',
   'survey_display_existing': 'Afficher le sondage existant',
+  'add_new_restaurant_legend': 'Ajouter restaurant',
+  'add_new_restaurant_submit': 'Ajouter',
+  'reinit_new_restaurant_submit': 'Réinitialiser',
 };
 
 export default texts;
