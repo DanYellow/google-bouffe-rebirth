@@ -2,7 +2,8 @@ version: '3'
 
 services:
   server:
-    build: 
+    image: 'node:latest'
+    build:
       context: ./
       dockerfile: ./docker/Dockerfile
     volumes:

@@ -1,0 +1,5 @@
+*.md
+coverage/*
+build/*
+assets/*
+node_modules/*
