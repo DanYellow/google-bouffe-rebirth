@@ -5,7 +5,7 @@ import restaurant, { restaurants } from './restaurant';
 import survey from './survey';
 import toastReducer from './../components/Toast/reducers';
 import { reducer as reduxFormReducer } from 'redux-form';
-import { default as formi } from './../ducks/new-restaurant-form';
+// import { default as formi } from './../ducks/new-restaurant-form';
 
 import { REQUEST_PENDING } from '../constants/action-types';
 
@@ -29,7 +29,7 @@ const reducer = combineReducers({
   toast: toastReducer,
   isRequestPending,
   form: reduxFormReducer,
-  formReducer: formi
+  // formReducer: formi
 });
 
 export default reducer;

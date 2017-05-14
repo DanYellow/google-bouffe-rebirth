@@ -13,3 +13,6 @@ Google Bouffe project revamped
 - [x] Change .json structure for more reusability
 - [x] Implements React-helmet
 - [] Better readme
+
+
+- docker-compose up --build
