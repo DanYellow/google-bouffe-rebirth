@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 
 import { list, map, itinerary } from './list';
 import restaurant, { restaurants } from './restaurant';

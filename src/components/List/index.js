@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import uuidV1 from 'uuid/v1';
 import classNames from 'classnames';
 import { includes } from 'lodash';
 
@@ -15,9 +14,9 @@ class List extends Component {
   render() {
     const { match, isHidden } = this.props
 
-    const restaurants = this.props.restaurants.map((restaurant) => {
+    const restaurants = this.props.restaurants.map((restaurant, index) => {
       const isActive = Number(match.params.id_restaurant) === restaurant.id
-      return <ListItem {...restaurant} isActive={isActive} key={uuidV1()}/>
+      return <ListItem {...restaurant} isActive={isActive} key={`ListItem-${index}`}/>
     }).filter((restaurant) => {
       if (this.props.type === 'all') { return true; }
       return this.props.type === 'my' && includes(this.props.favs, restaurant.props.id);

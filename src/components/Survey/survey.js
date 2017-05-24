@@ -1,17 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import uuidV1 from 'uuid/v1';
 import { filter } from 'lodash';
 import { Helmet } from 'react-helmet'; 
-
-
 
 import texts from '../../constants/texts';
 import './index.css';
 import { getProposalsForSurvey, voteForAProposal } from '../../actions';
-
-
 
 class SurveyDisplay extends React.Component {
   constructor(props) {
@@ -33,9 +28,9 @@ class SurveyDisplay extends React.Component {
 
     return (
       <ul className='proposals'>
-        {proposals.map((proposal) => {
+        {proposals.map((proposal, index) => {
           return (
-            <li key={uuidV1()}>
+            <li key={`proposal-${index}`}>
               <button className='reset' type='button' disabled={isDisabled}
               onClick={() => this.props.voteForAProposal(hash, proposal.id)}>
                 <h1>{proposal.title}</h1>

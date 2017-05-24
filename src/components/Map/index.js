@@ -68,6 +68,7 @@ class Map extends Component {
       const {title, description, address, id} = restaurant;
       const datas = { title, description, address, id };
       datas.isActive = (id === this.props.currentIndex);
+
       const opts = { key, position: restaurant.position, datas };
 
       return <GBMarker {...opts} />
@@ -82,8 +83,9 @@ class Map extends Component {
               url: homePosition.icon,
               scaledSize: new window.google.maps.Size(homeIconSize, homeIconSize)
             };
+      
       markers.push(
-        <Marker key={Math.random()} {...homePosition} icon={homeIcon} />
+        <Marker key='homeid' {...homePosition} icon={homeIcon} />
       );
     }
 
@@ -99,21 +101,21 @@ class Map extends Component {
     scriptLoaderOptions.containerElement = (<div style={{ minHeight: `${mapHeight}px` }} />);
     scriptLoaderOptions.googleMapElement = (
       <GoogleMap
-          ref={(map) => { 
-                this.map = map;
-                this.map && map.panTo(mapPosition);
-                if (!this.props.isLoaded) {
-                  this._mapLoaded();
-                }
+        ref={(map) => { 
+              this.map = map;
+              this.map && map.panTo(mapPosition);
+              if (!this.props.isLoaded) {
+                this._mapLoaded();
               }
             }
-          center={this.defaultMapProps.center}
-          {...extraGMProps}
-          defaultOptions={this.defaultMapProps.options}
-          onDragStart={this._mapLoaded}
-          defaultZoom={this.defaultMapProps.zoom}>
-          {markers}
-          { Object.keys(itinerary).length > 0 && <DirectionsRenderer defaultOptions={{ suppressMarkers: true }} directions={itinerary} /> }
+          }
+        center={this.defaultMapProps.center}
+        {...extraGMProps}
+        defaultOptions={this.defaultMapProps.options}
+        onDragStart={this._mapLoaded}
+        defaultZoom={this.defaultMapProps.zoom}>
+        {markers}
+        { Object.keys(itinerary).length > 0 && <DirectionsRenderer defaultOptions={{ suppressMarkers: true }} directions={itinerary} /> }
       </GoogleMap>
     );
 
@@ -129,7 +131,7 @@ class Map extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   let {
-    restaurant: {currentIndex}, 
+    restaurant: {currentIndex},
     restaurant:{mapPosition}
   } = state;
   const homePosition = state.restaurants.list.home_position || {};

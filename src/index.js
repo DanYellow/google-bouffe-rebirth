@@ -4,21 +4,19 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import a11y from 'react-a11y';
-
-if (process.env.NODE_ENV === 'development') a11y(React);
-
-import reducer from './reducers';
-
 import {
   HashRouter as Router,
   Route
 } from 'react-router-dom';
 
+import reducer from './reducers';
 import App from './components/App';
+
 import './reset.css';
 import './index.css';
 import './utils.css';
 
+if (process.env.NODE_ENV === 'development') a11y(React);
 let composition = null;
 
 if (process.env.NODE_ENV === 'production') {

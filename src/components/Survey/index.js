@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import uuidV1 from 'uuid/v1';
 import v from 'voca';
 
 import texts from '../../constants/texts';
@@ -10,8 +9,7 @@ import { toggleSurveyItem, cancelSurvey, createSurvey,
        } from '../../actions';
 
 
-export const Survey = (
-  {
+export const Survey = ({
     surveyContent, toggleSurveyItem, cancelSurvey, 
     createSurvey, url, inProgress, isRequestPending,
     displayExistingSurvey, deleteExistingSurvey
@@ -36,8 +34,8 @@ export const Survey = (
         </header>
 
         <ul className='choices'>
-          {surveyContent.map((item) => {
-            return (<li key={uuidV1()}>
+          {surveyContent.map((item, index) => {
+            return (<li key={`choice-${index}`}>
               <button className='reset' disabled={isDisabled} onClick={() => toggleSurveyItem(item)} type='button'>
                 <p>{item.title}</p>
                 <span className='icon-close' />
@@ -79,7 +77,6 @@ export const Survey = (
               onClick={selectLink}
               type='text' value={completeURL} readOnly />
           </fieldset>
-
           <fieldset>
             <label htmlFor='results'>{texts.survey_results}</label>
             <input
@@ -92,15 +89,6 @@ export const Survey = (
         <ul className='btns'>
           <button type='button' className='reset cancel' onClick={() => cancelSurvey()}>Annuler sondage</button>
         </ul>
-      </div>
-    )
-  }
-
-  const _tplCombined = () => {
-    return (
-      <div>
-        {_surveyCreationTpl()}
-        {_surveyURLTpl()}
       </div>
     )
   }

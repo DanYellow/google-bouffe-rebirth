@@ -1,12 +1,8 @@
-
-console.log('tr', window.localStorage.getItem('personnals'));
 const initialState = {
   personnals: JSON.parse(window.localStorage.getItem('personnals')) || [],
 }
 
-
 const SUBMIT = 'google-bouffe/new-restaurant-form/SUBMIT';
-
 
 const submitValues = (values) => {
   return {
@@ -16,7 +12,6 @@ const submitValues = (values) => {
 }
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-
 
 export async function addNewRestaurant(values, dispatch) {
   await sleep(500);

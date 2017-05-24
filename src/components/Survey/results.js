@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import uuidV1 from 'uuid/v1';
 import { Helmet } from 'react-helmet'; 
 
 
@@ -24,8 +23,8 @@ class SurveyResults extends React.Component {
       <div>
         <Helmet><title>Résultat sondage</title></Helmet>
         <ul>
-          {results.reverse().map((vote) => {
-            return <li key={uuidV1()}> { vote.title } : { vote.nbResponses }</li>
+          {results.reverse().map((vote, index) => {
+            return <li key={`result-${index}`}> { vote.title } : { vote.nbResponses }</li>
           })}
         </ul>
       </div>
@@ -35,13 +34,10 @@ class SurveyResults extends React.Component {
   render() {
     const {results} = this.props;
 
-    console.log(Object.keys(results).length, results);
-
     if (Object.keys(results).length) { return this._renderResults(results.votes)}
     if (!Object.keys(results).length) { return (<p>Chargement...</p>)}
   }
 }
-
 
 const mapStateToProps = (state) => {
   return {
@@ -53,6 +49,4 @@ const mapDispatchToProps = {
   getSurveyResults
 }
 
-let SurveyResultsContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(SurveyResults));
-
-export default SurveyResultsContainer;
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SurveyResults));
