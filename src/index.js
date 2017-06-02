@@ -9,8 +9,8 @@ import {
   Route
 } from 'react-router-dom';
 
-import reducer from './reducers';
-import App from './components/App';
+import reducer from './reducers.js';
+import App from './containers/App';
 
 import './reset.css';
 import './index.css';

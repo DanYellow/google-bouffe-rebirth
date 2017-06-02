@@ -5,14 +5,15 @@ import { Marker } from 'react-google-maps';
 import { withRouter } from 'react-router-dom';
 import { includes } from 'lodash';
 
-import { selectedRestaurant, itineraryStepsCleared } from '../../actions';
+import { selectedRestaurant } from 'containers/App/modules';
+import { itineraryStepsCleared } from 'components/Itinerary/modules';
 import markerFav from '../../images/marker-fav.png';
 import markerActiveFav from '../../images/marker-active-fav.png';
 
 import marker from '../../images/marker.png';
 import markerActive from '../../images/marker-active.png';
 
-import {show as showToast} from '../Toast/actions';
+// import {show as showToast} from '../Toast/actions';
 
 class GBMarker extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class GBMarker extends Component {
     this.props.selectedRestaurant(id, this.props.position);
     document.getElementById(id).scrollIntoView();
     
-    this.props.showToast(this.props.datas.title);
+    // this.props.showToast(this.props.datas.title);
   }
 
   render() {
@@ -75,7 +76,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
   selectedRestaurant,
-  showToast,
+  // showToast,
   itineraryStepsCleared
 }
 

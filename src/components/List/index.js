@@ -6,9 +6,11 @@ import classNames from 'classnames';
 import { includes } from 'lodash';
 
 import { listType } from '../../actions';
-import ListItem from './list-item';
+import ListItem from './components/list-item';
 import texts from '../../constants/texts';
 import './index.css';
+
+import Header from './components/header';
 
 class List extends Component {
   render() {
@@ -16,7 +18,7 @@ class List extends Component {
 
     const restaurants = this.props.restaurants.map((restaurant, index) => {
       const isActive = Number(match.params.id_restaurant) === restaurant.id
-      return <ListItem {...restaurant} isActive={isActive} key={`ListItem-${index}`}/>
+      return <ListItem {...restaurant} isActive={isActive} key={restaurant.id}/>
     }).filter((restaurant) => {
       if (this.props.type === 'all') { return true; }
       return this.props.type === 'my' && includes(this.props.favs, restaurant.props.id);
@@ -51,37 +53,3 @@ const mapStateToProps = state => ({
 });
 
 export default withRouter(connect(mapStateToProps, {})(List));
-
-
-function mapStateToPropsHeader(state) {
-  return {
-    currentIndex: state.restaurant.currentIndex,
-    type: state.list.type,
-    favs: state.restaurants.favs,
-  }
-}
-
-const mapDispatchToProps = {
-  listType
-}
-
-const Header = connect(mapStateToPropsHeader, mapDispatchToProps)(class Header extends Component {
-  render() {
-    const {listType, type, favs} = this.props;
-    return (
-      <section className='Header'>
-        <button onClick={() => listType('my')} type='button' className={classNames('reset', { active: type === 'my'})}>
-          <p>
-            Ma liste
-          </p>
-            <sup className='icon-fav'>
-            {(favs.length > 0) && <span>{favs.length}</span>}
-            </sup>
-        </button>
-        <button onClick={() => listType('all')} type='button' className={classNames('reset', { active: type === 'all'})}>
-          <p>Tout</p>
-        </button>
-      </section>
-    )
-  }
-});

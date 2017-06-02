@@ -5,9 +5,9 @@ import { map, sum } from 'lodash';
 import v from 'voca';
 
 import './index.css';
-import texts from '../../constants/texts';
+import texts from 'constants/texts';
 
-import { itinerarySteps, itineraryStepsCleared } from '../../actions';
+import { itinerarySteps, itineraryStepsCleared } from './modules';
 
 
 class Itinerary extends React.Component {
@@ -91,7 +91,7 @@ class Itinerary extends React.Component {
 const ItinerarySteps = (props) => {
   let renderStep = (instruction, index) => {
     return ( 
-      <li key={ Date.now() + index } data-order={index + 1}>
+      <li key={ index } data-order={index + 1}>
         <p dangerouslySetInnerHTML={{__html: instruction.instructions}} />
         <section className='infos'>
           <p>

@@ -1,0 +1,1 @@
+export const REQUEST_PENDING = 'common/REQUEST_PENDING';

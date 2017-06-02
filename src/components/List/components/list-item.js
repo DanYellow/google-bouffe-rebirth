@@ -4,10 +4,11 @@ import classNames from 'classnames';
 import { withRouter, Link } from 'react-router-dom';
 import { some, includes } from 'lodash'
 
-import { selectedRestaurant, toggleFav, toggleSurveyItem, itineraryStepsCleared } from '../../actions';
-import texts from '../../constants/texts';
+import { selectedRestaurant, toggleFav } from 'containers/App/modules';
+import { itineraryStepsCleared } from 'components/Itinerary/modules';
+// , toggleFav, toggleSurveyItem, itineraryStepsCleared } from '../../actions';
+import texts from 'constants/texts';
 
-import './index.css';
 
 const itinerarySVG = {__html:`
 <svg version="1.1" class="path" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -96,14 +97,14 @@ const mapStateToProps = (state, ownProps) => {
     currentIndex,
     mapPosition,
     favs,
-    survey: state.survey.proposals
+    survey: {}// state.survey.proposals
   }
 };
 
 const mapDispatchToProps = {
   selectedRestaurant,
   toggleFav,
-  toggleSurveyItem,
+  toggleSurveyItem: {},
   itineraryStepsCleared
 };
 

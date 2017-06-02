@@ -7,8 +7,8 @@ import { GoogleMap, DirectionsRenderer, Marker } from 'react-google-maps';
 import { default as ScriptLoader } from 'react-google-maps/lib/async/ScriptjsLoader';
 
 import GBMarker from './marker';
-import Loader from './loader';
-import { mapIsLoaded } from '../../actions';
+import Loader from 'components/Loader';
+import { mapIsLoaded } from './modules';
 
 let scriptLoaderOptions = {
   hostname: 'maps.googleapis.com',

@@ -30,7 +30,7 @@ class SurveyDisplay extends React.Component {
       <ul className='proposals'>
         {proposals.map((proposal, index) => {
           return (
-            <li key={`proposal-${index}`}>
+            <li key={`proposal-${proposal.id}`}>
               <button className='reset' type='button' disabled={isDisabled}
               onClick={() => this.props.voteForAProposal(hash, proposal.id)}>
                 <h1>{proposal.title}</h1>
