@@ -21,7 +21,7 @@ class App extends Component {
   }
   
   render() {
-    const {match, restaurants, survey} = this.props;
+    const { match, restaurants, survey } = this.props;
     let restaurantsSorted = restaurants.map((restaurant, index) => {
       restaurant.id = index + 1;
       return restaurant;
@@ -48,7 +48,7 @@ class App extends Component {
             <Locator restaurants={restaurantsSorted} match={match} location={location} survey={survey} />
           )} />
 
-          <Route path={`${match.url}:id_restaurant`} render={({match, location}) => (
+          <Route path={`${match.url}:id_restaurant(\\d+)`} render={({match, location}) => (
             <Locator restaurants={restaurantsSorted} match={match} location={location} survey={survey} />
           )} />
 

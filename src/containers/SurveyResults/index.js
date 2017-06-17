@@ -1,31 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { renderComponent, compose, branch, lifecycle } from 'recompose'
 
-// import './index.css';
-import { getSurveyResults } from './modules';
+import './index.css'
+import { getSurveyResults } from './modules'
 
-import Results from './components/results';
+import Results from './components/results'
 
-// UTILISER RECOMPOSE !!
+const SurveyResults = (props) => {
+  const {results = []} = props
 
-
-class SurveyResults extends React.Component {
-  componentDidMount() {
-    const hash = this.props.match.params.hash;
-
-    if (hash) {
-      this.props.getSurveyResults(hash);
-    }
-  }
-
-  render() {
-    const {results} = this.props;
-
-    if (Object.keys(results).length) { return (<Results results={results.votes} />) }
-    if (!Object.keys(results).length) { return (<p>Chargement...</p>)}
-  }
+  return (<Results results={results.votes} />)
 }
+
+const Loader = () => (<p>Chargement...</p> )
 
 const mapStateToProps = (state) => {
   return {
@@ -37,4 +26,21 @@ const mapDispatchToProps = {
   getSurveyResults
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SurveyResults));
+const enhance = compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  lifecycle({
+      componentDidMount() {
+        const hash = this.props.match.params.hash;
+          if (hash) {
+            this.props.getSurveyResults(hash);
+          }
+      }
+  }),
+
+  branch(
+    (props) => Object.keys(props.results).length === 0,
+    renderComponent(Loader)
+  )
+)(SurveyResults)
+
+export default withRouter(enhance);

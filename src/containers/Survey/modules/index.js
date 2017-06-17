@@ -177,7 +177,6 @@ export const getProposalsForSurvey = (hash) => {
       )
     }).catch((error) => {
       dispatch(requestPending(false))
-      console.log('getProposalsForSurvey', error);
     })
   }
 }

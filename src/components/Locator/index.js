@@ -12,7 +12,7 @@ import Survey from 'components/Survey';
 
 const Locator = ({restaurants, match, location, survey}) => {
   const currentRestaurant = find(restaurants, {id: Number(match.params.id_restaurant)});
-  console.log('survey', survey);
+
   return (
     <section className='wrapper'>
       {currentRestaurant && <Helmet><title>{currentRestaurant.title}</title></Helmet>}
