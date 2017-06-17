@@ -25,7 +25,7 @@
 }
 
 .List {
-  width: 340px;
+  width: 100%;
   /* margin-top: 34px; */
 }
 
@@ -38,6 +38,7 @@
 .List li section .toolbox {
   display: flex;
   align-items: flex-start;
+  justify-content: center;
   margin-top: 25px;
 }
 
@@ -107,6 +108,7 @@
   margin-top: 20px;
   font-family: 'Georgia', serif;
   font-style: italic;
+  text-align: center;
 }
 
 .List li .description:before {
@@ -120,7 +122,7 @@
 .ListWrapper .Header {
   display: flex;
   position: static;
-  width: 340px;
+  width: 100%;
   background-color: white;
   justify-content: space-around;
   padding-top: 15px;
@@ -302,5 +304,20 @@
     100% {
       opacity: .5;
     }
+}
 
+
+@media (max-width: 600px) {
+  .ListWrapper {
+    left: 0;
+    right: 0;
+    width: auto;
+    top: 10px;
+    border-top: 2px solid #da032c;
+    height: 100%;
+  }
+
+  .survey {
+    visibility: hidden;
+  }
 }

@@ -132,3 +132,64 @@ export const voteForAProposal = (hash, id) => {
     });
   }
 };
+
+const createSurveySuccess = (response) => {
+  return {
+    type: CREATE_SURVEY,
+    payload: {
+      response
+    }
+  }
+}
+
+export const createSurvey = (restaurants) => {
+  return (dispatch) => {
+    dispatch(requestPending(true))
+    return GBAPIManager.createSurvey(restaurants).then((response) => {
+      dispatch(requestPending(false))
+      dispatch(
+        createSurveySuccess(response)
+      )
+    }).catch((error) => {
+      dispatch(requestPending(false))
+      console.error('er', error);
+    })
+  }
+};
+
+
+const getProposalsForSurveySuccess = (response) => {
+  return {
+    type: GET_SURVEY_SUCCESS,
+    payload: {
+      response
+    }
+  }
+}
+
+export const getProposalsForSurvey = (hash) => {
+  return (dispatch) => {
+    dispatch(requestPending(true))
+    return GBAPIManager.getSurvey(hash).then((response) => {
+      dispatch(requestPending(false))
+      dispatch(
+        getProposalsForSurveySuccess(response)
+      )
+    }).catch((error) => {
+      dispatch(requestPending(false))
+      console.log('getProposalsForSurvey', error);
+    })
+  }
+}
+
+export const cancelSurvey = () => ({
+  type: CANCEL_SURVEY,
+})
+
+export const deleteExistingSurvey = () => ({
+  type: DELETE_EXISTING_SURVEY,
+})
+
+export const displayExistingSurvey = () => ({
+  type: DISPLAY_EXISTING_SURVEY,
+})

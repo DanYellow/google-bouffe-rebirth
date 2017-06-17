@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import './index.css';
+// import './index.css';
 import { getSurveyResults } from './modules';
 
 import Results from './components/results';

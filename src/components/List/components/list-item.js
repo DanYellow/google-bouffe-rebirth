@@ -50,7 +50,6 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
               selectedRestaurant(id, position); 
               itineraryStepsCleared() }}
             className='reset'>
-            
           <h1>
           {title}
           {isFav && <sup className='icon-fav'></sup> }
@@ -86,7 +85,7 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
               type='button'
               title={(!surveyAvailable) ? `Vous ne pouvez mettre que ${LIMIT_SURVEY_PROPOSALS} propositions maximum` : null}
               disabled={!surveyAvailable} 
-              className='reset' onClick={() => toggleRestaurant(surveyObject)}>
+              className='reset survey' onClick={() => toggleRestaurant(surveyObject)}>
               <span className={classNames('icon', {'icon-survey-add': !isInSurvey, 'icon-survey-del': isInSurvey})} />
               <span className='label'>{!isInSurvey && texts.add_survey}
               {isInSurvey && texts.del_survey}</span>

@@ -2,15 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import v from 'voca';
 
-import texts from '../../constants/texts';
+import texts from 'constants/texts';
 import './index.css';
-import { toggleSurveyItem, cancelSurvey, createSurvey,
+import { toggleRestaurant, cancelSurvey, createSurvey,
           deleteExistingSurvey, displayExistingSurvey
-       } from '../../actions';
+       } from 'containers/Survey/modules';
 
 
 export const Survey = ({
-    surveyContent, toggleSurveyItem, cancelSurvey, 
+    surveyContent, toggleRestaurant, cancelSurvey, 
     createSurvey, url, inProgress, isRequestPending,
     displayExistingSurvey, deleteExistingSurvey
   }) => {
@@ -36,7 +36,7 @@ export const Survey = ({
         <ul className='choices'>
           {surveyContent.map((item, index) => {
             return (<li key={`choice-${index}`}>
-              <button className='reset' disabled={isDisabled} onClick={() => toggleSurveyItem(item)} type='button'>
+              <button className='reset' disabled={isDisabled} onClick={() => toggleRestaurant(item)} type='button'>
                 <p>{item.title}</p>
                 <span className='icon-close' />
               </button>
@@ -111,7 +111,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = {
-  toggleSurveyItem,
+  toggleRestaurant,
   cancelSurvey,
   createSurvey,
   displayExistingSurvey,

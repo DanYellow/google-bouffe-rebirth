@@ -5,8 +5,8 @@ import { filter } from 'lodash';
 import { Helmet } from 'react-helmet'; 
 
 import texts from '../../constants/texts';
-import './index.css';
-import { getProposalsForSurvey, voteForAProposal } from '../../actions';
+// import './index.css';
+import { getProposalsForSurvey, voteForAProposal } from './modules';
 
 class SurveyDisplay extends React.Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class SurveyDisplay extends React.Component {
     this.props.getProposalsForSurvey(hash);
   }
 
-  _renderProposals({proposals}) {
+  renderProposals({proposals}) {
     const hash = this.props.match.params.hash;
     const isDisabled = (this.props.voteConfirmation || typeof this.props.oldVote !== 'undefined') ? true : false;
 
@@ -102,7 +102,7 @@ class SurveyDisplay extends React.Component {
           Alors ce midi, <br/>
           on se fait quoi ?
         </h1>
-        {surveyContent.response && this._renderProposals(surveyContent.response) }
+        {surveyContent.response && this.renderProposals(surveyContent.response) }
         {surveyContent.error && this._renderSurveyErrorTpl() }
 
         {(voteConfirmation && surveyContent.response) && this._renderVoteConfirmationTpl() }

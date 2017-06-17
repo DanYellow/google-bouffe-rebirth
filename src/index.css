@@ -81,3 +81,10 @@
 .icon-checkmark:before {
   content: "\e906";
 }
+
+
+@media (max-width: 600px) {
+  body {
+    overflow: hidden;
+  }
+}

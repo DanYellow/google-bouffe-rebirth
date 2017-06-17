@@ -10,7 +10,7 @@ import { bindActionCreators } from 'redux';
 import { getRestaurants } from './modules';
 import './App.css';
 
-// import SurveyDisplayContainer from 'components/Survey/survey';
+// import SurveyContainer from 'components/Survey/survey';
 import SurveyResults from 'containers/SurveyResults';
 import Loader from 'components/Loader';
 import Locator from 'components/Locator';
@@ -66,7 +66,7 @@ class App extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     restaurants: state.restaurants.list || [],
-    // survey: state.survey.proposals.length > 0 || state.survey.url
+    survey: state.survey.proposals.length > 0 || state.survey.url
   }
 };
 

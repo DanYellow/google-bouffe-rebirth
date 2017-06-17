@@ -10,6 +10,8 @@ import GBMarker from './marker';
 import Loader from 'components/Loader';
 import { mapIsLoaded } from './modules';
 
+import './index.css'
+
 let scriptLoaderOptions = {
   hostname: 'maps.googleapis.com',
   pathname: '/maps/api/js',
@@ -98,7 +100,7 @@ class Map extends Component {
     this.defaultMapProps = {...this.defaultMapProps, ...{center: homePosition.position}}
 
     scriptLoaderOptions.loadingElement = <Loader />;
-    scriptLoaderOptions.containerElement = (<div style={{ minHeight: `${mapHeight}px` }} />);
+    scriptLoaderOptions.containerElement = (<div className='map' style={{ minHeight: `${mapHeight}px` }} />);
     scriptLoaderOptions.googleMapElement = (
       <GoogleMap
         ref={(map) => { 

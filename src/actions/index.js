@@ -9,15 +9,3 @@ export const toggleSurveyItem = (restaurant) => ({
   }
 });
 
-export const cancelSurvey = () => ({
-  type: ActionTypes.CANCEL_SURVEY,
-});
-
-
-export const deleteExistingSurvey = () => ({
-  type: ActionTypes.EXISTING_SURVEY_DELETE,
-});
-
-export const displayExistingSurvey = () => ({
-  type: ActionTypes.EXISTING_SURVEY_DISPLAY,
-});
