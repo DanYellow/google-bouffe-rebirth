@@ -48,9 +48,6 @@ class Itinerary extends React.Component {
       itinerary = itinerary.routes[0].legs[0].steps
     }
 
-
-
-
     return (
       <div className='ItineraryWrapper'>
         <header>
@@ -113,7 +110,7 @@ const ItinerarySteps = (props) => {
 const mapStateToProps = state => ({
   mapIsLoaded: state.map.isLoaded,
   itinerary: state.itinerary.steps,
-  homePosition: state.restaurants.list.home_position.position
+  homePosition: state.restaurants.home.position
 });
 
 const mapDispatchToProps = {

@@ -5,9 +5,11 @@ import { withRouter, Link } from 'react-router-dom';
 import { some, includes } from 'lodash'
 
 import { selectedRestaurant, toggleFav } from 'containers/App/modules';
+import { toggleRestaurant } from 'containers/Survey/modules';
 import { itineraryStepsCleared } from 'components/Itinerary/modules';
 // , toggleFav, toggleSurveyItem, itineraryStepsCleared } from '../../actions';
 import texts from 'constants/texts';
+import { LIMIT_SURVEY_PROPOSALS } from 'common/constants';
 
 
 const itinerarySVG = {__html:`
@@ -28,10 +30,12 @@ const itinerarySVG = {__html:`
 <rect class="path-4" x="28.196" y="23.269" transform="matrix(-0.8689 -0.4949 0.4949 -0.8689 43.9088 60.3205)" fill="#010202" width="3.491" height="2.155"/>
 </svg> `}
 
-const ListItem = ({title, description, address, id, isActive, selectedRestaurant, position, toggleFav, toggleSurveyItem, favs, match, survey, itineraryStepsCleared}) => {
+
+
+const ListItem = ({title, description, address, id, isActive, selectedRestaurant, position, toggleFav, toggleRestaurant, favs, match, survey, itineraryStepsCleared}) => {
   const isFav = includes(favs, id);
   const isInSurvey = some(survey, {id: id});
-  const surveyAvailable = ((survey.length === 4 && isInSurvey) || survey.length < 4) ? true : false;
+  const surveyAvailable = ((survey.length === LIMIT_SURVEY_PROPOSALS && isInSurvey) || survey.length < LIMIT_SURVEY_PROPOSALS) ? true : false;
   const surveyObject = {
     title,
     description,
@@ -78,7 +82,11 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
             </li>}
 
           <li>
-            <button type='button' disabled={!surveyAvailable} className='reset' onClick={() => toggleSurveyItem(surveyObject)}>
+            <button 
+              type='button'
+              title={(!surveyAvailable) ? `Vous ne pouvez mettre que ${LIMIT_SURVEY_PROPOSALS} propositions maximum` : null}
+              disabled={!surveyAvailable} 
+              className='reset' onClick={() => toggleRestaurant(surveyObject)}>
               <span className={classNames('icon', {'icon-survey-add': !isInSurvey, 'icon-survey-del': isInSurvey})} />
               <span className='label'>{!isInSurvey && texts.add_survey}
               {isInSurvey && texts.del_survey}</span>
@@ -93,18 +101,19 @@ const ListItem = ({title, description, address, id, isActive, selectedRestaurant
 const mapStateToProps = (state, ownProps) => {
   let {restaurant: {currentIndex, mapPosition}} = state;
   let {restaurants: {favs}} = state;
+
   return {
     currentIndex,
     mapPosition,
     favs,
-    survey: {}// state.survey.proposals
+    survey: state.survey.proposals
   }
 };
 
 const mapDispatchToProps = {
   selectedRestaurant,
   toggleFav,
-  toggleSurveyItem: {},
+  toggleRestaurant,
   itineraryStepsCleared
 };
 

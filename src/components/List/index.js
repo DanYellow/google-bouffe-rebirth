@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom';
 import classNames from 'classnames';
 import { includes } from 'lodash';
 
-import { listType } from '../../actions';
 import ListItem from './components/list-item';
 import texts from '../../constants/texts';
 import './index.css';

@@ -10,14 +10,16 @@ const TOGGLE_FAV = 'google-bouffe/restaurants/TOGGLE_FAV';
 const initialStateRestaurants = {
   mapPosition: {lat: 48.857511, lng: 2.373364},
   list: [],
-  favs: JSON.parse(window.localStorage.getItem('favs')) || [],
+  favs: [],
+  home: {}
 }
 
 export default (state = initialStateRestaurants, action) => {
   switch (action.type) {
     case FETCH_SUCCESS:
       return { ...state, 
-        list: action.payload.restaurants
+        list: action.payload.restaurants,
+        home: action.payload.home_position
       }
       
     case TOGGLE_FAV:
@@ -50,6 +52,10 @@ const getRestaurantsSuccess = (response) => ({
   payload: response
 });
 
+const getRestaurantsFailed = () => ({
+  type: FETCH_FAILED,
+  payload: {error: true}
+})
 
 export const getRestaurants = () => {
   return (dispatch) => {
@@ -57,6 +63,9 @@ export const getRestaurants = () => {
       .then(response => response.json())
       .then((response) => {
         dispatch(getRestaurantsSuccess(response))
+      })
+      .then((response) => {
+        dispatch(getRestaurantsFailed(response))
       });
   }
 }

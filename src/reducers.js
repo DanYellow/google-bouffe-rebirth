@@ -5,6 +5,8 @@ import {default as list} from './components/List/modules';
 import {default as itinerary} from './components/Itinerary/modules';
 import {default as map} from './components/Map/modules';
 
+import {default as survey} from './containers/Survey/modules';
+
 import {requestsManager as requests} from './common/reducers';
 
 const reducer = combineReducers({
@@ -13,7 +15,8 @@ const reducer = combineReducers({
   list,
   itinerary,
   map,
-  requests
+  requests,
+  survey
 });
 
 export default reducer;

@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
-import {
-  Route,
-} from 'react-router-dom';
-import { Helmet } from 'react-helmet'; 
+import React from 'react';
+import { Route } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 import { find, includes } from 'lodash';
 

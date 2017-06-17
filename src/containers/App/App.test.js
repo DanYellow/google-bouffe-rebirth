@@ -6,9 +6,9 @@ import configureStore from 'redux-mock-store';
 const mockStore = configureStore();
 
 
-console.log('mockStore({ restaurants: {} })', mockStore({ state: {} }).getState()
-  );
+// console.log('mockStore({ restaurants: {} })', mockStore({ state: {} })
+//   );
 
 it('renders without crashing', () => {
-   shallow(<App store={mockStore({ restaurants: {} })} />);
+   shallow(<App />);
 });

@@ -80,9 +80,9 @@ class Map extends Component {
     if (window.google) {
       const homeIconSize = 50;
       const homeIcon = {
-              url: homePosition.icon,
-              scaledSize: new window.google.maps.Size(homeIconSize, homeIconSize)
-            };
+        url: homePosition.icon,
+        scaledSize: new window.google.maps.Size(homeIconSize, homeIconSize)
+      };
       
       markers.push(
         <Marker key='homeid' {...homePosition} icon={homeIcon} />
@@ -134,8 +134,8 @@ const mapStateToProps = (state, ownProps) => {
     restaurant: {currentIndex},
     restaurant:{mapPosition}
   } = state;
-  const homePosition = state.restaurants.list.home_position || {};
-
+  const homePosition = state.restaurants.home || {};
+  
   return {
     currentIndex: currentIndex,
     mapPosition: mapPosition,

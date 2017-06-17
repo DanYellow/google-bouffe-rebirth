@@ -10,8 +10,8 @@ import { bindActionCreators } from 'redux';
 import { getRestaurants } from './modules';
 import './App.css';
 
-import SurveyDisplayContainer from 'components/Survey/survey';
-import SurveyResultsContainer from 'components/Survey/results';
+// import SurveyDisplayContainer from 'components/Survey/survey';
+import SurveyResults from 'containers/SurveyResults';
 import Loader from 'components/Loader';
 import Locator from 'components/Locator';
 
@@ -54,11 +54,9 @@ class App extends Component {
 
           {/*<Route exact path={`${match.url}survey/:hash`} render={({match, location}) => (
             <SurveyDisplayContainer match={match} />
-          )} />
+          )} />*/}
 
-          <Route exact path={`${match.url}survey/results/:hash`} render={SurveyResultsContainer} />*/}
-
-          
+          <Route exact path={`${match.url}survey/results/:hash`} render={SurveyResults} />
         </Switch>
       </div>
     );

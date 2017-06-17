@@ -1,4 +1,3 @@
-
 const LIST_TYPE = 'google-bouffe/list/LIST_TYPE';
 
 const initialState = {

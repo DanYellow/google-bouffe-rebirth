@@ -58,53 +58,7 @@ export const getProposalsForSurvey = (hash) => {
   }
 }
 
-const voteForAProposalSuccess = (response) => {
-  return {
-    type: ActionTypes.VOTE_PROPOSAL,
-    payload: {
-      response: response.response
-    }
-  }
-}
 
-export const voteForAProposal = (hash, id) => {
-  return (dispatch) => {
-    dispatch(requestPending(true))
-    return GBAPIManager.vote(hash, id).then((response) => {
-      dispatch(requestPending(false))
-      dispatch(
-        voteForAProposalSuccess(response)
-      )
-    }).catch((error) => {
-      dispatch(requestPending(false))
-      console.error('voteForAProposal', error);
-    })
-  }
-};
-
-const getSurveyResultsSuccess = (response) => {
-  return {
-    type: ActionTypes.SURVEY_RESULTS,
-    payload: {
-      results: response
-    }
-  }
-}
-
-export const getSurveyResults = (hash) => {
-  return (dispatch) => {
-    dispatch(requestPending(true))
-    return GBAPIManager.getResults(hash).then((response) => {
-      dispatch(requestPending(false))
-      dispatch(
-        getSurveyResultsSuccess(response)
-      )
-    }).catch((error) => {
-      dispatch(requestPending(false))
-      console.error('getSurveyResults', error);
-    })
-  }
-};
 
 
 

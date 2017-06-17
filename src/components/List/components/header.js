@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
 import {listType} from '../modules';
 
 const Header = (props) => {
-
     const {listType, type, favs} = props;
     return (
       <section className='Header'>
@@ -24,7 +23,6 @@ const Header = (props) => {
     )
   
 };
-
 
 function mapStateToProps(state) {
   return {

@@ -51,9 +51,11 @@ class GBMarker extends Component {
       markerPath = markerFav;
     }
 
-    const markerIcon = { url: markerPath,
-                         scaledSize: new window.google.maps.Size(markerSize, markerSize) };
-    
+    const markerIcon = {
+      url: markerPath,
+      scaledSize: new window.google.maps.Size(markerSize, markerSize) 
+    };
+
     return (
       <Marker {...this.props} 
         icon={markerIcon}

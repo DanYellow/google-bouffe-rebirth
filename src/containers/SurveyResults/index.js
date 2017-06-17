@@ -1,16 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Helmet } from 'react-helmet'; 
 
-
-// import texts from '../../constants/texts';
 import './index.css';
-import { getSurveyResults } from '../../actions';
+import { getSurveyResults } from './modules';
+
+import Results from './components/results';
+
+// UTILISER RECOMPOSE !!
 
 
 class SurveyResults extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     const hash = this.props.match.params.hash;
 
     if (hash) {
@@ -18,23 +19,10 @@ class SurveyResults extends React.Component {
     }
   }
 
-  _renderResults(results) {
-    return (
-      <div>
-        <Helmet><title>Résultat sondage</title></Helmet>
-        <ul>
-          {results.reverse().map((vote, index) => {
-            return <li key={`result-${index}`}> { vote.title } : { vote.nbResponses }</li>
-          })}
-        </ul>
-      </div>
-    )
-  }
-
   render() {
     const {results} = this.props;
 
-    if (Object.keys(results).length) { return this._renderResults(results.votes)}
+    if (Object.keys(results).length) { return (<Results results={results.votes} />) }
     if (!Object.keys(results).length) { return (<p>Chargement...</p>)}
   }
 }

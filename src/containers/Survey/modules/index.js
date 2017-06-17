@@ -1,11 +1,18 @@
-export const CREATE_SURVEY      = 'google-bouffe/survey/CREATE_SURVEY';
-export const GET_SURVEY_SUCCESS = 'google-bouffe/survey/GET_SURVEY_SUCCESS';
-export const VOTE_PROPOSAL      = 'google-bouffe/survey/VOTE_PROPOSAL';
-export const SURVEY_RESULTS     = 'google-bouffe/survey/SURVEY_RESULTS';
-export const TOGGLE_SURVEY      = 'google-bouffe/survey/TOGGLE_SURVEY';
-export const CANCEL_SURVEY      = 'google-bouffe/survey/CANCEL_SURVEY';
-export const EXISTING_SURVEY_DISPLAY      = 'google-bouffe/survey/EXISTING_SURVEY_DISPLAY';
-export const EXISTING_SURVEY_DELETE      = 'google-bouffe/survey/EXISTING_SURVEY_DELETE';
+import { requestPending } from 'common/actions';
+import { gbapimanager as GBAPIManager } from 'utils/gb-apimanager';
+
+import { some } from 'lodash'
+
+export const CREATE_SURVEY           = 'google-bouffe/survey/CREATE_SURVEY';
+export const GET_SURVEY_SUCCESS      = 'google-bouffe/survey/GET_SURVEY_SUCCESS';
+export const VOTE_PROPOSAL           = 'google-bouffe/survey/VOTE_PROPOSAL';
+export const DISPLAY_RESULTS         = 'google-bouffe/survey/DISPLAY_RESULTS';
+
+export const TOGGLE_SURVEY_CHOICE    = 'google-bouffe/survey/TOGGLE_SURVEY_CHOICE';
+export const CANCEL_SURVEY           = 'google-bouffe/survey/CANCEL_SURVEY';
+
+export const DISPLAY_EXISTING_SURVEY = 'google-bouffe/survey/DISPLAY_EXISTING_SURVEY';
+export const DELETE_EXISTING_SURVEY  = 'google-bouffe/survey/DELETE_EXISTING_SURVEY';
 
 
 const initialState = {
@@ -27,10 +34,10 @@ const survey = (state = initialState, action) => {
         inProgress: false,
       }
 
-    case TOGGLE_SURVEY:
+    case TOGGLE_SURVEY_CHOICE:
       let proposals = state.proposals;
 
-      if (proposals.includes(action.payload.restaurant)) {
+      if (some(proposals, action.payload.restaurant)) {
         proposals = proposals.filter((proposalsItem) => {
           return proposalsItem.id !== action.payload.restaurant.id;
         })
@@ -70,18 +77,18 @@ const survey = (state = initialState, action) => {
         ...{ voteConfirmation: action.payload.response }
       }
     
-    case SURVEY_RESULTS:
+    case DISPLAY_RESULTS:
       return { ...state,
         results: action.payload.results.response
       }
     
-    case EXISTING_SURVEY_DISPLAY:
+    case DISPLAY_EXISTING_SURVEY:
       return { ...state,
         proposals: [],
         inProgress: false,
       }
 
-    case EXISTING_SURVEY_DELETE:
+    case DELETE_EXISTING_SURVEY:
       window.localStorage.setItem('last_survey_hash', '')
       return { ...state,
         url: '',
@@ -92,4 +99,36 @@ const survey = (state = initialState, action) => {
   }
 }
 
-export default survey;
+export default survey
+
+
+export const toggleRestaurant = (restaurant) => ({
+  type: TOGGLE_SURVEY_CHOICE,
+  payload: {
+    restaurant
+  }
+})
+
+
+const voteForAProposalSuccess = (response) => {
+  return {
+    type: VOTE_PROPOSAL,
+    payload: {
+      response: response.response
+    }
+  }
+}
+
+export const voteForAProposal = (hash, id) => {
+  return (dispatch) => {
+    dispatch(requestPending(true))
+    return GBAPIManager.vote(hash, id).then((response) => {
+      dispatch(requestPending(false))
+      dispatch(
+        voteForAProposalSuccess(response)
+      )
+    }).catch((error) => {
+      dispatch(requestPending(false))
+    });
+  }
+};
