@@ -29,7 +29,6 @@ const Locator = ({restaurants, match, location, survey}) => {
           }
         }
       }/>
-
     </section>
   )
 }

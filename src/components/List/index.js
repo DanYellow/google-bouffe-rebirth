@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { includes } from 'lodash';
 
 import ListItem from './components/list-item';
-import texts from '../../constants/texts';
+import texts from 'constants/texts';
 import './index.css';
 
 import Header from './components/header';

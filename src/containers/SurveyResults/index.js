@@ -8,7 +8,7 @@ import { getSurveyResults } from './modules'
 
 import Results from './components/results'
 
-const SurveyResults = (props) => {
+export const SurveyResults = (props) => {
   const {results = []} = props
 
   return (<Results results={results.votes} />)

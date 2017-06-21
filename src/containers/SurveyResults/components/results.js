@@ -7,7 +7,7 @@ const Results = (props) => {
     <div>
       <Helmet><title>Résultat sondage</title></Helmet>
       <ul>
-        {results.reverse().map((vote, index) => {
+        {results && results.reverse().map((vote, index) => {
           return <li key={`result-${index}`}> { vote.title } : { vote.nbResponses }</li>
         })}
       </ul>

@@ -2,13 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
-import {listType} from '../modules';
+import { listType } from '../modules';
 
-const Header = (props) => {
-    const {listType, type, favs} = props;
+export const Header = ({ listType, type, favs = [] }) => {
     return (
       <section className='Header'>
-        <button onClick={() => listType('my')} type='button' className={classNames('reset', { active: type === 'my'})}>
+        <button onClick={ () => listType('my') } type='button' className={ classNames('reset', { active: type === 'my'}) }>
           <p>
             Ma liste
           </p>
@@ -16,13 +15,12 @@ const Header = (props) => {
             {(favs.length > 0) && <span>{favs.length}</span>}
             </sup>
         </button>
-        <button onClick={() => listType('all')} type='button' className={classNames('reset', { active: type === 'all'})}>
+        <button onClick={ () => listType('all') } type='button' className={ classNames('reset', { active: type === 'all'}) }>
           <p>Tout</p>
         </button>
       </section>
     )
-  
-};
+}
 
 function mapStateToProps(state) {
   return {

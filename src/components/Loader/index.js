@@ -2,8 +2,8 @@ import React from 'react';
 
 import './loader.css';
 
-import hamburger from '../../images/hamburger.svg';
-import texts from '../../constants/texts';
+import hamburger from 'images/hamburger.svg';
+import texts from 'constants/texts';
 
 const Loader = (props) => {
   return (

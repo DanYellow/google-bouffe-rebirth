@@ -14,12 +14,13 @@ export const CANCEL_SURVEY           = 'google-bouffe/survey/CANCEL_SURVEY';
 export const DISPLAY_EXISTING_SURVEY = 'google-bouffe/survey/DISPLAY_EXISTING_SURVEY';
 export const DELETE_EXISTING_SURVEY  = 'google-bouffe/survey/DELETE_EXISTING_SURVEY';
 
+
 const initialState = {
   url: window.localStorage.getItem('last_survey_hash') || '',
   proposals: [],
   results: {},
   inProgress: false,
-  voted: JSON.parse(window.localStorage.getItem('voted') || '[]'),
+  voted: JSON.parse(window.localStorage.getItem('voted')) || [],
   content: [] // contains response from API
 }
 
@@ -106,7 +107,7 @@ export const toggleRestaurant = (restaurant) => ({
   payload: {
     restaurant
   }
-});
+})
 
 
 const voteForAProposalSuccess = (response) => {
@@ -116,7 +117,7 @@ const voteForAProposalSuccess = (response) => {
       response: response.response
     }
   }
-};
+}
 
 export const voteForAProposal = (hash, id) => {
   return (dispatch) => {

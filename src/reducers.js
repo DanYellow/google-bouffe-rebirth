@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux';
+import { reducer as reduxFormReducer } from 'redux-form';
+
 
 import {default as restaurants, restaurant} from './containers/App/modules';
 import {default as list} from './components/List/modules';
@@ -16,7 +18,8 @@ const reducer = combineReducers({
   itinerary,
   map,
   requests,
-  survey
+  survey,
+  form: reduxFormReducer
 });
 
 export default reducer;

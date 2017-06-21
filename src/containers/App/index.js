@@ -12,6 +12,8 @@ import './App.css';
 
 // import SurveyContainer from 'components/Survey/survey';
 import SurveyResults from 'containers/SurveyResults';
+import AddRestaurant from 'containers/AddRestaurant';
+
 import Loader from 'components/Loader';
 import Locator from 'components/Locator';
 
@@ -46,6 +48,10 @@ class App extends Component {
         <Switch>
           <Route exact path={match.url} render={({match, location}) => (
             <Locator restaurants={restaurantsSorted} match={match} location={location} survey={survey} />
+          )} />
+
+          <Route exact path={`${match.url}add_restaurant`} render={({match, location}) => (
+            <AddRestaurant />
           )} />
 
           <Route path={`${match.url}:id_restaurant(\\d+)`} render={({match, location}) => (
