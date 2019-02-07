@@ -1,1 +1,0 @@
-export const CURRENT_INDEX = 'CURRENT_INDEX';

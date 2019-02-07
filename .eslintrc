@@ -1,0 +1,13 @@
+{
+  "extends": "airbnb",
+  "globals": {
+    "React": true,
+    "PureComponent": true,
+    "injectGlobal": true,
+    "Styled": true,
+    "css": true,
+    "PropType": true,
+    "Component": true,
+    "document": true
+  }
+}

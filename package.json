@@ -2,22 +2,43 @@
   "name": "google-bouffe-rebith",
   "version": "0.1.0",
   "private": true,
-  "devDependencies": {
-    "classnames": "^2.2.5",
-    "react-google-maps": "^4.11.0",
-    "react-scripts": "0.9.5",
-    "uuid": "^3.0.1"
-  },
   "dependencies": {
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "react-redux": "^5.0.3",
-    "redux": "^3.6.0"
+    "axios": "^0.18.0",
+    "lodash": "^4.17.11",
+    "prop-types": "^15.6.2",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "react-emotion": "^10.0.0",
+    "react-google-maps": "^9.4.5",
+    "react-redux": "^6.0.0",
+    "react-router": "^4.3.1",
+    "redux": "^4.0.1",
+    "underscore": "^1.9.1",
+    "voca": "^1.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-emotion": "^10.0.7",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.0",
+    "globby": "^9.0.0",
+    "jest": "^24.1.0",
+    "jest-emotion": "^10.0.7",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.29.2",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.1.14"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "npm run start:dev",
+    "start:dev": "webpack --config=config/webpack/dev.js",
+    "prod": "webpack --config=config/webpack/prod.js"
   }
 }
