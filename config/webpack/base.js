@@ -1,8 +1,11 @@
+const path = require('path');
 const webpack = require('webpack');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.jsx',
+  entry: ['babel-polyfill', './src/index.jsx'],
   resolve: {
+    modules: [path.resolve(__dirname, '../src'), 'node_modules'],
     extensions: ['.js', '.jsx'],
   },
   module: {
@@ -17,6 +20,9 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /(node_modules)/,
         loader: 'babel-loader',
+        options: {
+          cacheDirectory: false,
+        },
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
@@ -32,6 +38,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new CaseSensitivePathsPlugin(),
     new webpack.ProvidePlugin({
       Styled: ['react-emotion', 'default'],
       injectGlobal: ['react-emotion', 'injectGlobal'],
@@ -42,4 +49,10 @@ module.exports = {
       PureComponent: ['react', 'PureComponent'],
     }),
   ],
+  node: {
+    dgram: 'empty',
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
+  },
 };
