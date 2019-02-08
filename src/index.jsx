@@ -1,3 +1,15 @@
+/* eslint-disable */
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 
-ReactDOM.render(<div />, document.getElementById('root'));
+import { Home } from 'pages';
+
+console.warn('React', Home);
+
+ReactDOM.render(
+    <BrowserRouter>
+        <Home />
+    </BrowserRouter>,
+    document.getElementById('root')
+);
+// ReactDOM.render(<Home />, document.getElementById('root'));

@@ -1,13 +1,18 @@
 {
-  "extends": "airbnb",
-  "globals": {
-    "React": true,
-    "PureComponent": true,
-    "injectGlobal": true,
-    "Styled": true,
-    "css": true,
-    "PropType": true,
-    "Component": true,
-    "document": true
-  }
+    "extends": "airbnb",
+    "globals": {
+        "React": true,
+        "PureComponent": true,
+        "injectGlobal": true,
+        "Styled": true,
+        "css": true,
+        "PropTypes": true,
+        "Component": true,
+        "document": true
+    },
+    "rules": {
+        "react/jsx-one-expression-per-line": "off",
+        "linebreak-style": "off",
+        "indent": ["error", 4]
+    }
 }
