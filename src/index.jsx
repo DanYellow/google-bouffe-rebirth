@@ -2,14 +2,12 @@
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-import { Home } from 'pages';
-
-console.warn('React', Home);
+// import { Home } from 'pages';
+import Router from 'pages/router';
 
 ReactDOM.render(
     <BrowserRouter>
-        <Home />
+        <Router />
     </BrowserRouter>,
     document.getElementById('root')
 );
-// ReactDOM.render(<Home />, document.getElementById('root'));
