@@ -1,4 +1,11 @@
+import { Map } from 'components';
+
 export default () => {
     const name = 'Foo';
-    return <p>Hello {name}</p>;
+    return (
+        <>
+            <Map />
+            <p>Hello {name}</p>
+        </>
+    );
 };

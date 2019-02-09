@@ -1,19 +1,63 @@
 {
-    "extends": "airbnb",
-    "globals": {
-        "React": true,
-        "PureComponent": true,
-        "injectGlobal": true,
-        "Styled": true,
-        "css": true,
-        "PropTypes": true,
-        "Component": true,
-        "document": true
+    "parser": "babel-eslint",
+    "extends": ["airbnb", "prettier", "prettier/react"],
+    "plugins": ["react-hooks"],
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true
+        }
     },
     "rules": {
-        "react/jsx-one-expression-per-line": "off",
+        "no-var": "error",
         "linebreak-style": "off",
-        "react/jsx-indent": "off",
-        "indent": ["error", 4]
+        "react/prop-types": "off",
+        "import/no-named-as-default": "off",
+        "comma-dangle": "off",
+        "spaced-comment": "off",
+        "arrow-body-style": "warn",
+        "semi": "off",
+        "react/jsx-indent": [2, 4],
+        "react/jsx-indent-props": [2, 4],
+        "indent": ["error", 4, { "SwitchCase": 1 }],
+        "no-console": ["error", { "allow": ["warn", "error"] }],
+        "react-hooks/rules-of-hooks": "error",
+        "jsx-a11y/label-has-for": [
+            2,
+            {
+                "components": ["Label"],
+                "required": {
+                    "every": ["nesting", "id"]
+                },
+                "allowChildren": false
+            }
+        ],
+        "no-unused-expressions": ["error", { "allowTaggedTemplates": true }]
+    },
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "globals": {
+        "document": true,
+        "describe": true,
+        "it": true,
+        "expect": true,
+        "css": true,
+        "PropTypes": true,
+        "React": true,
+        "Styled": true,
+        "injectGlobal": true,
+        "PureComponent": true,
+        "Component": true,
+        "withRouter": true,
+        "codegen": true
+    },
+    "settings": {
+        "import/resolver": {
+            "webpack": {
+                "config": "configs/webpack/base.js"
+            }
+        }
     }
 }

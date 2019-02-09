@@ -1,0 +1,13 @@
+/**/*.test.js
+/**/*-test.js
+/**/*.xtest.jsx
+/**/*.xtest.js
+/**/*.test.jsx
+/**/*.stories.jsx
+/**/*.stories.js
+/**/*.xtest.js
+/**/*.mocks.js
+/**/*.codegeneted.js
+/**/codegen/**/*.js
+/configs/**/*.js
+/**/__mocks__/**

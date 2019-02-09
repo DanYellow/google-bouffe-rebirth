@@ -1,2 +1,1 @@
-/* eslint-disable */
-import /* codegen("src/components") */ 'src/utils/codegen/autoimport.js';
+import /* codegen("src/components") */ 'utils/codegen/autoimport.js';
