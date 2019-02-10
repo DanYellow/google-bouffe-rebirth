@@ -20,10 +20,10 @@ module.exports = {
     setupFiles: [
         '<rootDir>/configs/polyfills.js',
         '<rootDir>/configs/jest/setup.js',
-        'jest-localstorage-mock',
+        // 'jest-localstorage-mock',
     ],
     testMatch: ['<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}'],
-    testEnvironment: 'jest-environment-jsdom-global',
+    // testEnvironment: 'jest-environment-jsdom-global',
     testURL: 'http://localhost',
     transform: {
         '^.+\\.(js|jsx|mjs)$': '<rootDir>/node_modules/babel-jest',

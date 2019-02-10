@@ -36,6 +36,18 @@ module.exports = {
                 ],
             },
             {
+                test: /\.(woff(2)?|ttf|eot|svg)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'fonts/',
+                        },
+                    },
+                ],
+            },
+            {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader'],
             },
@@ -44,9 +56,9 @@ module.exports = {
     plugins: [
         new CaseSensitivePathsPlugin(),
         new webpack.ProvidePlugin({
-            Styled: ['react-emotion', 'default'],
-            injectGlobal: ['react-emotion', 'injectGlobal'],
-            css: ['react-emotion', 'css'],
+            styled: ['@emotion/styled', 'default'],
+            injectGlobal: ['emotion', 'injectGlobal'],
+            css: ['emotion', 'css'],
             React: 'react',
             PropTypes: ['prop-types'],
             Component: ['react', 'Component'],

@@ -20,7 +20,7 @@
         "react/jsx-indent": [2, 4],
         "react/jsx-indent-props": [2, 4],
         "indent": ["error", 4, { "SwitchCase": 1 }],
-        "no-console": ["error", { "allow": ["warn", "error"] }],
+        "no-console": ["error", { "allow": ["warn", "error", "log"] }],
         "react-hooks/rules-of-hooks": "error",
         "jsx-a11y/label-has-for": [
             2,
@@ -46,7 +46,7 @@
         "css": true,
         "PropTypes": true,
         "React": true,
-        "Styled": true,
+        "styled": true,
         "injectGlobal": true,
         "PureComponent": true,
         "Component": true,

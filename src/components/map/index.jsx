@@ -1,16 +1,45 @@
 import { compose } from 'redux';
 import { GoogleMap, withGoogleMap, withScriptjs } from 'react-google-maps';
 
-const Map = () => (
-    <GoogleMap
-        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-        loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `400px` }} />}
-        mapElement={<div style={{ height: `100%` }} />}
-        defaultZoom={8}
-        defaultCenter={{ lat: -34.397, lng: 150.644 }}
-    />
-);
+import { Marker } from 'components';
+
+const Map = props => {
+    const { locations } = props;
+
+    return (
+        <GoogleMap
+            {...props}
+            options={{
+                minZoom: 15,
+                fullscreenControl: false,
+                streetViewControl: false,
+                scaleControl: true,
+                clickableIcons: false,
+                mapTypeControl: false,
+                styles: [
+                    {
+                        featureType: 'all',
+                        stylers: [{ saturation: -40 }],
+                    },
+                    {
+                        featureType: 'road.arterial',
+                        elementType: 'geometry',
+                        stylers: [{ hue: '#d8c307' }, { saturation: 10 }],
+                    },
+                    {
+                        featureType: 'poi.business',
+                        elementType: 'labels',
+                        stylers: [{ visibility: 'off' }],
+                    },
+                ],
+            }}
+        >
+            {locations.restaurants.map(item => (
+                <Marker key={item.id} {...item} />
+            ))}
+        </GoogleMap>
+    );
+};
 
 const enhanced = compose(
     withScriptjs,
