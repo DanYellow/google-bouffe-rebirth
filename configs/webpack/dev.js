@@ -28,6 +28,16 @@ module.exports = merge(baseConfig, {
         port: 9000,
         open: true,
         overlay: true,
-        historyApiFallback: true,
+        historyApiFallback: {
+            rewrites: [
+                { from: /^\/locations\/main\.js/, to: '/main.js' },
+                { from: /^\/locations\/fonts\/./, to: '/fonts/' },
+                {
+                    from: /^\/locations\/fonts\/icomoon\.ttf/,
+                    to: '/fonts/icomoon.ttf',
+                },
+            ],
+        },
+        publicPath: '/',
     },
 });
