@@ -1,4 +1,6 @@
+import { compose } from 'redux';
 import styled from '@emotion/styled';
+import { withRouter } from 'react-router';
 
 import { Map, List } from 'components';
 import config from 'utils/config';
@@ -12,7 +14,7 @@ const App = styled.div`
     position: relative;
 `;
 
-export default () => {
+const Home = props => {
     const [locations, setLocations] = React.useState({});
 
     React.useEffect(() => {
@@ -25,10 +27,18 @@ export default () => {
         return null; // Future spiner
     }
 
+    const selectedLocation =
+        locations.restaurants.find(
+            item => item.id === Number(props.match.params.id)
+        ) || {};
+
     return (
         <>
             <App>
-                <List locations={locations} />
+                <List
+                    locations={locations}
+                    selectedLocationId={selectedLocation.id || null}
+                />
                 <Map
                     googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${
                         config.gmapKey
@@ -38,9 +48,14 @@ export default () => {
                     mapElement={<div style={{ height: '100%' }} />}
                     defaultZoom={16}
                     defaultCenter={{ lat: 45.497185, lng: -73.656612 }}
+                    center={selectedLocation.position}
                     locations={locations}
                 />
             </App>
         </>
     );
 };
+
+const enhanced = compose(withRouter);
+
+export default enhanced(Home);

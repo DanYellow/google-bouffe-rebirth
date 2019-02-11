@@ -10,6 +10,11 @@ const resources = {
             all: 'All',
             empty_quote: 'Hell is empty and all the devils are here',
             empty_quote_author: 'William Shakespeare',
+            add_to_fav: 'Add to favorites',
+            add_to_survey: 'Add to survey',
+            remove_to_survey: 'Remove from survey',
+            display_directions: 'Display directions',
+            remove_from_favorites: 'Remove from favorites',
         },
     },
     fr: {

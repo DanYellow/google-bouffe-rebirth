@@ -28,7 +28,7 @@ const Navigation = styled.nav`
         flex-direction: row;
         border-radius: 10% 10% 0% 0% / 10% 10% 10% 10%;
         background-color: white;
-        height: 42px;
+        height: 52px;
     }
 `;
 
@@ -41,7 +41,6 @@ const NavigationItem = styled.li`
     font-weight: bolder;
     font-size: 1.15rem;
     border-bottom: 3px solid transparent;
-
     border-bottom-color: ${props => (props.active ? '#d8c307' : 'transparent')};
 
     button {
@@ -58,10 +57,22 @@ const ListRestaurants = styled.ul`
     flex-direction: column;
 `;
 
+const ListRestaurantsWrapper = styled.div`
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    @media screen and (min-width: 1200px) {
+        overflow-y: hidden;
+        &:hover {
+            overflow-y: scroll;
+        }
+    }
+`;
 /* eslint-enable */
 
 export default props => {
     const { t } = useTranslation();
+    const { selectedLocationId } = props;
 
     const [restaurants, setRestaurants] = React.useState(
         props.locations.restaurants // eslint-disable-line
@@ -102,11 +113,17 @@ export default props => {
             </Navigation>
 
             {restaurants.length > 0 && (
-                <ListRestaurants>
-                    {restaurants?.map(item => (
-                        <ListItem key={item.id} {...item} />
-                    ))}
-                </ListRestaurants>
+                <ListRestaurantsWrapper>
+                    <ListRestaurants>
+                        {restaurants?.map(item => (
+                            <ListItem
+                                key={item.id}
+                                {...item}
+                                isActive={selectedLocationId === item.id}
+                            />
+                        ))}
+                    </ListRestaurants>
+                </ListRestaurantsWrapper>
             )}
 
             {restaurants.length === 0 && <ListEmpty />}

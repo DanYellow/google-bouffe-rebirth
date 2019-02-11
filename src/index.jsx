@@ -6,6 +6,7 @@ import 'i18n';
 
 import 'reset.css';
 import 'fonts.css';
+import 'icons.css';
 
 injectGlobal`
   html, body {
