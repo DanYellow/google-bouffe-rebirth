@@ -22,6 +22,12 @@ injectGlobal`
     background: none;
     border: 0;
   }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: normal;
+  }
 `;
 
 ReactDOM.render(

@@ -14,6 +14,8 @@ const App = styled.div`
     position: relative;
 `;
 
+const LocationSelectedContext = React.createContext('light');
+
 const Home = props => {
     const [locations, setLocations] = React.useState({});
 
@@ -35,22 +37,24 @@ const Home = props => {
     return (
         <>
             <App>
-                <List
-                    locations={locations}
-                    selectedLocationId={selectedLocation.id || null}
-                />
-                <Map
-                    googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${
-                        config.gmapKey
-                    }`}
-                    loadingElement={<div style={{ height: '100%' }} />}
-                    containerElement={<div style={{ height: '100%' }} />}
-                    mapElement={<div style={{ height: '100%' }} />}
-                    defaultZoom={16}
-                    defaultCenter={{ lat: 45.497185, lng: -73.656612 }}
-                    center={selectedLocation.position}
-                    locations={locations}
-                />
+                <LocationSelectedContext.Provider value="dark">
+                    <List
+                        locations={locations}
+                        selectedLocationId={selectedLocation.id || null}
+                    />
+                    <Map
+                        googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${
+                            config.gmapKey
+                        }`}
+                        loadingElement={<div style={{ height: '100%' }} />}
+                        containerElement={<div style={{ height: '100%' }} />}
+                        mapElement={<div style={{ height: '100%' }} />}
+                        defaultZoom={16}
+                        defaultCenter={{ lat: 45.497185, lng: -73.656612 }}
+                        center={selectedLocation.position}
+                        locations={locations}
+                    />
+                </LocationSelectedContext.Provider>
             </App>
         </>
     );

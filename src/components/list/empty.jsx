@@ -15,7 +15,7 @@ const Empty = styled.div`
     }
 
     span {
-        font-size: 0.725rem;
+        font-size: 0.85rem;
     }
 `;
 

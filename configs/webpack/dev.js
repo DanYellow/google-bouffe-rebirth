@@ -31,13 +31,17 @@ module.exports = merge(baseConfig, {
         historyApiFallback: {
             rewrites: [
                 { from: /^\/locations\/main\.js/, to: '/main.js' },
-                { from: /^\/locations\/fonts\/./, to: '/fonts/' },
+                // { from: /^\/locations\/fonts\/./, to: '/fonts/' },
                 {
-                    from: /^\/locations\/fonts\/icomoon\.ttf/,
+                    from: /^\locations\/fonts\/icomoon\.ttf/,
                     to: '/fonts/icomoon.ttf',
+                },
+                {
+                    from: /^\locations\/fonts\/icomoon\.woff/,
+                    to: '/fonts/icomoon.woff',
                 },
             ],
         },
-        publicPath: '/',
+        // publicPath: '/',
     },
 });

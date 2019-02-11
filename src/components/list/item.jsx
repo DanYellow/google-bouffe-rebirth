@@ -4,18 +4,19 @@ import { cx } from 'emotion';
 
 /* eslint-disable */
 const Item = styled.li`
-    a {
+    position: relative;
+    & > a {
         padding: 15px 18px;
         text-decoration: none;
         color: inherit;
         display: block;
 
         &:hover {
-            background-color: #d8c307;
+            background-color: #fff48e;
         }
 
         background-color: ${props =>
-            props.isActive ? '#d8c307' : 'transparent'};
+            props.isActive ? '#fff48e' : 'transparent'};
     }
 
     h3 {
@@ -23,80 +24,149 @@ const Item = styled.li`
         font-weight: normal;
         margin-bottom: 4px;
     }
-    p {
-        font-size: 0.85rem;
-        font-weight: lighter;
+
+    &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 18px;
+        height: 2px;
+        right: 0;
+        background-color: #b26809;
+        z-index: 400;
+        opacity: 0.35;
     }
 `;
 
-const Details = styled.section`
-    background-color: #d8c307;
+const Details = styled.ul`
+    background-color: #fff48e;
     padding: 0 18px 15px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: '. .' '. .';
+    grid-gap: 15px 7px;
 `;
 
-const Features = styled.ul`
+const Feature = styled.li`
     display: flex;
-    align-items: flex-start;
+    justify-content: center;
 `;
 
+// prettier-ignore
 const FeatureAction = styled.button`
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     .icon {
         font-size: 2.5rem;
     }
+
+    &:hover {
+        .icon-fav {
+            color: red;
+        }
+        .icon-fav:before {
+            content: ${props => (props.category === 'fav' ? "'\\e901'" : "'\\e900'")};
+        }
+    }
+`;
+
+const DiscountMessage = styled.p`
+    font-weight: bolder;
+    font-size: 0.8rem;
+    margin-top: 7px;
+`;
+
+const Address = styled.p`
+    font-size: 0.9rem;
+    font-weight: lighter;
 `;
 /* eslint-enable */
 
 export default props => {
     const { t } = useTranslation();
 
-    const { id, title, address, isActive } = props;
+    const { id, title, address, isActive, isFavorite, website } = props;
 
     return (
         <Item id={id} isActive={isActive}>
-            <NavLink to={`/locations/${id}`} activeClassName="selected">
+            <NavLink to={`/locations/${id}`}>
                 <h3>{title}</h3>
-                <p>{address}</p>
+                <Address>{address}</Address>
+                <DiscountMessage>{t('has_mg_discount')}</DiscountMessage>
             </NavLink>
             {isActive && (
                 <Details>
-                    <Features>
-                        <li>
+                    <Feature>
+                        <FeatureAction
+                            category="fav"
+                            type="button"
+                            title={t(
+                                isFavorite ? 'add_to_favs' : 'remove_from_favs'
+                            )}
+                            onClick={() => console.log('add_to_fav')}
+                            isFavorite={isFavorite}
+                        >
+                            <span
+                                className={cx(
+                                    { 'icon-fav': !isFavorite },
+                                    { 'icon-fav-no': isFavorite },
+                                    { icon: true }
+                                )}
+                            />
+                            <span>
+                                {t(
+                                    isFavorite
+                                        ? 'add_to_favs'
+                                        : 'remove_from_favs'
+                                )}
+                            </span>
+                        </FeatureAction>
+                    </Feature>
+                    <Feature>
+                        <FeatureAction
+                            category="directions"
+                            type="button"
+                            title={t('display_directions')}
+                            onClick={() => console.log('add_to_fav')}
+                        >
+                            <span
+                                className={cx(
+                                    { 'icon-fav': true },
+                                    { icon: true }
+                                )}
+                            />
+                            <span>{t('display_directions')}</span>
+                        </FeatureAction>
+                    </Feature>
+                    <Feature>
+                        <FeatureAction
+                            category="survey"
+                            type="button"
+                            title={t('add_to_survey')}
+                            onClick={() => console.log('add_to_fav')}
+                        >
+                            <span
+                                className={cx(
+                                    { 'icon-survey-add': true },
+                                    { icon: true }
+                                )}
+                            />
+                            <span> {t('add_to_survey')}</span>
+                        </FeatureAction>
+                    </Feature>
+                    {website && (
+                        <Feature>
                             <FeatureAction
+                                category="survey"
                                 type="button"
-                                title={t('add_to_fav')}
-                                onClick={() => console.log('add_to_fav')}
-                            >
-                                <span
-                                    className={cx(
-                                        { 'icon-fav': true },
-                                        { icon: true }
-                                    )}
-                                />
-                                <span>{t('add_to_fav')}</span>
-                            </FeatureAction>
-                        </li>
-                        <li>
-                            <FeatureAction
-                                type="button"
-                                title={t('display_directions')}
-                                onClick={() => console.log('add_to_fav')}
-                            >
-                                <span
-                                    className={cx(
-                                        { 'icon-fav': true },
-                                        { icon: true }
-                                    )}
-                                />
-                                <span>{t('display_directions')}</span>
-                            </FeatureAction>
-                        </li>
-                        <li>
-                            <FeatureAction
-                                type="button"
-                                title={t('add_to_survey')}
+                                as="a"
+                                href={website}
+                                title={t('go_to_website')}
                                 onClick={() => console.log('add_to_fav')}
                             >
                                 <span
@@ -105,10 +175,10 @@ export default props => {
                                         { icon: true }
                                     )}
                                 />
-                                <span> {t('add_to_survey')}</span>
+                                <span> {t('go_to_website')}</span>
                             </FeatureAction>
-                        </li>
-                    </Features>
+                        </Feature>
+                    )}
                 </Details>
             )}
         </Item>

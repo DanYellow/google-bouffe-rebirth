@@ -13,12 +13,18 @@ const ListContainer = styled.div`
     max-height: 85%;
     display: flex;
     flex-direction: column;
+    opacity: 0.65;
+
+    &:hover {
+        opacity: 1;
+    }
 
     @media screen and (max-width: 600px) {
         left: 50%;
         transform: translate(-50%, 0%);
         width: 97%;
-        max-height: 65%;
+
+        max-height: ${props => (props.hasSelectedLocation ? '35%' : '65%')};
     }
 `;
 
@@ -80,7 +86,7 @@ export default props => {
     const [activeTab, setActiveTab] = React.useState(1);
 
     return (
-        <ListContainer>
+        <ListContainer hasSelectedLocation={selectedLocationId}>
             <Navigation>
                 <ul>
                     <NavigationItem active={activeTab === 0}>
@@ -115,13 +121,16 @@ export default props => {
             {restaurants.length > 0 && (
                 <ListRestaurantsWrapper>
                     <ListRestaurants>
-                        {restaurants?.map(item => (
-                            <ListItem
-                                key={item.id}
-                                {...item}
-                                isActive={selectedLocationId === item.id}
-                            />
-                        ))}
+                        {restaurants
+                            ?.sort((a, b) => a.title > b.title)
+                            .map(item => (
+                                <ListItem
+                                    key={item.id}
+                                    {...item}
+                                    isActive={selectedLocationId === item.id}
+                                    isFavorite={Math.random() > 0.5}
+                                />
+                            ))}
                     </ListRestaurants>
                 </ListRestaurantsWrapper>
             )}
