@@ -30,7 +30,8 @@ module.exports = merge(baseConfig, {
         overlay: true,
         historyApiFallback: {
             rewrites: [
-                { from: /^\/locations\/main\.js/, to: '/main.js' },
+                { from: /^\/locations(\/\d+)?\/main\.js/, to: '/main.js' },
+                // { from: /^\/locations\/\d+\/main\.js/, to: '/main.js' },
                 // { from: /^\/locations\/fonts\/./, to: '/fonts/' },
                 {
                     from: /^\locations\/fonts\/icomoon\.ttf/,

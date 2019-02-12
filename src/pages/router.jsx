@@ -7,6 +7,7 @@ export default () => (
     <>
         <Route exact path="/" component={Home} />
         <Route exact path="/locations/:id" component={Home} />
+        <Route exact path="/locations/:id/directions" component={Home} />
         <Route path="/home" component={Home} />
     </>
 );

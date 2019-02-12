@@ -1,10 +1,15 @@
 import { compose } from 'redux';
-import { GoogleMap, withGoogleMap, withScriptjs } from 'react-google-maps';
+import {
+    GoogleMap,
+    withGoogleMap,
+    withScriptjs,
+    DirectionsRenderer,
+} from 'react-google-maps';
 
 import { Marker } from 'components';
 
 const Map = props => {
-    const { locations, selectedLocationId } = props;
+    const { locations, selectedLocationId, directions = null } = props;
 
     return (
         <GoogleMap
@@ -41,6 +46,12 @@ const Map = props => {
                     isSelected={selectedLocationId === item.id}
                 />
             ))}
+            {Object.keys(directions).length > 0 && (
+                <DirectionsRenderer
+                    options={{ suppressMarkers: true }}
+                    directions={directions}
+                />
+            )}
         </GoogleMap>
     );
 };

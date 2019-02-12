@@ -1,8 +1,8 @@
 export default {
-    home_position: {
+    home: {
         position: {
-            lat: 48.857511,
-            lng: 2.373364,
+            lat: 45.497253,
+            lng: -73.656472,
         },
         icon: './dlbi.png',
     },
@@ -44,7 +44,7 @@ export default {
             has_mg_discount: false,
         },
         {
-            id: Math.floor(Math.random() * 10000),
+            id: 4,
             position: {
                 lat: 45.496599,
                 lng: -73.655643,
@@ -56,7 +56,7 @@ export default {
             has_mg_discount: true,
         },
         {
-            id: Math.floor(Math.random() * 10000),
+            id: 5,
             position: {
                 lat: 45.498173,
                 lng: -73.657834,
@@ -68,7 +68,7 @@ export default {
             has_mg_discount: false,
         },
         {
-            id: Math.floor(Math.random() * 10000),
+            id: 6,
             position: {
                 lat: 45.497253,
                 lng: -73.656472,
@@ -78,7 +78,7 @@ export default {
             website: '',
         },
         {
-            id: Math.floor(Math.random() * 10000),
+            id: 7,
             position: {
                 lat: 45.49711,
                 lng: -73.655045,
@@ -90,7 +90,7 @@ export default {
             has_mg_discount: true,
         },
         {
-            id: Math.floor(Math.random() * 10000),
+            id: 8,
             position: {
                 lat: 45.495079,
                 lng: -73.655206,
@@ -102,7 +102,7 @@ export default {
             has_mg_discount: true,
         },
         {
-            id: Math.floor(Math.random() * 10000),
+            id: 9,
             position: {
                 lat: 45.494106,
                 lng: -73.655947,
@@ -114,7 +114,7 @@ export default {
             has_mg_discount: true,
         },
         {
-            id: Math.floor(Math.random() * 10000),
+            id: 10,
             position: {
                 lat: 45.495086,
                 lng: -73.651855,
@@ -126,7 +126,7 @@ export default {
             has_mg_discount: true,
         },
         {
-            id: Math.floor(Math.random() * 10000),
+            id: 11,
             position: {
                 lat: 45.495964,
                 lng: -73.650859,

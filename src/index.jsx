@@ -12,6 +12,7 @@ injectGlobal`
   html, body {
    font-size: 16px;
    font-family: 'OpenSans';
+   overflow: hidden;
   }
 
   button {

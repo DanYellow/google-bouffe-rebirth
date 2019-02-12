@@ -17,6 +17,9 @@ const resources = {
             display_directions: 'Directions',
             has_mg_discount: 'You have a discount with your MG ID',
             go_to_website: 'Website',
+            directions: 'Directions',
+            total_distance: 'Distance totale',
+            minutes_walk: 'minutes walk',
         },
     },
     fr: {
@@ -25,6 +28,7 @@ const resources = {
             all: 'Tous',
             empty_quote: 'L’enfer est vide et tous les démons sont ici',
             go_to_website: 'Site web',
+            directions: 'Itinéraire',
         },
     },
 };

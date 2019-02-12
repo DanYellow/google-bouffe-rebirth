@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { cx } from 'emotion';
 
@@ -78,6 +78,8 @@ const FeatureAction = styled.button`
     }
 `;
 
+const FeatureActionLink = FeatureAction.withComponent(Link);
+
 const DiscountMessage = styled.p`
     font-weight: bolder;
     font-size: 0.8rem;
@@ -131,9 +133,9 @@ export default props => {
                         </FeatureAction>
                     </Feature>
                     <Feature>
-                        <FeatureAction
+                        <FeatureActionLink
                             category="directions"
-                            type="button"
+                            to={`${id}/directions`}
                             title={t('display_directions')}
                             onClick={() => console.log('add_to_fav')}
                         >
@@ -144,7 +146,7 @@ export default props => {
                                 )}
                             />
                             <span>{t('display_directions')}</span>
-                        </FeatureAction>
+                        </FeatureActionLink>
                     </Feature>
                     <Feature>
                         <FeatureAction
