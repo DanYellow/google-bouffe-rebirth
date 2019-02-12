@@ -22,7 +22,6 @@ module.exports = {
         '<rootDir>/configs/jest/setup.js',
         // 'jest-localstorage-mock',
     ],
-    testMatch: ['<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}'],
     // testEnvironment: 'jest-environment-jsdom-global',
     testURL: 'http://localhost',
     transform: {

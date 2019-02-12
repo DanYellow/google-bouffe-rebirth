@@ -4,7 +4,7 @@ import { GoogleMap, withGoogleMap, withScriptjs } from 'react-google-maps';
 import { Marker } from 'components';
 
 const Map = props => {
-    const { locations } = props;
+    const { locations, selectedLocationId } = props;
 
     return (
         <GoogleMap
@@ -35,7 +35,11 @@ const Map = props => {
             }}
         >
             {locations.restaurants.map(item => (
-                <Marker key={item.id} {...item} />
+                <Marker
+                    key={item.id}
+                    {...item}
+                    isSelected={selectedLocationId === item.id}
+                />
             ))}
         </GoogleMap>
     );

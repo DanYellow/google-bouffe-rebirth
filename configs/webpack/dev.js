@@ -40,6 +40,10 @@ module.exports = merge(baseConfig, {
                     from: /^\locations\/fonts\/icomoon\.woff/,
                     to: '/fonts/icomoon.woff',
                 },
+                {
+                    from: /^\locations\/fonts\/OpenSans-Semibold-webfont\.woff/,
+                    to: '/fonts/OpenSans-Semibold-webfont.woff',
+                },
             ],
         },
         // publicPath: '/',

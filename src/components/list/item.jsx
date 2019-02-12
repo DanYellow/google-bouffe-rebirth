@@ -40,13 +40,12 @@ const Item = styled.li`
 
 const Details = styled.ul`
     background-color: #fff48e;
+    /* #fff48e; */
     padding: 0 18px 15px;
 
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: '. .' '. .';
-    grid-gap: 15px 7px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 `;
 
 const Feature = styled.li`
@@ -60,17 +59,21 @@ const FeatureAction = styled.button`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 0.8125rem;
 
     .icon {
         font-size: 2.5rem;
     }
 
     &:hover {
-        .icon-fav {
+        .icon-fav, .icon-fav-no {
             color: red;
         }
         .icon-fav:before {
-            content: ${props => (props.category === 'fav' ? "'\\e901'" : "'\\e900'")};
+            content: '\\e901' ;
+        }
+        .icon-fav-no:before {
+            content: '\\e900' ;
         }
     }
 `;

@@ -24,7 +24,7 @@ const resources = {
             favorites: 'Favoris',
             all: 'Tous',
             empty_quote: 'L’enfer est vide et tous les démons sont ici',
-            go_to_website: 'Accéder au site web',
+            go_to_website: 'Site web',
         },
     },
 };

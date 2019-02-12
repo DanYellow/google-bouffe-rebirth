@@ -70,8 +70,8 @@ export default {
         {
             id: Math.floor(Math.random() * 10000),
             position: {
-                lat: 45.494984,
-                lng: -72.651778,
+                lat: 45.497253,
+                lng: -73.656472,
             },
             title: 'MG Health',
             address: '7777 Boulevard Décarie, Montréal, QC H4P 2G8',
@@ -80,8 +80,8 @@ export default {
         {
             id: Math.floor(Math.random() * 10000),
             position: {
-                lat: 45.494984,
-                lng: -72.651778,
+                lat: 45.49711,
+                lng: -73.655045,
             },
             title: 'Eggspectation',
             address: '7657 Decarie Blvd, Montreal, QC H4P 2H2',
@@ -92,8 +92,8 @@ export default {
         {
             id: Math.floor(Math.random() * 10000),
             position: {
-                lat: 45.494984,
-                lng: -72.651778,
+                lat: 45.495079,
+                lng: -73.655206,
             },
             title: 'Marathon Souvlaki',
             address: '7373 Boulevard Décarie, Montréal, QC H4P 2G8',
@@ -116,8 +116,8 @@ export default {
         {
             id: Math.floor(Math.random() * 10000),
             position: {
-                lat: 45.494984,
-                lng: -72.651778,
+                lat: 45.495086,
+                lng: -73.651855,
             },
             title: 'Amir',
             address: '7373 Boulevard Décarie, Montréal, QC H4P 2G8',
@@ -128,26 +128,26 @@ export default {
         {
             id: Math.floor(Math.random() * 10000),
             position: {
-                lat: 45.494984,
-                lng: -72.651778,
+                lat: 45.495964,
+                lng: -73.650859,
             },
             title: 'Boustan',
-            address: '7373 Boulevard Décarie, Montréal, QC H4P 2G8',
+            address: '5150 Rue Jean-Talon Ouest, Montreal, QC H4P 2A7',
             website: '',
             phone_number: '(514) 735-7888',
             has_mg_discount: true,
         },
-        {
-            id: Math.floor(Math.random() * 10000),
-            position: {
-                lat: 45.494984,
-                lng: -72.651778,
-            },
-            title: 'Madisons',
-            address: '7373 Boulevard Décarie, Montréal, QC H4P 2G8',
-            website: '',
-            phone_number: '(514) 735-7888',
-            has_mg_discount: true,
-        },
+        // {
+        //     id: Math.floor(Math.random() * 10000),
+        //     position: {
+        //         lat: 45.494984,
+        //         lng: -72.651778,
+        //     },
+        //     title: 'Madisons',
+        //     address: '7373 Boulevard Décarie, Montréal, QC H4P 2G8',
+        //     website: '',
+        //     phone_number: '(514) 735-7888',
+        //     has_mg_discount: true,
+        // },
     ],
 };

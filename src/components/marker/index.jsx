@@ -1,4 +1,6 @@
 import { Marker } from 'react-google-maps';
+import { withRouter } from 'react-router';
+import { compose } from 'redux';
 
 import markerImage from 'assets/images/marker.png';
 import markerIconSelected from 'assets/images/marker-selected.png';
@@ -6,22 +8,23 @@ import markerIconSelected from 'assets/images/marker-selected.png';
 // import markerImage from 'assets/images/marker.png';
 // import markerImage from 'assets/images/marker.png';
 
-export default (props, context) => {
+const CustomMarker = props => {
     const handleClick = () => {
-        const { id } = props;
+        const { id, history } = props;
 
         document.getElementById(id).scrollIntoView();
+        history.push(`/locations/${id}`);
     };
 
     let markerIcon = null;
     switch (true) {
-        case props.id === 0:
+        case props.isSelected:
             markerIcon = markerIconSelected;
             break;
         default:
             markerIcon = markerImage;
     }
-    console.log('g', context);
+
     const markerSize = 50;
     const markerIconObj = {
         url: markerIcon,
@@ -30,3 +33,7 @@ export default (props, context) => {
 
     return <Marker {...props} icon={markerIconObj} onClick={handleClick} />;
 };
+
+const enhanced = compose(withRouter);
+
+export default enhanced(CustomMarker);

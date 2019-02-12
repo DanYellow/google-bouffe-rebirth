@@ -19,12 +19,12 @@ const ListContainer = styled.div`
         opacity: 1;
     }
 
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 900px) {
         left: 50%;
         transform: translate(-50%, 0%);
         width: 97%;
 
-        max-height: ${props => (props.hasSelectedLocation ? '35%' : '65%')};
+        max-height: ${props => (props.hasSelectedLocation ? '35%' : '55%')};
     }
 `;
 
