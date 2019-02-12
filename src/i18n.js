@@ -19,7 +19,10 @@ const resources = {
             go_to_website: 'Website',
             directions: 'Directions',
             total_distance: 'Distance totale',
-            minutes_walk: 'minutes walk',
+            walk: 'minute(s) walk',
+            calories_burned: 'Calories burned',
+            calories_burned_note:
+                'Base calculated for an person weighting 80 kg (~176 lbs)',
         },
     },
     fr: {
@@ -29,6 +32,9 @@ const resources = {
             empty_quote: 'L’enfer est vide et tous les démons sont ici',
             go_to_website: 'Site web',
             directions: 'Itinéraire',
+            walk: 'minute(s) de marche',
+            calories_burned_note:
+                'Base calculée pour un individu de 80 kg à une allure de 3 km/h',
         },
     },
 };

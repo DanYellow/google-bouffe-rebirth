@@ -135,7 +135,7 @@ export default props => {
                     <Feature>
                         <FeatureActionLink
                             category="directions"
-                            to={`${id}/directions`}
+                            to={`/locations/${id}/directions`}
                             title={t('display_directions')}
                             onClick={() => console.log('add_to_fav')}
                         >

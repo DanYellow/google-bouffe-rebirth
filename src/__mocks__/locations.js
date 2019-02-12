@@ -46,8 +46,8 @@ export default {
         {
             id: 4,
             position: {
-                lat: 45.496599,
-                lng: -73.655643,
+                lat: 45.496908,
+                lng: -73.654956,
             },
             title: 'Otago',
             address: '7373 Boulevard Décarie, Montréal, QC H4P 2G8',

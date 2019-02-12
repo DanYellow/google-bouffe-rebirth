@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { map, sum } from 'lodash';
 
 import { ItineraryStep } from 'components';
 
@@ -87,13 +88,19 @@ const CloseButton = styled.div`
 export default props => {
     const { t } = useTranslation();
     const {
-        totalDistance,
-        totalDuration,
         steps,
         selectedLocation: { title, address, id },
     } = props;
 
-    console.log(steps);
+    const deepSteps = steps.routes[0].legs[0].steps;
+
+    const totalDistance = (
+        sum(map(deepSteps, 'distance.value')) / 1000
+    ).toFixed(2);
+    const totalDuration = (sum(map(deepSteps, 'distance.value')) / 60).toFixed(
+        0
+    );
+    const totalCaloriesBurnt = (6 * totalDuration) / 4;
 
     return (
         <Itinerary>
@@ -108,33 +115,24 @@ export default props => {
                 </CloseButton>
 
                 <p>
-                    {t('total_distance')} : {totalDistance} km
+                    {t('total_distance')}: {totalDistance} km
                 </p>
                 <p>
-                    {totalDuration} {t('minutes_walk')}{' '}
+                    {totalDuration} {t('walk')}{' '}
                 </p>
+                <abbr title={t('calories_burned_note')}>
+                    {t('calories_burned')}: {totalCaloriesBurnt} kCal
+                </abbr>
             </ItineraryHeader>
-            {/* <abbr title={texts.info_cal}>
-                    {v.replace(
-                        texts.calories_burnt,
-                        '__placeholder__',
-                        totalCaloriesBurnt
-                    )}
-                </abbr> */}
             <Steps>
-                <li data-order={1}>
-                    <ItineraryStep
-                        instruction={{
-                            instructions: '',
-                            distance: {
-                                text: '',
-                            },
-                            duration: {
-                                text: '',
-                            },
-                        }}
-                    />
-                </li>
+                {deepSteps.map((item, idx) => (
+                    <li
+                        data-order={idx + 1}
+                        key={`${item.travel_mode + String(idx)}`}
+                    >
+                        <ItineraryStep {...item} />
+                    </li>
+                ))}
             </Steps>
         </Itinerary>
     );
