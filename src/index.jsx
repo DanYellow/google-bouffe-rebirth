@@ -13,7 +13,10 @@ injectGlobal`
   html, body {
    font-size: 16px;
    font-family: 'OpenSans';
-   -webkit-overflow-scrolling: touch;
+   /* -webkit-overflow-scrolling: touch; */
+   height: 100%;
+  width: 100%;
+  overflow: auto;
   }
 
   button {

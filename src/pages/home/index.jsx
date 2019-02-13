@@ -12,7 +12,10 @@ const App = styled.div`
     width: 100%;
     color: #333333;
     position: relative;
+    overflow: hidden;
 `;
+
+const Panel = styled.div``;
 
 const getItinerary = (originPosition, destinationPosition) => {
     const directionsService = new window.google.maps.DirectionsService();
@@ -66,10 +69,12 @@ const Home = props => {
         <>
             <App>
                 {!props.match.url.includes('directions') && (
-                    <List
-                        locations={locations}
-                        selectedLocationId={selectedLocation.id || null}
-                    />
+                    <Panel>
+                        <List
+                            locations={locations}
+                            selectedLocationId={selectedLocation.id || null}
+                        />
+                    </Panel>
                 )}
 
                 {showItinerary && (

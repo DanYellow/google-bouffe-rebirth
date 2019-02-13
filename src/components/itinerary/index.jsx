@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { map, sum } from 'lodash';
+import Draggable from 'react-draggable';
 
 import { ItineraryStep } from 'components';
 
@@ -17,7 +18,8 @@ const Itinerary = styled.div`
 
     display: flex;
     flex-direction: column;
-    border-radius: 10% 10% 0% 0% / 10% 10% 10% 10%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     background-color: white;
 
     @media (hover: hover) {
@@ -27,12 +29,12 @@ const Itinerary = styled.div`
     }
 
     @media screen and (max-width: 900px) {
-        left: 50%;
-        transform: translate(-50%, 0%);
+        left: 0;
+        /* left: 50%; */
+        /* transform: translate(-50%, 0%); */
         width: 97%;
         opacity: 1;
-
-        max-height: ${props => (props.hasSelectedLocation ? '35%' : '55%')};
+        max-height: 55%;
     }
 `;
 
@@ -62,6 +64,7 @@ const ItineraryHeader = styled.header`
 const StepsWrapper = styled.div`
     overflow-x: hidden;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 
     @media screen and (min-width: 1200px) {
         overflow-y: hidden;
@@ -125,39 +128,47 @@ export default props => {
     const totalCaloriesBurnt = (6 * totalDuration) / 4;
 
     return (
-        <Itinerary>
-            <ItineraryHeader>
-                <h1>{title}</h1>
-                <p>{address}</p>
+        <Draggable
+            axis="y"
+            handle=".itinerary-header"
+            // defaultPosition={{ x: -250, y: 0 }}
+            bounds={{ top: 0, bottom: 150 }}
+            scale={1}
+        >
+            <Itinerary>
+                <ItineraryHeader className="itinerary-header">
+                    <h1>{title}</h1>
+                    <p>{address}</p>
 
-                <Link to={`/locations/${id}`}>
-                    <CloseButton>
-                        <span className="icon-close" />
-                    </CloseButton>
-                </Link>
+                    <Link to={`/locations/${id}`}>
+                        <CloseButton>
+                            <span className="icon-close" />
+                        </CloseButton>
+                    </Link>
 
-                <p>
-                    {t('total_distance')}: {totalDistance} km
-                </p>
-                <p>
-                    {totalDuration} {t('walk')}{' '}
-                </p>
-                <abbr title={t('calories_burned_note')}>
-                    {t('calories_burned')}: {totalCaloriesBurnt} kCal
-                </abbr>
-            </ItineraryHeader>
-            <StepsWrapper>
-                <Steps>
-                    {deepSteps.map((item, idx) => (
-                        <li
-                            data-order={idx + 1}
-                            key={`${item.travel_mode + String(idx)}`}
-                        >
-                            <ItineraryStep {...item} />
-                        </li>
-                    ))}
-                </Steps>
-            </StepsWrapper>
-        </Itinerary>
+                    <p>
+                        {t('total_distance')}: {totalDistance} km
+                    </p>
+                    <p>
+                        {totalDuration} {t('walk')}{' '}
+                    </p>
+                    <abbr title={t('calories_burned_note')}>
+                        {t('calories_burned')}: {totalCaloriesBurnt} kCal
+                    </abbr>
+                </ItineraryHeader>
+                <StepsWrapper>
+                    <Steps>
+                        {deepSteps.map((item, idx) => (
+                            <li
+                                data-order={idx + 1}
+                                key={`${item.travel_mode + String(idx)}`}
+                            >
+                                <ItineraryStep {...item} />
+                            </li>
+                        ))}
+                    </Steps>
+                </StepsWrapper>
+            </Itinerary>
+        </Draggable>
     );
 };
