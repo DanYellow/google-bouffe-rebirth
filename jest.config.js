@@ -18,11 +18,11 @@ module.exports = {
         },
     },
     setupFiles: [
-        '<rootDir>/configs/polyfills.js',
+        '<rootDir>/configs/jest/polyfills.js',
         '<rootDir>/configs/jest/setup.js',
         // 'jest-localstorage-mock',
     ],
-    // testEnvironment: 'jest-environment-jsdom-global',
+    testEnvironment: 'jsdom',
     testURL: 'http://localhost',
     transform: {
         '^.+\\.(js|jsx|mjs)$': '<rootDir>/node_modules/babel-jest',

@@ -14,15 +14,19 @@ const ListContainer = styled.div`
     display: flex;
     flex-direction: column;
     opacity: 0.65;
+    background-color: white;
 
-    &:hover {
-        opacity: 1;
+    @media (hover: hover) {
+        &:hover {
+            opacity: 1;
+        }
     }
 
     @media screen and (max-width: 900px) {
         left: 50%;
         transform: translate(-50%, 0%);
         width: 97%;
+        opacity: 1;
 
         max-height: ${props => (props.hasSelectedLocation ? '35%' : '55%')};
     }
@@ -69,8 +73,10 @@ const ListRestaurantsWrapper = styled.div`
 
     @media screen and (min-width: 1200px) {
         overflow-y: hidden;
-        &:hover {
-            overflow-y: scroll;
+        @media (hover: hover) {
+            &:hover {
+                overflow-y: scroll;
+            }
         }
     }
 `;

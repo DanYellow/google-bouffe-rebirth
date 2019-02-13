@@ -18,11 +18,13 @@ const resources = {
             has_mg_discount: 'You have a discount with your MG ID',
             go_to_website: 'Website',
             directions: 'Directions',
-            total_distance: 'Distance totale',
+            total_distance: 'Total distance ',
             walk: 'minute(s) walk',
             calories_burned: 'Calories burned',
             calories_burned_note:
                 'Base calculated for an person weighting 80 kg (~176 lbs)',
+            time: 'Time',
+            distance: 'Distance',
         },
     },
     fr: {
@@ -35,6 +37,9 @@ const resources = {
             walk: 'minute(s) de marche',
             calories_burned_note:
                 'Base calculée pour un individu de 80 kg à une allure de 3 km/h',
+            time: 'Temps',
+            distance: 'Distance',
+            total_distance: 'Distance totale',
         },
     },
 };

@@ -12,8 +12,8 @@ const CustomMarker = props => {
     const handleClick = () => {
         const { id, history } = props;
 
-        document.getElementById(id).scrollIntoView();
-        history.push(`/locations/${id}`);
+        document.getElementById(id)?.scrollIntoView(); // eslint-disable-line
+        history.replace(`/locations/${id}`);
     };
 
     let markerIcon = null;

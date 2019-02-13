@@ -9,7 +9,7 @@ const Itinerary = styled.div`
     width: 350px;
     position: absolute;
     bottom: 0;
-    left: 450px;
+    left: 50px;
     z-index: 9999;
     min-height: 15%;
     max-height: 85%;
@@ -20,25 +20,26 @@ const Itinerary = styled.div`
     border-radius: 10% 10% 0% 0% / 10% 10% 10% 10%;
     background-color: white;
 
-    padding: 0 15px;
-
-    &:hover {
-        opacity: 1;
+    @media (hover: hover) {
+        &:hover {
+            opacity: 1;
+        }
     }
 
     @media screen and (max-width: 900px) {
         left: 50%;
         transform: translate(-50%, 0%);
         width: 97%;
+        opacity: 1;
 
         max-height: ${props => (props.hasSelectedLocation ? '35%' : '55%')};
     }
 `;
 
 const ItineraryHeader = styled.header`
-    padding: 15px 0;
-    margin-bottom: 10px;
+    padding: 15px 15px;
     position: relative;
+    border-bottom: 3px solid #d8c307;
 
     h1 {
         font-size: 1.5rem;
@@ -48,14 +49,34 @@ const ItineraryHeader = styled.header`
 
     p {
         width: 80%;
+        font-size: 0.8rem;
+    }
+
+    abbr {
+        display: block;
+        margin-top: 7px;
+        font-size: 0.8rem;
+    }
+`;
+
+const StepsWrapper = styled.div`
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    @media screen and (min-width: 1200px) {
+        overflow-y: hidden;
+        @media (hover: hover) {
+            &:hover {
+                overflow-y: scroll;
+            }
+        }
     }
 `;
 
 const Steps = styled.ol`
     li {
         position: relative;
-        padding: 15px 0;
-        margin: 0 18px;
+        padding: 18px 15px;
         border-bottom: 1px solid #141414;
         overflow: hidden;
 
@@ -65,7 +86,8 @@ const Steps = styled.ol`
             opacity: 0.19;
             top: -5px;
             position: absolute;
-            color: #da032c;
+            color: #d8c307;
+            text-shadow: 4px 3px 0 #7a7a7a;
         }
     }
 `;
@@ -108,11 +130,11 @@ export default props => {
                 <h1>{title}</h1>
                 <p>{address}</p>
 
-                <CloseButton>
-                    <Link to={`/locations/${id}`}>
+                <Link to={`/locations/${id}`}>
+                    <CloseButton>
                         <span className="icon-close" />
-                    </Link>
-                </CloseButton>
+                    </CloseButton>
+                </Link>
 
                 <p>
                     {t('total_distance')}: {totalDistance} km
@@ -124,16 +146,18 @@ export default props => {
                     {t('calories_burned')}: {totalCaloriesBurnt} kCal
                 </abbr>
             </ItineraryHeader>
-            <Steps>
-                {deepSteps.map((item, idx) => (
-                    <li
-                        data-order={idx + 1}
-                        key={`${item.travel_mode + String(idx)}`}
-                    >
-                        <ItineraryStep {...item} />
-                    </li>
-                ))}
-            </Steps>
+            <StepsWrapper>
+                <Steps>
+                    {deepSteps.map((item, idx) => (
+                        <li
+                            data-order={idx + 1}
+                            key={`${item.travel_mode + String(idx)}`}
+                        >
+                            <ItineraryStep {...item} />
+                        </li>
+                    ))}
+                </Steps>
+            </StepsWrapper>
         </Itinerary>
     );
 };

@@ -21,6 +21,14 @@ module.exports = merge(baseConfig, {
             inject: false,
             template: require('html-webpack-template'),
             appMountId: 'root',
+            title: 'Restaurant locator',
+            lang: 'fr',
+            meta: [
+                {
+                    name: 'viewport',
+                    content: 'width=device-width, initial-scale=1.0',
+                },
+            ],
         }),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production'),
@@ -29,12 +37,10 @@ module.exports = merge(baseConfig, {
     optimization: {
         minimizer: [
             new UglifyJsPlugin({
-                cache: true,
-                parallel: true,
                 uglifyOptions: {
                     mangle: true,
-                    ie8: false,
-                    keep_fnames: false,
+                    // ie8: false,
+                    // keep_fnames: false,
                 },
             }),
         ],

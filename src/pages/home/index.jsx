@@ -56,14 +56,23 @@ const Home = props => {
             item => item.id === Number(props.match.params.id)
         ) || {};
 
+    const showItinerary =
+        Object.keys(itinerary).length > 0 &&
+        props.match.url.includes('directions');
+
+    document.getElementById(selectedLocation.id)?.scrollIntoView(); // eslint-disable-line
+
     return (
         <>
             <App>
-                <List
-                    locations={locations}
-                    selectedLocationId={selectedLocation.id || null}
-                />
-                {Object.keys(itinerary).length > 0 && (
+                {!props.match.url.includes('directions') && (
+                    <List
+                        locations={locations}
+                        selectedLocationId={selectedLocation.id || null}
+                    />
+                )}
+
+                {showItinerary && (
                     <Itinerary
                         selectedLocation={selectedLocation}
                         steps={itinerary}

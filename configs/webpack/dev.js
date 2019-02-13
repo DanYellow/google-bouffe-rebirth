@@ -17,6 +17,13 @@ module.exports = merge(baseConfig, {
             template: require('html-webpack-template'),
             appMountId: 'root',
             title: 'Google bouffe',
+            lang: 'fr',
+            meta: [
+                {
+                    content: 'width=device-width, initial-scale=1.0',
+                    name: 'viewport',
+                },
+            ],
         }),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('development'),
@@ -27,12 +34,11 @@ module.exports = merge(baseConfig, {
         compress: true,
         port: 9000,
         open: true,
+        host: '0.0.0.0',
         overlay: true,
         historyApiFallback: {
             rewrites: [
                 { from: /^\/locations(\/\d+)?\/main\.js/, to: '/main.js' },
-                // { from: /^\/locations\/\d+\/main\.js/, to: '/main.js' },
-                // { from: /^\/locations\/fonts\/./, to: '/fonts/' },
                 {
                     from: /^\locations\/fonts\/icomoon\.ttf/,
                     to: '/fonts/icomoon.ttf',

@@ -11,8 +11,10 @@ const Item = styled.li`
         color: inherit;
         display: block;
 
-        &:hover {
-            background-color: #fff48e;
+        @media (hover: hover) {
+            &:hover {
+                background-color: #fff48e;
+            }
         }
 
         background-color: ${props =>
@@ -40,7 +42,6 @@ const Item = styled.li`
 
 const Details = styled.ul`
     background-color: #fff48e;
-    /* #fff48e; */
     padding: 0 18px 15px;
 
     display: flex;
@@ -59,21 +60,27 @@ const FeatureAction = styled.button`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 0.8125rem;
+
+    span {
+        font-size: 0.8125rem;
+    }
 
     .icon {
         font-size: 2.5rem;
+        color: #333;
     }
 
-    &:hover {
-        .icon-fav, .icon-fav-no {
-            color: red;
-        }
-        .icon-fav:before {
-            content: '\\e901' ;
-        }
-        .icon-fav-no:before {
-            content: '\\e900' ;
+    @media (hover: hover) {
+        &:hover {
+            .icon-fav, .icon-fav-no {
+                color: red;
+            }
+            .icon-fav:before {
+                content: '\\e901' ;
+            }
+            .icon-fav-no:before {
+                content: '\\e900' ;
+            }
         }
     }
 `;
@@ -95,14 +102,24 @@ const Address = styled.p`
 export default props => {
     const { t } = useTranslation();
 
-    const { id, title, address, isActive, isFavorite, website } = props;
+    const {
+        id,
+        title,
+        address,
+        isActive,
+        isFavorite,
+        website,
+        has_mg_discount: hasMGDiscount,
+    } = props;
 
     return (
         <Item id={id} isActive={isActive}>
             <NavLink to={`/locations/${id}`}>
                 <h3>{title}</h3>
                 <Address>{address}</Address>
-                <DiscountMessage>{t('has_mg_discount')}</DiscountMessage>
+                {hasMGDiscount && (
+                    <DiscountMessage>{t('has_mg_discount')}</DiscountMessage>
+                )}
             </NavLink>
             {isActive && (
                 <Details>
@@ -135,13 +152,13 @@ export default props => {
                     <Feature>
                         <FeatureActionLink
                             category="directions"
+                            replace
                             to={`/locations/${id}/directions`}
                             title={t('display_directions')}
-                            onClick={() => console.log('add_to_fav')}
                         >
                             <span
                                 className={cx(
-                                    { 'icon-fav': true },
+                                    { 'icon-itinerary': true },
                                     { icon: true }
                                 )}
                             />
@@ -172,11 +189,10 @@ export default props => {
                                 as="a"
                                 href={website}
                                 title={t('go_to_website')}
-                                onClick={() => console.log('add_to_fav')}
                             >
                                 <span
                                     className={cx(
-                                        { 'icon-survey-add': true },
+                                        { 'icon-website': true },
                                         { icon: true }
                                     )}
                                 />

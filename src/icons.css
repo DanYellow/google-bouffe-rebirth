@@ -1,11 +1,8 @@
 @font-face {
-    font-family: 'icomoon';
-    src: url('./assets/fonts/icomoon.eot?6wgd3n');
-    src: url('./assets/fonts/icomoon.eot?6wgd3n#iefix')
-            format('embedded-opentype'),
-        url('./assets/fonts/icomoon.ttf?6wgd3n') format('truetype'),
-        url('./assets/fonts/icomoon.woff?6wgd3n') format('woff'),
-        url('./assets/fonts/icomoon.svg?6wgd3n#icomoon') format('svg');
+    font-family: 'gb-icons';
+    src: url('assets/fonts/gb-icons.ttf?lyjghu') format('truetype'),
+        url('assets/fonts/gb-icons.woff?lyjghu') format('woff'),
+        url('assets/fonts/gb-icons.svg?lyjghu#gb-icons') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -13,7 +10,7 @@
 [class^='icon-'],
 [class*=' icon-'] {
     /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'icomoon' !important;
+    font-family: 'gb-icons' !important;
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -26,6 +23,9 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-itinerary:before {
+    content: '\e906';
+}
 .icon-survey-add:before {
     content: '\e903';
 }
@@ -44,9 +44,6 @@
 .icon-fav:before {
     content: '\e900';
 }
-.icon-warning:before {
-    content: '\e907';
-}
-.icon-checkmark:before {
-    content: '\e906';
+.icon-website:before {
+    content: '\e9c9';
 }

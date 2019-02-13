@@ -1,5 +1,6 @@
+/* eslint-disable */
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 
 import { Router as App } from 'pages';
 import 'i18n';
@@ -12,7 +13,7 @@ injectGlobal`
   html, body {
    font-size: 16px;
    font-family: 'OpenSans';
-   overflow: hidden;
+   -webkit-overflow-scrolling: touch;
   }
 
   button {
@@ -32,8 +33,8 @@ injectGlobal`
 `;
 
 ReactDOM.render(
-    <BrowserRouter>
+    <HashRouter>
         <App />
-    </BrowserRouter>,
+    </HashRouter>,
     document.getElementById('root')
 );
