@@ -8,7 +8,7 @@ module.exports = {
         '!src/**/*.xtest.{js, jsx, mjs}',
         '!src/utils/codegen/**/*.{js, jsx, mjs}',
     ],
-    testMatch: ['<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}'],
+    // testMatch: ['<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}'],
     coverageThreshold: {
         global: {
             branches: coverageThreshold,
@@ -20,7 +20,6 @@ module.exports = {
     setupFiles: [
         '<rootDir>/configs/jest/polyfills.js',
         '<rootDir>/configs/jest/setup.js',
-        // 'jest-localstorage-mock',
     ],
     testEnvironment: 'jsdom',
     testURL: 'http://localhost',
