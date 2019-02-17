@@ -24,6 +24,8 @@ injectGlobal`
     text-decoration: none;
     background: none;
     border: 0;
+    margin: 0;
+    padding: 0;
   }
 
   a {

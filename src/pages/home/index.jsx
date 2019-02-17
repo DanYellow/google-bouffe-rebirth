@@ -5,14 +5,17 @@ import { withRouter } from 'react-router';
 
 import HomeActions from 'pages/home/modules';
 
-import { Map, List, Itinerary } from 'components';
+import { Map, List, Itinerary, Survey } from 'components';
 import config from 'utils/config';
 
 import { Locations } from 'services/api';
 
 const {
     restaurants: { toggleFav: toggleFavAC },
-    survey: { toggleSurveyChoice: toggleSurveyChoiceAC },
+    survey: {
+        toggleSurveyChoice: toggleSurveyChoiceAC,
+        cancelSurvey: cancelSurveyAC,
+    },
 } = HomeActions;
 
 const App = styled.div`
@@ -49,7 +52,13 @@ const getItinerary = (originPosition, destinationPosition) => {
 let currentRoute = null;
 
 const Home = props => {
-    const { toggleFav, favs } = props;
+    const {
+        toggleFav,
+        favs,
+        choices,
+        toggleSurveyChoice,
+        cancelSurvey,
+    } = props;
     const [locations, setLocations] = React.useState({});
     const [itinerary, setItinerary] = React.useState({});
 
@@ -84,7 +93,18 @@ const Home = props => {
                             toggleFav={toggleFav}
                             locations={locations}
                             selectedLocationId={selectedLocation.id || null}
+                            toggleSurvey={toggleSurveyChoice}
+                            surveyChoices={choices}
                         />
+                        {choices.length > 0 && (
+                            <Survey
+                                cancelSurvey={cancelSurvey}
+                                toggleSurvey={toggleSurveyChoice}
+                                choices={locations.restaurants.filter(item =>
+                                    choices.includes(item.id)
+                                )}
+                            />
+                        )}
                     </Panel>
                 )}
 
@@ -128,15 +148,17 @@ const Home = props => {
     );
 };
 
-const mapStateToProps = ({ restaurants }) => {
+const mapStateToProps = ({ restaurants, survey }) => {
     return {
         favs: restaurants.favs,
+        choices: survey.choices,
     };
 };
 
 const mapDispatchToProps = {
     toggleFav: toggleFavAC,
     toggleSurveyChoice: toggleSurveyChoiceAC,
+    cancelSurvey: cancelSurveyAC,
 };
 
 const enhanced = compose(

@@ -23,9 +23,7 @@ export default (state = initialState, action) => {
             if (choices.includes(action.payload.id)) {
                 return {
                     ...state,
-                    choices: choices.filter(
-                        item => item.id === action.payload.id
-                    ),
+                    choices: choices.filter(item => item !== action.payload.id),
                 };
             }
 

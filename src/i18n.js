@@ -27,6 +27,8 @@ const resources = {
                 'Base calculated for an person weighting 80 kg (~176 lbs)',
             time: 'Time',
             distance: 'Distance',
+            survey: 'Survey',
+            delete: 'Delete',
         },
     },
     fr: {
@@ -42,6 +44,8 @@ const resources = {
             time: 'Temps',
             distance: 'Distance',
             total_distance: 'Distance totale',
+            survey: 'Sondage',
+            delete: 'Supprimer',
         },
     },
 };

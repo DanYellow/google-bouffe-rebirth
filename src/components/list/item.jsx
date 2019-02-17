@@ -95,6 +95,10 @@ const FeatureAction = styled.button`
             props.isFavorite ? 'red' : '#333'};
     }
 
+    &[disabled] {
+        opacity: 0.5;
+    }
+
     @media (hover: hover) {
         &:hover {
             .icon-fav, .icon-fav-no {
@@ -138,9 +142,12 @@ export default props => {
         isFavorite,
         website,
         toggleFav,
+        toggleSurvey,
+        isInSurvey,
+        isLimitSurveyReached,
         has_mg_discount: hasMGDiscount,
     } = props;
-
+    console.log('isLimitSurveyReached', isLimitSurveyReached);
     return (
         <Item
             id={id}
@@ -203,16 +210,36 @@ export default props => {
                         <FeatureAction
                             category="survey"
                             type="button"
-                            title={t('add_to_survey')}
-                            onClick={() => console.log('add_to_fav')}
+                            disabled={isLimitSurveyReached && !isInSurvey}
+                            title={t(
+                                isInSurvey
+                                    ? 'remove_from_survey'
+                                    : 'add_to_survey'
+                            )}
+                            onClick={() => toggleSurvey(id)}
                         >
                             <span
                                 className={cx(
-                                    { 'icon-survey-add': true },
+                                    {
+                                        'icon-survey-add': !isInSurvey,
+                                    },
+                                    {
+                                        'icon-survey-del': isInSurvey,
+                                    },
                                     { icon: true }
                                 )}
                             />
-                            <span> {t('add_to_survey')}</span>
+                            <span>
+                                {t(
+                                    isInSurvey
+                                        ? 'remove_from_survey'
+                                        : 'add_to_survey'
+                                )}{' '}
+                                <br />
+                                {isLimitSurveyReached &&
+                                    !isInSurvey &&
+                                    '(Limit reached)'}
+                            </span>
                         </FeatureAction>
                     </Feature>
                     {website && (

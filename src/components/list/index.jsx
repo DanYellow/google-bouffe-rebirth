@@ -90,10 +90,17 @@ const ListRestaurantsWrapper = styled.div`
 /* eslint-enable */
 
 const DRAGGING_COEFFICIENT = 0.587373;
+const LIMIT_SURVEY_CHOICES = 4;
 
 export default props => {
     const { t } = useTranslation();
-    const { selectedLocationId, toggleFav, favs } = props;
+    const {
+        selectedLocationId,
+        toggleFav,
+        favs,
+        toggleSurvey,
+        surveyChoices,
+    } = props;
 
     const [restaurants, setRestaurants] = React.useState(
         props.locations.restaurants // eslint-disable-line
@@ -154,8 +161,16 @@ export default props => {
                                         key={item.id}
                                         {...item}
                                         toggleFav={toggleFav}
+                                        toggleSurvey={toggleSurvey}
                                         isActive={
                                             selectedLocationId === item.id
+                                        }
+                                        isInSurvey={surveyChoices.includes(
+                                            item.id
+                                        )}
+                                        isLimitSurveyReached={
+                                            surveyChoices.length >=
+                                            LIMIT_SURVEY_CHOICES
                                         }
                                         isFavorite={favs.includes(item.id)}
                                     />
