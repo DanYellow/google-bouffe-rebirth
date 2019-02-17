@@ -1,8 +1,7 @@
-/* eslint-disable */
 import ReactDOM from 'react-dom';
-import { BrowserRouter, HashRouter } from 'react-router-dom';
 
-import { Router as App } from 'pages';
+import App from './app';
+
 import 'i18n';
 
 import 'reset.css';
@@ -13,7 +12,6 @@ injectGlobal`
   html, body {
    font-size: 16px;
    font-family: 'OpenSans';
-   /* -webkit-overflow-scrolling: touch; */
    height: 100%;
   width: 100%;
   overflow: auto;
@@ -35,9 +33,4 @@ injectGlobal`
   }
 `;
 
-ReactDOM.render(
-    <HashRouter>
-        <App />
-    </HashRouter>,
-    document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById('root'));

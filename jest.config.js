@@ -5,10 +5,14 @@ module.exports = {
     verbose: true,
     collectCoverageFrom: [
         'src/**/*.{js, jsx, mjs}',
-        '!src/**/*.xtest.{js, jsx, mjs}',
+        '!src/**/*.codegeneted.{js, jsx, mjs}',
+        '!src/**/*.e2e.{js, jsx, mjs}',
         '!src/utils/codegen/**/*.{js, jsx, mjs}',
     ],
-    // testMatch: ['<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}'],
+    testMatch: [
+        // '<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}'
+        '**/?(*.)+(spec|test).{js,jsx,mjs}',
+    ],
     coverageThreshold: {
         global: {
             branches: coverageThreshold,
@@ -30,13 +34,5 @@ module.exports = {
             '<rootDir>/configs/jest/fileTransform.js',
     },
     transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$'],
-    moduleFileExtensions: [
-        'web.js',
-        'mjs',
-        'js',
-        'json',
-        'web.jsx',
-        'jsx',
-        'node',
-    ],
+    moduleFileExtensions: ['web.js', 'mjs', 'js', 'json', 'web.jsx', 'jsx'],
 };

@@ -1,11 +1,19 @@
 import { compose } from 'redux';
+import { connect } from 'react-redux';
 import styled from '@emotion/styled';
 import { withRouter } from 'react-router';
+
+import HomeActions from 'pages/home/modules';
 
 import { Map, List, Itinerary } from 'components';
 import config from 'utils/config';
 
 import { Locations } from 'services/api';
+
+const {
+    restaurants: { toggleFav: toggleFavAC },
+    survey: { toggleSurveyChoice: toggleSurveyChoiceAC },
+} = HomeActions;
 
 const App = styled.div`
     height: 100vh;
@@ -41,6 +49,7 @@ const getItinerary = (originPosition, destinationPosition) => {
 let currentRoute = null;
 
 const Home = props => {
+    const { toggleFav, favs } = props;
     const [locations, setLocations] = React.useState({});
     const [itinerary, setItinerary] = React.useState({});
 
@@ -71,6 +80,8 @@ const Home = props => {
                 {!props.match.url.includes('directions') && (
                     <Panel>
                         <List
+                            favs={favs}
+                            toggleFav={toggleFav}
                             locations={locations}
                             selectedLocationId={selectedLocation.id || null}
                         />
@@ -117,6 +128,23 @@ const Home = props => {
     );
 };
 
-const enhanced = compose(withRouter);
+const mapStateToProps = ({ restaurants }) => {
+    return {
+        favs: restaurants.favs,
+    };
+};
+
+const mapDispatchToProps = {
+    toggleFav: toggleFavAC,
+    toggleSurveyChoice: toggleSurveyChoiceAC,
+};
+
+const enhanced = compose(
+    withRouter,
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )
+);
 
 export default enhanced(Home);

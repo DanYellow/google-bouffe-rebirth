@@ -9,6 +9,7 @@ const props = {
         text: '4 m',
     },
 };
+
 it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<Step {...props} />, div);

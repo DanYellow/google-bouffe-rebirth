@@ -1,10 +1,11 @@
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { cx } from 'emotion';
 
 /* eslint-disable */
 const Item = styled.li`
     position: relative;
+    overflow: hidden;
     & > a {
         padding: 15px 18px;
         text-decoration: none;
@@ -19,6 +20,26 @@ const Item = styled.li`
 
         background-color: ${props =>
             props.isActive ? '#fff48e' : 'transparent'};
+    }
+
+    &.is-favorite {
+        &:before {
+            content: '\\e900';
+            font-family: 'gb-icons' !important;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            font-size: 8.25rem;
+            right: -31px;
+            text-align: right;
+            top: 0;
+            color: red;
+            opacity: 0.07;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            pointer-events: none;
+        }
     }
 
     h3 {
@@ -61,13 +82,17 @@ const FeatureAction = styled.button`
     justify-content: center;
     align-items: center;
 
+    color: ${props =>
+            props.isFavorite ? 'red' : 'inherit'};
+
     span {
         font-size: 0.8125rem;
     }
 
     .icon {
         font-size: 2.5rem;
-        color: #333;
+        color: ${props =>
+            props.isFavorite ? 'red' : '#333'};
     }
 
     @media (hover: hover) {
@@ -85,12 +110,15 @@ const FeatureAction = styled.button`
     }
 `;
 
-const FeatureActionLink = FeatureAction.withComponent(Link);
+const FeatureActionLink = FeatureAction.withComponent(NavLink);
 
 const DiscountMessage = styled.p`
     font-weight: bolder;
     font-size: 0.8rem;
     margin-top: 7px;
+    display: inline-block;
+    background-color: #fff48e;
+    padding: 5px 20px 5px 5px;
 `;
 
 const Address = styled.p`
@@ -109,11 +137,17 @@ export default props => {
         isActive,
         isFavorite,
         website,
+        toggleFav,
         has_mg_discount: hasMGDiscount,
     } = props;
 
     return (
-        <Item id={id} isActive={isActive}>
+        <Item
+            id={id}
+            isActive={isActive}
+            isFavorite={isFavorite}
+            className={cx({ 'is-favorite': isFavorite })}
+        >
             <NavLink to={`/locations/${id}`}>
                 <h3>{title}</h3>
                 <Address>{address}</Address>
@@ -128,23 +162,23 @@ export default props => {
                             category="fav"
                             type="button"
                             title={t(
-                                isFavorite ? 'add_to_favs' : 'remove_from_favs'
+                                isFavorite ? 'remove_from_favs' : 'add_to_favs'
                             )}
-                            onClick={() => console.log('add_to_fav')}
+                            onClick={() => toggleFav(id)}
                             isFavorite={isFavorite}
                         >
                             <span
                                 className={cx(
-                                    { 'icon-fav': !isFavorite },
-                                    { 'icon-fav-no': isFavorite },
+                                    { 'icon-fav': isFavorite },
+                                    { 'icon-fav-no': !isFavorite },
                                     { icon: true }
                                 )}
                             />
                             <span>
                                 {t(
                                     isFavorite
-                                        ? 'add_to_favs'
-                                        : 'remove_from_favs'
+                                        ? 'is_favorited'
+                                        : 'is_not_favorited'
                                 )}
                             </span>
                         </FeatureAction>
@@ -185,9 +219,9 @@ export default props => {
                         <Feature>
                             <FeatureAction
                                 category="survey"
-                                type="button"
                                 as="a"
                                 href={website}
+                                target="_blank"
                                 title={t('go_to_website')}
                             >
                                 <span

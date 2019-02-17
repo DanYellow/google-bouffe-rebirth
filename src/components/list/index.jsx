@@ -11,7 +11,7 @@ const ListContainer = styled.div`
     left: 50px;
     z-index: 9999;
     min-height: 15%;
-    max-height: 85%;
+    max-height: 75%;
     opacity: 0.65;
 
     display: flex;
@@ -89,11 +89,11 @@ const ListRestaurantsWrapper = styled.div`
 `;
 /* eslint-enable */
 
-const COEFFICIENT_DRAGGING = 0.697373;
+const DRAGGING_COEFFICIENT = 0.587373;
 
 export default props => {
     const { t } = useTranslation();
-    const { selectedLocationId } = props;
+    const { selectedLocationId, toggleFav, favs } = props;
 
     const [restaurants, setRestaurants] = React.useState(
         props.locations.restaurants // eslint-disable-line
@@ -107,8 +107,8 @@ export default props => {
             bounds={{
                 top: 0,
                 bottom:
-                    window.screen.height -
-                    window.screen.height * COEFFICIENT_DRAGGING,
+                    window.innerHeight -
+                    window.innerHeight * DRAGGING_COEFFICIENT,
             }}
             scale={1}
         >
@@ -120,8 +120,8 @@ export default props => {
                                 type="button"
                                 onClick={() => {
                                     setRestaurants(
-                                        restaurants.filter(
-                                            item => item.name === 'hto'
+                                        restaurants.filter(item =>
+                                            favs.includes(item.id)
                                         )
                                     );
                                     setActiveTab(0);
@@ -153,10 +153,11 @@ export default props => {
                                     <ListItem
                                         key={item.id}
                                         {...item}
+                                        toggleFav={toggleFav}
                                         isActive={
                                             selectedLocationId === item.id
                                         }
-                                        isFavorite={Math.random() > 0.5}
+                                        isFavorite={favs.includes(item.id)}
                                     />
                                 ))}
                         </ListRestaurants>

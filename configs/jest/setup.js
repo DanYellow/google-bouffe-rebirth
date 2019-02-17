@@ -4,9 +4,9 @@ import Enzyme, { shallow, render, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import axios from 'axios';
 // import MockAdapter from 'axios-mock-adapter';
-// import configureMockStore from 'redux-mock-store';
-// import thunk from 'redux-thunk';
-// import { Provider } from 'react-redux';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
 import { css, injectGlobal } from 'emotion';
 import styled from '@emotion/styled';
 // import { find, map } from 'lodash';
@@ -37,16 +37,16 @@ global.css = css;
 global.MemoryRouter = MemoryRouter;
 global.withRouter = withRouter;
 
-// global.MockAdapter = MockAdapter;
+global.MockAdapter = MockAdapter;
 // global.axios = axios;
-// global.thunk = thunk;
-// global.Provider = Provider;
-// global.configureMockStore = configureMockStore;
+global.thunk = thunk;
+global.Provider = Provider;
+global.configureMockStore = configureMockStore;
 
 // global.Helmet = Helmet;
 
-// const middlewares = [thunk];
-// global.mockStore = configureMockStore(middlewares);
+const middlewares = [thunk];
+global.mockStore = configureMockStore(middlewares);
 // global.mock = new MockAdapter(axios);
 
 // global.console = {

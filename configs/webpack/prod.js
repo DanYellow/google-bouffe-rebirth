@@ -34,15 +34,4 @@ module.exports = merge(baseConfig, {
             'process.env.NODE_ENV': JSON.stringify('production'),
         }),
     ],
-    optimization: {
-        minimizer: [
-            new UglifyJsPlugin({
-                uglifyOptions: {
-                    mangle: true,
-                    // ie8: false,
-                    // keep_fnames: false,
-                },
-            }),
-        ],
-    },
 });

@@ -13,7 +13,7 @@ const Itinerary = styled.div`
     left: 50px;
     z-index: 9999;
     min-height: 15%;
-    max-height: 85%;
+    max-height: 75%;
     opacity: 0.65;
 
     display: flex;
@@ -126,13 +126,13 @@ export default props => {
         0
     );
     const totalCaloriesBurnt = (6 * totalDuration) / 4;
-
+    // alert((deepSteps.length - 1) * 95);
     return (
         <Draggable
             axis="y"
             handle=".itinerary-header"
-            // defaultPosition={{ x: -250, y: 0 }}
-            bounds={{ top: 0, bottom: 150 }}
+            bounds={{ top: 0, bottom: 152 }}
+            // bounds={{ top: 0, bottom: (deepSteps.length - 1) * 95 - 152 }}
             scale={1}
         >
             <Itinerary>
