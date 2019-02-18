@@ -17,7 +17,7 @@ const resources = {
             add_to_survey: 'Add to survey',
             remove_from_survey: 'Remove from survey',
             display_directions: 'Directions',
-            has_mg_discount: 'You have a discount with your MG ID',
+            has_mg_discount: 'Discount with your MG ID',
             go_to_website: 'Website',
             directions: 'Directions',
             total_distance: 'Total distance ',
@@ -29,6 +29,10 @@ const resources = {
             distance: 'Distance',
             survey: 'Survey',
             delete: 'Delete',
+            survey_link: 'Survey link',
+            survey_link_desc:
+                'Share it with your coworkers to vote for your next lunch !',
+            has_easter_egg_steamed_hams: 'You can see an Aurora Borealis',
         },
     },
     fr: {

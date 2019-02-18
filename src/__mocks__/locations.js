@@ -162,5 +162,17 @@ export default {
             phone_number: '(514) 735-8233',
             has_mg_discount: true,
         },
+        {
+            id: 14,
+            position: {
+                lat: 58.111288,
+                lng: -68.381398,
+            },
+            title: 'Best Steamed Hams',
+            address: 'Upstate New York',
+            website: 'https://knowyourmeme.com/memes/steamed-hams',
+            phone_number: null,
+            has_easter_egg: true,
+        },
     ],
 };

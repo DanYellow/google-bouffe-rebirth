@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ip = require('ip');
 
 const baseConfig = require('./base');
 
@@ -28,13 +29,15 @@ module.exports = merge(baseConfig, {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('development'),
         }),
+        new webpack.HotModuleReplacementPlugin(),
     ],
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
         port: 9000,
         open: true,
-        host: '0.0.0.0',
+        hot: true,
+        host: ip.address(),
         overlay: true,
         historyApiFallback: {
             rewrites: [

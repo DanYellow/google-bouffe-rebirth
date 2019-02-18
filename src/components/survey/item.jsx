@@ -3,12 +3,13 @@ import { useTranslation } from 'react-i18next';
 const SurveyChoice = styled.button`
     background: white;
     display: block;
-    height: 100%;
+    height: inherit;
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
-    padding: 5px;
+    padding: 7px;
+    align-items: center;
 
     h3 {
         display: inline-block;
@@ -26,10 +27,7 @@ const SurveyChoice = styled.button`
 `;
 
 const CloseButton = styled.div`
-    display: flex;
-    flex-direction: column;
-    font-size: 1.3rem;
-    margin-top: 15px;
+    font-size: 1.7rem;
 `;
 
 export default props => {
@@ -41,8 +39,7 @@ export default props => {
             <h3>{title}</h3>
 
             <CloseButton>
-                <span className="icon-close" />
-                <span>{t('delete')}</span>
+                <span title={t('delete')} className="icon-close" />
             </CloseButton>
         </SurveyChoice>
     );

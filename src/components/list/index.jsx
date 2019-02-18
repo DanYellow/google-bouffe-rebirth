@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useTranslation } from 'react-i18next';
 import Draggable from 'react-draggable';
 
@@ -18,7 +19,6 @@ const ListContainer = styled.div`
     flex-direction: column;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    background-color: white;
 
     @media (hover: hover) {
         &:hover {
@@ -89,6 +89,8 @@ const ListRestaurantsWrapper = styled.div`
 `;
 /* eslint-enable */
 
+/* eslint-disable */
+
 const DRAGGING_COEFFICIENT = 0.587373;
 const LIMIT_SURVEY_CHOICES = 4;
 
@@ -108,79 +110,77 @@ export default props => {
     const [activeTab, setActiveTab] = React.useState(1);
 
     return (
-        <Draggable
-            axis="y"
-            handle=".navigation"
-            bounds={{
-                top: 0,
-                bottom:
-                    window.innerHeight -
-                    window.innerHeight * DRAGGING_COEFFICIENT,
-            }}
-            scale={1}
-        >
-            <ListContainer hasSelectedLocation={selectedLocationId}>
-                <Navigation className="navigation">
-                    <ul>
-                        <NavigationItem active={activeTab === 0}>
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    setRestaurants(
-                                        restaurants.filter(item =>
-                                            favs.includes(item.id)
-                                        )
-                                    );
-                                    setActiveTab(0);
-                                }}
-                            >
-                                {t('favorites')}
-                            </button>
-                        </NavigationItem>
-                        <NavigationItem active={activeTab === 1}>
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    setRestaurants(props.locations.restaurants);
-                                    setActiveTab(1);
-                                }}
-                            >
-                                {t('all')}
-                            </button>
-                        </NavigationItem>
-                    </ul>
-                </Navigation>
+        <ListContainer hasSelectedLocation={selectedLocationId}>
+            <Navigation className="navigation">
+                <ul>
+                    <NavigationItem active={activeTab === 0}>
+                        <button
+                            type="button"
+                            onClick={() => {
+                                setRestaurants(
+                                    restaurants.filter(item =>
+                                        favs.includes(item.id)
+                                    )
+                                );
+                                setActiveTab(0);
+                            }}
+                        >
+                            {t('favorites')}
+                        </button>
+                    </NavigationItem>
+                    <NavigationItem active={activeTab === 1}>
+                        <button
+                            type="button"
+                            onClick={() => {
+                                setRestaurants(props.locations.restaurants);
+                                setActiveTab(1);
+                            }}
+                        >
+                            {t('all')}
+                        </button>
+                    </NavigationItem>
+                </ul>
+            </Navigation>
 
-                {restaurants.length > 0 && (
-                    <ListRestaurantsWrapper>
-                        <ListRestaurants>
-                            {restaurants
-                                ?.sort((a, b) => a.title > b.title)
-                                .map(item => (
-                                    <ListItem
-                                        key={item.id}
-                                        {...item}
-                                        toggleFav={toggleFav}
-                                        toggleSurvey={toggleSurvey}
-                                        isActive={
-                                            selectedLocationId === item.id
-                                        }
-                                        isInSurvey={surveyChoices.includes(
-                                            item.id
-                                        )}
-                                        isLimitSurveyReached={
-                                            surveyChoices.length >=
-                                            LIMIT_SURVEY_CHOICES
-                                        }
-                                        isFavorite={favs.includes(item.id)}
-                                    />
-                                ))}
-                        </ListRestaurants>
-                    </ListRestaurantsWrapper>
-                )}
+            {restaurants.length > 0 && (
+                <ListRestaurantsWrapper>
+                    <ListRestaurants>
+                        {restaurants
+                            ?.sort((a, b) => a.title > b.title)
+                            .map(item => (
+                                <ListItem
+                                    key={item.id}
+                                    {...item}
+                                    toggleFav={toggleFav}
+                                    toggleSurvey={toggleSurvey}
+                                    isActive={selectedLocationId === item.id}
+                                    isInSurvey={surveyChoices.includes(item.id)}
+                                    isLimitSurveyReached={
+                                        surveyChoices.length >=
+                                        LIMIT_SURVEY_CHOICES
+                                    }
+                                    isFavorite={favs.includes(item.id)}
+                                />
+                            ))}
+                    </ListRestaurants>
+                </ListRestaurantsWrapper>
+            )}
 
-                {restaurants.length === 0 && <ListEmpty />}
-            </ListContainer>
-        </Draggable>
+            {restaurants.length === 0 && <ListEmpty />}
+        </ListContainer>
     );
 };
+
+// <Draggable
+//     axis="y"
+//     handle=".navigation"
+//     bounds={{
+//         top: 0,
+//         bottom:
+//             window.innerHeight -
+//             window.innerHeight * DRAGGING_COEFFICIENT,
+//     }}
+//     scale={1}
+// >
+
+/* </Draggable> */

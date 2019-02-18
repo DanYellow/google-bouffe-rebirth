@@ -5,16 +5,17 @@ import { withRouter } from 'react-router';
 
 import HomeActions from 'pages/home/modules';
 
-import { Map, List, Itinerary, Survey } from 'components';
+import { Map, List, Itinerary, Survey, SurveyGenerated } from 'components';
 import config from 'utils/config';
 
-import { Locations } from 'services/api';
+import { Locations, Survey as SurveyAPI } from 'services/api';
 
 const {
     restaurants: { toggleFav: toggleFavAC },
     survey: {
         toggleSurveyChoice: toggleSurveyChoiceAC,
         cancelSurvey: cancelSurveyAC,
+        createSurvey: createSurveyAC,
     },
 } = HomeActions;
 
@@ -58,9 +59,13 @@ const Home = props => {
         choices,
         toggleSurveyChoice,
         cancelSurvey,
+        createSurvey,
+        // clearedSurvey,
     } = props;
+
     const [locations, setLocations] = React.useState({});
     const [itinerary, setItinerary] = React.useState({});
+    const [surveyLink, setSurveyLink] = React.useState({});
 
     React.useEffect(() => {
         Locations.get().then(data => {
@@ -103,7 +108,16 @@ const Home = props => {
                                 choices={locations.restaurants.filter(item =>
                                     choices.includes(item.id)
                                 )}
+                                createSurvey={() => {
+                                    SurveyAPI.post().then(data => {
+                                        setSurveyLink(data);
+                                        createSurvey();
+                                    });
+                                }}
                             />
+                        )}
+                        {Object.keys(surveyLink).length > 0 && (
+                            <SurveyGenerated {...surveyLink} />
                         )}
                     </Panel>
                 )}
@@ -152,6 +166,7 @@ const mapStateToProps = ({ restaurants, survey }) => {
     return {
         favs: restaurants.favs,
         choices: survey.choices,
+        clearedSurvey: survey.clearSurvey,
     };
 };
 
@@ -159,6 +174,7 @@ const mapDispatchToProps = {
     toggleFav: toggleFavAC,
     toggleSurveyChoice: toggleSurveyChoiceAC,
     cancelSurvey: cancelSurveyAC,
+    createSurvey: createSurveyAC,
 };
 
 const enhanced = compose(

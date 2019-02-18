@@ -15,7 +15,7 @@ const Map = props => {
         <GoogleMap
             {...props}
             options={{
-                minZoom: 15,
+                minZoom: 10,
                 fullscreenControl: false,
                 streetViewControl: false,
                 scaleControl: true,

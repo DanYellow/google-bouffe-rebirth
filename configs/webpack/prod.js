@@ -21,7 +21,7 @@ module.exports = merge(baseConfig, {
             inject: false,
             template: require('html-webpack-template'),
             appMountId: 'root',
-            title: 'Restaurant locator',
+            title: 'Vote & Lunch',
             lang: 'fr',
             meta: [
                 {

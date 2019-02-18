@@ -33,6 +33,10 @@ injectGlobal`
     color: inherit;
     font-weight: normal;
   }
+
+  * {
+    box-sizing: border-box;
+  }
 `;
 
 ReactDOM.render(<App />, document.getElementById('root'));

@@ -1,6 +1,6 @@
 const mockEnvs = ['test', 'development', 'production'];
 
-const array = ['Locations'];
+const array = ['Locations', 'Survey'];
 
 module.exports = array
     .map(endpoint => {

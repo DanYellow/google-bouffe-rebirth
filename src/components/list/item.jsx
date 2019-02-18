@@ -67,7 +67,7 @@ const Details = styled.ul`
 
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
 `;
 
 const Feature = styled.li`
@@ -146,8 +146,9 @@ export default props => {
         isInSurvey,
         isLimitSurveyReached,
         has_mg_discount: hasMGDiscount,
+        has_easter_egg: hasEasterEgg,
     } = props;
-    console.log('isLimitSurveyReached', isLimitSurveyReached);
+
     return (
         <Item
             id={id}
@@ -160,6 +161,11 @@ export default props => {
                 <Address>{address}</Address>
                 {hasMGDiscount && (
                     <DiscountMessage>{t('has_mg_discount')}</DiscountMessage>
+                )}
+                {hasEasterEgg && (
+                    <DiscountMessage>
+                        {t('has_easter_egg_steamed_hams')}
+                    </DiscountMessage>
                 )}
             </NavLink>
             {isActive && (
@@ -190,58 +196,62 @@ export default props => {
                             </span>
                         </FeatureAction>
                     </Feature>
-                    <Feature>
-                        <FeatureActionLink
-                            category="directions"
-                            replace
-                            to={`/locations/${id}/directions`}
-                            title={t('display_directions')}
-                        >
-                            <span
-                                className={cx(
-                                    { 'icon-itinerary': true },
-                                    { icon: true }
-                                )}
-                            />
-                            <span>{t('display_directions')}</span>
-                        </FeatureActionLink>
-                    </Feature>
-                    <Feature>
-                        <FeatureAction
-                            category="survey"
-                            type="button"
-                            disabled={isLimitSurveyReached && !isInSurvey}
-                            title={t(
-                                isInSurvey
-                                    ? 'remove_from_survey'
-                                    : 'add_to_survey'
-                            )}
-                            onClick={() => toggleSurvey(id)}
-                        >
-                            <span
-                                className={cx(
-                                    {
-                                        'icon-survey-add': !isInSurvey,
-                                    },
-                                    {
-                                        'icon-survey-del': isInSurvey,
-                                    },
-                                    { icon: true }
-                                )}
-                            />
-                            <span>
-                                {t(
+                    {!hasEasterEgg && (
+                        <Feature>
+                            <FeatureActionLink
+                                category="directions"
+                                replace
+                                to={`/locations/${id}/directions`}
+                                title={t('display_directions')}
+                            >
+                                <span
+                                    className={cx(
+                                        { 'icon-itinerary': true },
+                                        { icon: true }
+                                    )}
+                                />
+                                <span>{t('display_directions')}</span>
+                            </FeatureActionLink>
+                        </Feature>
+                    )}
+                    {!hasEasterEgg && (
+                        <Feature>
+                            <FeatureAction
+                                category="survey"
+                                type="button"
+                                disabled={isLimitSurveyReached && !isInSurvey}
+                                title={t(
                                     isInSurvey
                                         ? 'remove_from_survey'
                                         : 'add_to_survey'
-                                )}{' '}
-                                <br />
-                                {isLimitSurveyReached &&
-                                    !isInSurvey &&
-                                    '(Limit reached)'}
-                            </span>
-                        </FeatureAction>
-                    </Feature>
+                                )}
+                                onClick={() => toggleSurvey(id)}
+                            >
+                                <span
+                                    className={cx(
+                                        {
+                                            'icon-survey-add': !isInSurvey,
+                                        },
+                                        {
+                                            'icon-survey-del': isInSurvey,
+                                        },
+                                        { icon: true }
+                                    )}
+                                />
+                                <span>
+                                    {t(
+                                        isInSurvey
+                                            ? 'remove_from_survey'
+                                            : 'add_to_survey'
+                                    )}{' '}
+                                    <br />
+                                    {isLimitSurveyReached &&
+                                        !isInSurvey &&
+                                        '(Limit reached)'}
+                                </span>
+                            </FeatureAction>
+                        </Feature>
+                    )}
                     {website && (
                         <Feature>
                             <FeatureAction
