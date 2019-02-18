@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ip = require('ip');
 
 const baseConfig = require('./base');
 
@@ -37,7 +36,7 @@ module.exports = merge(baseConfig, {
         port: 9000,
         open: true,
         hot: true,
-        host: ip.address(),
+        host: '0.0.0.0',
         overlay: true,
         historyApiFallback: {
             rewrites: [

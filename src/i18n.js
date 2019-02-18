@@ -32,7 +32,8 @@ const resources = {
             survey_link: 'Survey link',
             survey_link_desc:
                 'Share it with your coworkers to vote for your next lunch !',
-            has_easter_egg_steamed_hams: 'You can see an Aurora Borealis',
+            has_easter_egg_steamed_hams: 'You can see an Aurora Borealis !',
+            restaurants: 'Restaurants',
         },
     },
     fr: {

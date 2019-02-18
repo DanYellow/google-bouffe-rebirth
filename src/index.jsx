@@ -10,11 +10,11 @@ import 'icons.css';
 
 injectGlobal`
   html, body {
-   font-size: 16px;
-   font-family: 'OpenSans';
-   height: 100%;
-  width: 100%;
-  overflow: auto;
+    font-size: 16px;
+    font-family: 'OpenSans';
+    height: 100%;
+    width: 100%;
+    overflow: auto;
   }
 
   button {

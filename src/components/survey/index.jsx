@@ -18,6 +18,14 @@ const Survey = styled.section`
         display: inline-block;
         margin-bottom: 15px;
     }
+
+    @media screen and (max-width: 900px) {
+        display: ${props => (props.isVisible ? 'block' : 'none')};
+        width: 100%;
+        left: 0;
+        bottom: 10%;
+        top: auto;
+    }
 `;
 
 const SurveyChoices = styled.ul``;
@@ -88,10 +96,16 @@ const SurveyButtons = styled.ul`
 export default props => {
     const { t } = useTranslation();
 
-    const { choices, toggleSurvey, cancelSurvey, createSurvey } = props;
+    const {
+        choices,
+        toggleSurvey,
+        cancelSurvey,
+        createSurvey,
+        isVisible,
+    } = props;
 
     return (
-        <Survey>
+        <Survey isVisible={isVisible}>
             <h4>{t('survey')}</h4>
             <SurveyChoices>
                 {choices.map(item => (

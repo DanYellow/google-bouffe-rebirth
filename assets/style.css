@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'gb-icons';
   src:
-    url('fonts/gb-icons.ttf?lyjghu') format('truetype'),
-    url('fonts/gb-icons.woff?lyjghu') format('woff'),
-    url('fonts/gb-icons.svg?lyjghu#gb-icons') format('svg');
+    url('fonts/gb-icons.ttf?cxml5i') format('truetype'),
+    url('fonts/gb-icons.woff?cxml5i') format('woff'),
+    url('fonts/gb-icons.svg?cxml5i#gb-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -23,6 +23,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-restaurant:before {
+  content: "\e908";
+}
 .icon-itinerary:before {
   content: "\e906";
 }

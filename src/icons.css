@@ -23,6 +23,9 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-restaurant:before {
+    content: '\e908';
+}
 .icon-itinerary:before {
     content: '\e906';
 }

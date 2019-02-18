@@ -11,7 +11,7 @@ const Itinerary = styled.div`
     position: absolute;
     bottom: 0;
     left: 50px;
-    z-index: 9999;
+    z-index: 500;
     min-height: 15%;
     max-height: 75%;
     opacity: 0.65;

@@ -5,7 +5,14 @@ import { withRouter } from 'react-router';
 
 import HomeActions from 'pages/home/modules';
 
-import { Map, List, Itinerary, Survey, SurveyGenerated } from 'components';
+import {
+    Map,
+    List,
+    Itinerary,
+    Survey,
+    SurveyGenerated,
+    Navigation,
+} from 'components';
 import config from 'utils/config';
 
 import { Locations, Survey as SurveyAPI } from 'services/api';
@@ -56,7 +63,7 @@ const Home = props => {
     const {
         toggleFav,
         favs,
-        choices,
+        choices = [],
         toggleSurveyChoice,
         cancelSurvey,
         createSurvey,
@@ -66,6 +73,7 @@ const Home = props => {
     const [locations, setLocations] = React.useState({});
     const [itinerary, setItinerary] = React.useState({});
     const [surveyLink, setSurveyLink] = React.useState({});
+    const [tabToShow, setTabToShow] = React.useState(0);
 
     React.useEffect(() => {
         Locations.get().then(data => {
@@ -100,10 +108,14 @@ const Home = props => {
                             selectedLocationId={selectedLocation.id || null}
                             toggleSurvey={toggleSurveyChoice}
                             surveyChoices={choices}
+                            isVisible={tabToShow === 0}
                         />
                         {choices.length > 0 && (
                             <Survey
-                                cancelSurvey={cancelSurvey}
+                                cancelSurvey={() => {
+                                    cancelSurvey();
+                                    setTabToShow(0);
+                                }}
                                 toggleSurvey={toggleSurveyChoice}
                                 choices={locations.restaurants.filter(item =>
                                     choices.includes(item.id)
@@ -114,10 +126,14 @@ const Home = props => {
                                         createSurvey();
                                     });
                                 }}
+                                isVisible={tabToShow === 1}
                             />
                         )}
                         {Object.keys(surveyLink).length > 0 && (
-                            <SurveyGenerated {...surveyLink} />
+                            <SurveyGenerated
+                                {...surveyLink}
+                                isVisible={tabToShow === 1}
+                            />
                         )}
                     </Panel>
                 )}
@@ -156,6 +172,11 @@ const Home = props => {
                     }}
                     locations={locations}
                     selectedLocationId={selectedLocation.id || null}
+                />
+                <Navigation
+                    nbChoices={choices.length}
+                    tabToShow={tabToShow}
+                    setTab={setTabToShow}
                 />
             </App>
         </>
