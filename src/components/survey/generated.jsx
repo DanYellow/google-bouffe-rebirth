@@ -8,6 +8,14 @@ const SurveyGenerated = styled.div`
     top: 30%;
     width: 375px;
 
+    @media screen and (max-width: 900px) {
+        display: ${props => (props.isVisible ? 'block' : 'none')};
+        width: 100%;
+        left: 0;
+        bottom: 10%;
+        top: auto;
+    }
+
     h4 {
         font-size: 1.7rem;
         background-color: #fff48e;
@@ -32,11 +40,11 @@ const SurveyGenerated = styled.div`
 export default props => {
     const { t } = useTranslation();
 
-    const { hash } = props;
+    const { hash, isVisible } = props;
     const surveyURL = `${document.location.origin}/#/surveys/${hash}`;
 
     return (
-        <SurveyGenerated>
+        <SurveyGenerated isVisible={isVisible}>
             <h4>{t('survey_link')}</h4>
 
             <section>

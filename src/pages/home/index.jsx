@@ -75,6 +75,9 @@ const Home = props => {
     const [surveyLink, setSurveyLink] = React.useState({});
     const [tabToShow, setTabToShow] = React.useState(0);
 
+    const showSurveyLink =
+        Object.keys(surveyLink).length > 0 && choices.length === 0;
+
     React.useEffect(() => {
         Locations.get().then(data => {
             setLocations(data);
@@ -129,7 +132,7 @@ const Home = props => {
                                 isVisible={tabToShow === 1}
                             />
                         )}
-                        {Object.keys(surveyLink).length > 0 && (
+                        {showSurveyLink && (
                             <SurveyGenerated
                                 {...surveyLink}
                                 isVisible={tabToShow === 1}
@@ -177,6 +180,9 @@ const Home = props => {
                     nbChoices={choices.length}
                     tabToShow={tabToShow}
                     setTab={setTabToShow}
+                    showSurveyTab={
+                        Object.keys(surveyLink).length > 0 || choices.length > 0
+                    }
                 />
             </App>
         </>

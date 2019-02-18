@@ -64,7 +64,7 @@ const NavigationItem = props => {
     return (
         <NavigationItemUi isActive={isActive} nbChoices={nbChoices}>
             <button type="button" onClick={() => setTab(idx)}>
-                {nbChoices && <div className="badge">{nbChoices}</div>}
+                {nbChoices > 0 && <div className="badge">{nbChoices}</div>}
                 <span className={`icon-${iconKey} icon`} />
                 <span>{text}</span>
             </button>
@@ -75,7 +75,7 @@ const NavigationItem = props => {
 export default props => {
     const { t } = useTranslation();
 
-    const { setTab, tabToShow, nbChoices } = props;
+    const { setTab, tabToShow, nbChoices, showSurveyTab } = props;
 
     return (
         <Navigation>
@@ -88,7 +88,7 @@ export default props => {
                     setTab={setTab}
                 />
 
-                {nbChoices > 0 && (
+                {showSurveyTab && (
                     <NavigationItem
                         nbChoices={nbChoices}
                         iconKey="survey"

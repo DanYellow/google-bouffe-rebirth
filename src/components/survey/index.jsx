@@ -51,9 +51,11 @@ const SurveyChoice = styled.li`
         transform-origin: center left;
     }
 
-    &:hover:before {
-        content: '';
-        transform: translate(0, -50%) scaleX(1);
+    @media (hover: hover) {
+        &:hover:before {
+            content: '';
+            transform: translate(0, -50%) scaleX(1);
+        }
     }
 `;
 
